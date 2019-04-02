@@ -7,13 +7,15 @@ import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
+import { LandingComponent } from './landing/landing.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     LoginComponent,
     AdminComponent,
-    HomeComponent
+    HomeComponent,
+    LandingComponent
   ],
   imports: [
     BrowserModule,
