@@ -33,25 +33,49 @@
       </center>
     </header>
   </div>
-  <div style="padding-left: 20%">
+  <div class="d-flex flex-row justify-content-around" style="padding-left: 20%">
     <textarea
-      class="form-control z-depth- rounded-20 col-6 text-muted"
+      class="form-control d-flex z-depth- rounded-20 col-4 text-muted"
       rows="20"
       readonly="true"
     >
-Transcription will be here</textarea
+ 
+      Transcription will be here</textarea
     >
-    <br />
-    <div class="col-4" style="padding-left: 10%">
-      <button
-        style=" height:10%; background-color:darkslategrey; border-radius:50%;"
-        class="form-control btn mr-10 col-4  btn-dark"
-        type="submit"
-      >
-        <i class="fas fa-microphone"></i>
-      </button>
-    </div>
+    <textarea
+      class="form-control d-flex z-depth- rounded-20 col-4 text-muted"
+      rows="20"
+      readonly="true"
+    >
+
+      Summary will be here </textarea
+    >
   </div>
+
+  <br />
+  <br />
+  <div
+    class="d-flex flex-row row-h1 justify-content-between"
+    style="padding-left:30%; padding-right:65%;"
+  >
+    <button
+      style="height:100%; background-color:darkslategrey; border-radius:50%;"
+      class="form-control btn btn-dark item-h1 p-4 d-flex"
+      type="submit"
+    >
+      <i class="fas fa-microphone"></i>
+    </button>
+
+    <button
+      style=" height:100%; background-color:darkslategrey; border-radius:50%;"
+      class="form-control btn btn-dark item-h1 p-4 d-flex"
+      type="submit"
+    >
+      <i class="fas fa-upload"></i>
+    </button>
+  </div>
+
+  <!--scripts-->
   <script
     src="http://code.jquery.com/jquery-3.3.1.min.js"
     integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
