@@ -18,7 +18,7 @@
   <title>Landing Page</title>
 </head>
 <body>
-  <!--Start here always-->
+  <!--Start here always--> 
   <div class="container">
     <header class="col-12">
       <center>
@@ -37,19 +37,18 @@
     <textarea
       class="form-control d-flex z-depth- rounded-20 col-4 text-muted"
       rows="20"
-      readonly="true"
+      readonly="false"
+	  id = "transcriptText"
     >
  
-      Transcription will be here</textarea
+      </textarea
     >
     <textarea
       class="form-control d-flex z-depth- rounded-20 col-4 text-muted"
       rows="20"
-      readonly="true"
-    >
+      readonly="true">
 
-      Summary will be here </textarea
-    >
+      Summary will be here </textarea>
   </div>
 
   <br />
@@ -62,6 +61,8 @@
       style="height:100%; background-color:darkslategrey; border-radius:50%;"
       class="form-control btn btn-dark item-h1 p-4 d-flex"
       type="submit"
+	  id = "recordBtn"
+	  onclick = "transcribe();"
     >
       <i class="fas fa-microphone"></i>
     </button>
@@ -92,4 +93,45 @@
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"
   ></script>
+  <script>
+	function transcribe(){
+	window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+	//document.write("Done");
+	if ('SpeechRecognition' in window) {
+	  // speech recognition API supported
+	  //document.write("speech recognition is supported");
+	} else {
+	  // speech recognition API not supported
+	  //document.write("speech not supported");
+	}
+	let finalTranscript = '';
+	const recognition = new window.SpeechRecognition();
+	recognition.interimResults = true;
+	recognition.continuous = true;
+	recognition.lang = "en-US"
+	
+	recognition.onresult = (event) => {
+	let interimTranscript = '';
+	  const speechToText = event.results[0][0].transcript;
+	  for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+			let transcript = event.results[i][0].transcript;
+			if (event.results[i].isFinal) {
+			  finalTranscript += transcript;
+			  //document.write(transcript)
+			  var tarea = document.getElementById("transcriptText")
+				tarea.innerHTML = tarea.innerHTML + transcript 
+			  
+			} else {
+			  interimTranscript += transcript;
+			}
+		  }
+	  //document.write(finalTranscript);
+	  finalTranscript = ""
+	}
+	recognition.start();
+	recognition.onaudioend = function(){
+			//document.write("\n Speech ended.")
+		}
+	}
+  </script>
 </body>
