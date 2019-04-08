@@ -50,7 +50,7 @@ DIR = 'Outputs\\Transcriptions'
 
 def getKeywords(text):
 
-    nltk.download('wordnet')
+    nltk.download('wordnet', quiet=True)
     tokenized = nltk.tokenize.word_tokenize(text)
     stemmer = SnowballStemmer("english", ignore_stopwords=False)
     rawkws = summary.keywords(text)

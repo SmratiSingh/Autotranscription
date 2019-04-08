@@ -4,7 +4,7 @@ var spawn = require("child_process").spawn;
 var app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
-
+app.use(express.static(__dirname))
 app.get('/', function (req, res) {
     res.sendFile('landing.component.html',{root:__dirname});
 });
