@@ -1,4 +1,4 @@
-#import speech_recognition as sr
+import speech_recognition as sr
 import os
 from gensim import summarization as summary
 import nltk.tokenize
@@ -11,9 +11,9 @@ from pathlib import Path
 isFilePresent = True
 POS_REWARD = 1.0
 NEG_REWARD = 1.0
-THRESHOLD = 0.3 #0.6
+THRESHOLD = 0.6
 DIR = 'Outputs\\Transcriptions'
-#fileCount = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
+# fileCount = len([name for name in os.listdir(DIR) if os.path.isfile(os.path.join(DIR, name))])
 
 # To be Added later ------------------------------
 # try:
@@ -109,9 +109,8 @@ def writeData(text, params):
 
 if __name__ == "__main__":
 
-    #params = {"star": 0.74, "stellar": 0.65, "galaxy": 0.73, "shoe": 0.27, "hole": 0.5, "gaia": 0.54, "cluster": 0.54, "gravitational": 0.55, "say": 0.51, "stream": 0.54, "disk": 0.54, "nearby": 0.54, "sky": 0.55, "clusters": 0.52, "says": 0.52, "streams": 0.52, "stars": 0.52, "years": 0.52, "planet": 0.52, "like": 0.52, "finding": 0.52, "astronomical": 0.52, "astronomers": 0.52, "immediate": 0.52, "immediately": 0.52, "way": 0.52, "astrophysics": 0.52, "gravity": 0.52, "limitations": 0.52, "limits": 0.52, "galaxies": 0.52, "authors": 0.52, "author": 0.52, "forces": 0.52, "fewer": 0.52, "dispersing": 0.52, "disperse": 0.52, "old": 0.52, "parlance": 0.52, "heavy": 0.5}
+    params = {"star": 0.74, "stellar": 0.65, "galaxy": 0.73, "shoe": 0.27, "hole": 0.5, "gaia": 0.54, "cluster": 0.54, "gravitational": 0.55, "say": 0.51, "stream": 0.54, "disk": 0.54, "nearby": 0.54, "sky": 0.55, "clusters": 0.52, "says": 0.52, "streams": 0.52, "stars": 0.52, "years": 0.52, "planet": 0.52, "like": 0.52, "finding": 0.52, "astronomical": 0.52, "astronomers": 0.52, "immediate": 0.52, "immediately": 0.52, "way": 0.52, "astrophysics": 0.52, "gravity": 0.52, "limitations": 0.52, "limits": 0.52, "galaxies": 0.52, "authors": 0.52, "author": 0.52, "forces": 0.52, "fewer": 0.52, "dispersing": 0.52, "disperse": 0.52, "old": 0.52, "parlance": 0.52, "heavy": 0.5}
     # receivedKeywords = getKeywords(text)
-	params = {"dummy": 0.1}
-	receivedKeywords = getKeywords(sys.argv[1])
-	updateConfidence(receivedKeywords,params)
-	writeData(receivedKeywords,params)
+    receivedKeywords = getKeywords(sys.argv[1])
+    updateConfidence(receivedKeywords, params)
+    writeData(receivedKeywords, params)

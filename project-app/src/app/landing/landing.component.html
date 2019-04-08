@@ -27,7 +27,7 @@
           ;
           width="50%"
           ;
-          src="../screens/Web 1280 – 1.jpg"
+          src="./Web 1280 – 1.jpg"
           alt="logo"
         />
       </center>
@@ -40,15 +40,15 @@
       readonly="false"
 	  id = "transcriptText"
     >
- 
       </textarea
     >
     <textarea
       class="form-control d-flex z-depth- rounded-20 col-4 text-muted"
       rows="20"
-      readonly="true">
+      readonly="true"
+      id = "summary">
 
-      Summary will be here </textarea>
+     </textarea>
   </div>
 
   <br />
@@ -70,7 +70,7 @@
     <button
       style=" height:10%; background-color:darkslategrey; border-radius:50%; margin-left:150px;"
       class="form-control btn btn-dark item-h1 p-4 d-flex"
-      type="submit"
+      type="submit" onclick = "getKeywords();"
     >
       <i class="fas fa-upload"></i>
     </button>
@@ -106,24 +106,28 @@
 	}
 	let finalTranscript = '';
 	const recognition = new window.webkitSpeechRecognition();
-	recognition.interimResults = true;
+	recognition.interimResults = false;
 	recognition.continuous = true;
 	recognition.lang = "en-US"
 	
 	recognition.onresult = (event) => {
-	let interimTranscript = '';
-	  const speechToText = event.results[0][0].transcript;
+  let interimTranscript = '';
+  let finalTranscript = '';
+	  //const speechToText = event.results[0][0].transcript;
 	  for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
 			let transcript = event.results[i][0].transcript;
 			if (event.results[i].isFinal) {
-			  finalTranscript += transcript;
+        finalTranscript += transcript;
+        //transcript = event.results[i][0].transcript;
 			  //document.write(transcript)
-			  var tarea = document.getElementById("transcriptText")
-				tarea.innerHTML = tarea.innerHTML + transcript 
+			  //var tarea = document.getElementById("transcriptText")
+				//tarea.innerHTML = tarea.innerHTML + transcript 
 			  
-			} else {
-			  interimTranscript += transcript;
-			}
+			 } else {
+			   interimTranscript += transcript;
+       }
+       transcriptText.innerHTML +=finalTranscript;
+       //interim_span.innerHTML = linebreak(interim_transcript);
 		  }
 	  //document.write(finalTranscript);
 	  finalTranscript = ""
@@ -132,6 +136,20 @@
 	recognition.onaudioend = function(){
 			//document.write("\n Speech ended.")
 		}
-	}
+  }
+  
+
+  function getKeywords(){
+    var xmlhttp = new XMLHttpRequest();
+		var contentDiv = document.getElementById("summary");
+    var question = document.getElementById('transcriptText').innerHTML
+		xmlhttp.open("GET", "/keywords?trans="+question, true);
+		xmlhttp.onreadystatechange = function() {
+			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+				contentDiv.innerHTML += xmlhttp.responseText;
+			}
+		}
+		xmlhttp.send(null);
+  }
   </script>
 </body>
