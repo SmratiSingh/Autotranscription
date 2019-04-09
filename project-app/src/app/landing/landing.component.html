@@ -135,6 +135,7 @@
 	recognition.start();
 	recognition.onaudioend = function(){
       //document.write("\n Speech ended.")
+      console.log('Audio ended');
       getKeywords();
 		}
   }
