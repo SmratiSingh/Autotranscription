@@ -132,5 +132,10 @@
       }
     }
   },
-  "defaultProject": "project-app"
+  "defaultProject": "project-app",
+  "schematics": {
+    "@schematics/angular:component": {
+      "styleext": "styl"
+    }
+  }
 }

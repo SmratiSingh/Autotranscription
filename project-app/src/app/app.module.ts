@@ -1,5 +1,3 @@
-import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -8,6 +6,10 @@ import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
 import { RouterModule } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
+import{tagt}from './tagt/tagt.component';
+import { BrowserModule } from '@angular/platform-browser';
+import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 @NgModule({
   declarations: [
@@ -15,11 +17,13 @@ import { LandingComponent } from './landing/landing.component';
     LoginComponent,
     AdminComponent,
     HomeComponent,
-    LandingComponent
+    LandingComponent,
+    tagt
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
       
       {

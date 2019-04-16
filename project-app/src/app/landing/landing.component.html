@@ -33,32 +33,30 @@
       </center>
     </header>
   </div>
-  <div class="d-flex flex-row justify-content-around" style="padding-left: 20%">
-    <textarea
+  <div class="d-flex flex-row" style="height:60%; margin-top: 1%;">
+  <div id="trans" class="d-flex flex-col col-md-4 scrollable" style="padding:1%; margin-left:15%;  display:inline-block; position: relative; background-color: #dcdfe5;text-align: left;overflow-y:auto; border-radius:3%;">
+    <!-- <textarea
       class="form-control d-flex z-depth- rounded-20 col-4 text-muted"
       rows="20"
       readonly="false"
 	  id = "transcriptText"
-    >
-      </textarea
-    >
-    <textarea
-      class="form-control d-flex z-depth- rounded-20 col-4 text-muted"
-      rows="20"
-      readonly="true"
-      id = "summary">
-
-     </textarea>
+    >  
+    </textarea> -->
+    <div><p class="scrollable-content" id="final"><p id="interim" style="color:grey;"></p></p></div>
   </div>
-
+  <div id = "keywords" class="d-flex flex-col col-md-4 justify-content-around" style="padding:1%; margin-left:5%; display:inline-block; position: relative; background-color:#dcdfe5;  border-radius:3%; overflow-y: auto">
+    
+    
+  </div>
+</div>
   <br />
-  <br />
+  
   <div
     class="d-flex flex-row row-h1 justify-content-between"
-    style="padding-left:30%; padding-right:65%;"
+    style="padding-left:24%; padding-right:65%;"
   >
     <button
-      style="height:10%; background-color:darkslategrey; border-radius:50%;"
+      style="height:10%; background-color:#2f4f4f; border-radius:50%;"
       class="form-control btn btn-dark item-h1 p-4 d-flex"
       type="submit"
 	  id = "recordBtn"
@@ -68,7 +66,18 @@
     </button>
 
     <button
-      style=" height:10%; background-color:darkslategrey; border-radius:50%; margin-left:150px;"
+      style="height:10%; background-color: #dcdfe5; border-radius:50%;  margin-left:15%;"
+      class="form-control btn item-h1 p-4 d-flex"
+      type="submit"
+	  id = "stopBtn"
+	  onclick = "stopRecord();"
+    >
+      <i class="fas fa-stop"></i>
+    </button>
+
+
+    <button
+      style=" height:10%; background-color:darkslategrey; border-radius:50%; margin-left:15%;"
       class="form-control btn btn-dark item-h1 p-4 d-flex"
       type="submit" onclick = "getKeywords();"
     >
@@ -94,25 +103,19 @@
     crossorigin="anonymous"
   ></script>
   <script>
-	function transcribe(){
-	window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-	//document.write("Done");
-	if ('SpeechRecognition' in window) {
-	  // speech recognition API supported
-	  //document.write("speech recognition is supported");
-	} else {
-	  // speech recognition API not supported
-	  //document.write("speech not supported");
-	}
+    window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 	let finalTranscript = '';
 	const recognition = new window.webkitSpeechRecognition();
-	recognition.interimResults = false;
+	recognition.interimResults = true;
 	recognition.continuous = true;
-	recognition.lang = "en-US"
+	recognition.lang = "en-US";
+	function transcribe(){
+    document.getElementById("recordBtn").style.backgroundColor = 'red';
+    stopBtn.style.backgroundColor = '#2f4f4f';
 	
-	recognition.onresult = (event) => {
-  let interimTranscript = '';
-  let finalTranscript = '';
+    recognition.onresult = (event) => {
+    let interimTranscript = '';
+  //let finalTranscript = '';
 	  //const speechToText = event.results[0][0].transcript;
 	  for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
 			let transcript = event.results[i][0].transcript;
@@ -126,32 +129,60 @@
 			 } else {
 			   interimTranscript += transcript;
        }
-       transcriptText.innerHTML +=finalTranscript;
+       //transcriptText.innerHTML +=finalTranscript;
        //interim_span.innerHTML = linebreak(interim_transcript);
+       final.innerHTML = finalTranscript;
+       interim.innerHTML = interimTranscript;
+       trans.scrollTop = trans.scrollHeight;
 		  }
 	  //document.write(finalTranscript);
-	  finalTranscript = ""
+	  //finalTranscript = ""
 	}
 	recognition.start();
 	recognition.onaudioend = function(){
       //document.write("\n Speech ended.")
       console.log('Audio ended');
+      recordBtn.style.backgroundColor = '#2f4f4f';
+      stopBtn.style.backgroundColor = '#dcdfe5';
       getKeywords();
 		}
   }
   
-
-  function getKeywords(){
+  function stopRecord(){
+    recognition.stop();
+  }
+  function getKeywords(){ 
     var xmlhttp = new XMLHttpRequest();
-		var contentDiv = document.getElementById("summary");
-    var question = document.getElementById('transcriptText').innerHTML
+		//var contentDiv = document.getElementById("summary");
+    var question = document.getElementById('final').innerHTML
 		xmlhttp.open("GET", "/keywords?trans="+question, true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-				contentDiv.innerHTML += xmlhttp.responseText;
+        var resp = xmlhttp.responseText;
+        console.log("resp is"+resp);
+        var keys = resp.split(',');
+        var count = 0;
+        for(var i=0;i<keys.length;i++){
+				keywords.innerHTML += ` <div class='input-group mb-3 scrollable-content' style='height: 1%' name='k` +toString(count)+ `'>
+                                <div class='input-group-prepend'>
+                                  <span class='input-group-text' id=''>`+keys[i]+`</span>
+                                </div>
+                                <div class='input-group-append'>
+                                  <button class='btn btn-outline-info' style='color:rgb(49, 82, 82);' type='button' onclick='wipe(this.parentNode.parentNode.name);'>
+                                    X
+                                  </button>
+                                </div>
+                              </div> <br/>`
+                              count = count + 1;
+            }
 			}
 		}
 		xmlhttp.send(null);
+  }
+
+  function wipe(rname){
+    console.log("rname is"+rname);
+    keywords.removeChild(rname);
   }
   </script>
 </body>
