@@ -105,11 +105,13 @@
   <script>
     window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
 	let finalTranscript = '';
-	const recognition = new window.webkitSpeechRecognition();
+  const recognition = new window.webkitSpeechRecognition();
+  console.log("recognition created");
 	recognition.interimResults = true;
 	recognition.continuous = true;
 	recognition.lang = "en-US";
 	function transcribe(){
+    console.log("Inside transcrib function");
     document.getElementById("recordBtn").style.backgroundColor = 'red';
     stopBtn.style.backgroundColor = '#2f4f4f';
 	
