@@ -152,9 +152,11 @@
   
   function stopRecord(){
     recognition.stop();
+    getKeywords();
   }
   function getKeywords(){ 
     var xmlhttp = new XMLHttpRequest();
+    console.log('INside keyword extractor');
 		//var contentDiv = document.getElementById("summary");
     var question = document.getElementById('final').innerHTML
 		xmlhttp.open("GET", "/keywords?trans="+question, true);

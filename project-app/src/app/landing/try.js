@@ -9,12 +9,12 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname))
 app.use(bodyParser.urlencoded({ extended: true })); 
 console.log(__dirname)
-var key = fs.readFileSync(path.resolve('./selfsigned.key'));
-var cert = fs.readFileSync(path.resolve('./selfsigned.crt'));
-var options = {
-    key: key,
-    cert: cert
-  };
+// var key = fs.readFileSync(path.resolve('./selfsigned.key'));
+// var cert = fs.readFileSync(path.resolve('./selfsigned.crt'));
+// var options = {
+//     key: key,
+//     cert: cert
+//   };
 
 app.get('/', function (req, res) {
     res.sendFile(path.resolve('../login/login.html'));
@@ -46,5 +46,6 @@ app.get('/landing',function(req,res){
     res.sendFile('landing.component.html',{root:__dirname});
 })
 
-var httpsServer = https.createServer(options, app);
-httpsServer.listen(3000);
+app.listen(3000)
+// var httpsServer = https.createServer(options, app);
+// httpsServer.listen(3000);
