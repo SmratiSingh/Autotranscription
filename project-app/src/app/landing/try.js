@@ -1,6 +1,7 @@
 var express = require('express'); // Third Party Module
 var spawn = require("child_process").spawn; 
 var path = require('path');
+var mongo = require('../../assets/mongoFun')
 const https = require('https');
 const fs = require('fs');
 var app = express();
@@ -23,12 +24,53 @@ app.get('/', function (req, res) {
 app.post('/login', function (req, res) {
     user = req.param('user');
     pass = req.param('pass');
-    if(pass == "timepass"){
-        res.redirect('/landing');
+
+    mongo.verifyLogin(user, pass, function(document){
+        console.log(document);
+        if(document == null){res.send('Login failed');}
+        else if(pass == document.password) {
+            console.log("Login successful for :" + document.username);
+            res.redirect('/landing');
+        }
+        else {
+            res.send('Login failed');
+        }
+    });
+});
+
+app.post('/signup', function (req, res) {
+    firstName = req.param('Fuser');
+    lastName = req.param('Luser');
+    nPass = req.param('Npass');
+    cPass = req.param('Cpass');
+    username = req.param('username');
+    if(username == null) {
+        res.send('Username field is empty');
     }
-    else{
-        res.send('Auth failed');
+    else if(nPass == null || cPass == null) {
+        res.send('Password field is empty');
     }
+    else if(nPass == cPass) {
+        mongo.checkUser(username, function(document){
+            if(document == null) {
+                // add user and redir
+                mongo.newUser(username, nPass, firstName, lastName);
+                res.redirect('/landing');
+            }
+            else {
+                res.send('user '+document.username+' exists!');
+            }
+        });
+
+
+        // mongo.newUser(username, nPass, firstName, lastName);
+        // res.redirect('/landing');
+    }
+    else {
+        res.send('password mis-match!');
+    }
+    // TODO: Add checks for first name and last name.
+
 });
 
 app.get('/keywords', function(req, res){

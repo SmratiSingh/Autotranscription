@@ -19,17 +19,18 @@ module.exports.verifyLogin = function(username, pwd, callback){
                 throw err;
             }
             db.close();
+            // console.log(document);
             callback(document);
         });
     });
 };
 
-module.exports.newUser = function(username, pwd){
+module.exports.newUser = function(username, pwd, fname, lname){
     MongoClient.connect(mongo_url, function(err, db) {
 
         var dbo = db.db(db_name);
 
-        dbo.collection(user_table).insertOne({'username': username, 'password': pwd}, function(err, res) {
+        dbo.collection(user_table).insertOne({'firstName':fname, 'lastName':lname, 'username': username, 'password': pwd}, function(err, res) {
             if (err) {
                 // res.sendStatus(500);
                 throw err;
@@ -39,3 +40,19 @@ module.exports.newUser = function(username, pwd){
     });
 };
 
+module.exports.checkUser = function(username, callback){
+    MongoClient.connect(mongo_url, function(err, db) {
+
+        var dbo = db.db(db_name);
+
+        dbo.collection(user_table).findOne({'username': username}, function(err, document) {
+            if (err) {
+                // res.sendStatus(500);
+                throw err;
+            }
+            db.close();
+            // console.log(document);
+            callback(document);
+        });
+    });
+};
