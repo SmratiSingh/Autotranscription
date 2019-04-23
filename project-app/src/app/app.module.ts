@@ -34,18 +34,18 @@ import { SigninComponent } from './signin/signin.component';
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
       
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-      {
-        path: 'admin',
-        component: AdminComponent
-      },
-      {
-        path: '',
-        component: HomeComponent
-      }
+      // {
+      //   path: 'login',
+      //   component: LoginComponent
+      // },
+      // {
+      //   path: 'admin',
+      //   component: AdminComponent
+      // },
+      // {
+        // path: '',
+        // component: AppComponent
+      // }
     ])
   ],
   providers: [],
