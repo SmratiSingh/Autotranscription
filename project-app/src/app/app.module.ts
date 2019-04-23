@@ -14,7 +14,8 @@ import { OpeningComponent } from './opening/opening.component';
 import { LogoComponent } from './logo/logo.component';
 import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
-
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
+import {FormsModule} from '@angular/forms';
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,6 +32,8 @@ import { SigninComponent } from './signin/signin.component';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    BrowserAnimationsModule,
+    FormsModule,
     MDBBootstrapModule.forRoot(),
     RouterModule.forRoot([
       
