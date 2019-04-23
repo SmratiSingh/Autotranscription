@@ -10,6 +10,10 @@ import{tagt}from './tagt/tagt.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, NO_ERRORS_SCHEMA } from '@angular/core';
 import { MDBBootstrapModule } from 'angular-bootstrap-md';
+import { OpeningComponent } from './opening/opening.component';
+import { LogoComponent } from './logo/logo.component';
+import { SignupComponent } from './signup/signup.component';
+import { SigninComponent } from './signin/signin.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +22,11 @@ import { MDBBootstrapModule } from 'angular-bootstrap-md';
     AdminComponent,
     HomeComponent,
     LandingComponent,
-    tagt
+    tagt,
+    OpeningComponent,
+    LogoComponent,
+    SignupComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
