@@ -1,10 +1,9 @@
-
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
 import { AdminComponent } from './admin/admin.component';
 import { HomeComponent } from './home/home.component';
-import { RouterModule } from '@angular/router';
+import { RouterModule,Router } from '@angular/router';
 import { LandingComponent } from './landing/landing.component';
 import{tagt}from './tagt/tagt.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -31,25 +30,11 @@ import {FormsModule} from '@angular/forms';
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     BrowserAnimationsModule,
     FormsModule,
     MDBBootstrapModule.forRoot(),
-    RouterModule.forRoot([
-      
-      {
-        path: 'login',
-        component: LoginComponent
-      },
-      {
-        path: 'admin',
-        component: AdminComponent
-      },
-      {
-        path: '',
-        component: HomeComponent
-      }
-    ])
+    AppRoutingModule,
+    
   ],
   providers: [],
   bootstrap: [AppComponent]
