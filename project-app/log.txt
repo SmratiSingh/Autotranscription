@@ -90,3 +90,12 @@
 2019-04-24T04:11:23.156-0400 I NETWORK  [conn6] received client metadata from 127.0.0.1:44186 conn6: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.15.0-47-generic" }, platform: "Node.js v10.12.0, LE, mongodb-core: 3.1.11" }
 2019-04-24T04:11:23.685-0400 I COMMAND  [conn6] command test1.users command: find { find: "users", filter: { username: "vedharis", password: "vals1234" }, limit: 1, singleBatch: true, batchSize: 1, returnKey: false, showRecordId: false, lsid: { id: UUID("8bbafd47-d2ee-474b-a75d-f0d85fc9a297") }, $db: "test1" } planSummary: COLLSCAN keysExamined:0 docsExamined:2 cursorExhausted:1 numYields:2 nreturned:1 reslen:237 locks:{ Global: { acquireCount: { r: 3 } }, Database: { acquireCount: { r: 3 } }, Collection: { acquireCount: { r: 3 } } } protocol:op_query 398ms
 2019-04-24T04:11:23.746-0400 I NETWORK  [conn6] end connection 127.0.0.1:44186 (0 connections now open)
+2019-04-24T04:14:46.431-0400 I CONTROL  [signalProcessingThread] got signal 15 (Terminated), will terminate after current cmd ends
+2019-04-24T04:14:46.431-0400 I NETWORK  [signalProcessingThread] shutdown: going to close listening sockets...
+2019-04-24T04:14:46.431-0400 I NETWORK  [signalProcessingThread] removing socket file: /tmp/mongodb-27017.sock
+2019-04-24T04:14:46.532-0400 I CONTROL  [signalProcessingThread] Shutting down free monitoring
+2019-04-24T04:14:46.533-0400 I FTDC     [signalProcessingThread] Shutting down full-time diagnostic data capture
+2019-04-24T04:14:46.544-0400 I STORAGE  [signalProcessingThread] WiredTigerKVEngine shutting down
+2019-04-24T04:14:47.182-0400 I STORAGE  [signalProcessingThread] shutdown: removing fs lock...
+2019-04-24T04:14:47.183-0400 I CONTROL  [signalProcessingThread] now exiting
+2019-04-24T04:14:47.183-0400 I CONTROL  [signalProcessingThread] shutting down with code:0
