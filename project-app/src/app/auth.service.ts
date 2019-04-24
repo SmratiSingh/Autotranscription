@@ -1,21 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http'
+import {Http,Response, Headers, RequestOptions } from '@angular/http'; 
 
-@Injectable({
-  providedIn: 'root'
-})
+import { Observable } from 'rxjs/Observable'; 
+import 'rxjs/add/operator/map';  
+import 'rxjs/add/operator/do';  
+
+// import {map} from 'rxjs/operators'
+  
+// @Injectable({
+//   providedIn: 'root'
+// })
+@Injectable()
 export class AuthService {
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: Http) { }
 
-  getUserDetails(uname, pwd) {
-    return this.http.post('/app/auth.js', {
-      uname,
-      pwd
-    })
-    // }).subscribe(data => {
-    //   console.log(data, " -> acquired")
-    // })
+  verifyUser(user){      
+    return this.http.post('http://localhost:3000/login', user).map((response: Response) =>response.json())              
   }
 
 }

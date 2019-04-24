@@ -16,6 +16,8 @@ import { SignupComponent } from './signup/signup.component';
 import { SigninComponent } from './signin/signin.component';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
+import { AuthService } from './auth.service';
+import { HttpModule } from '@angular/http';
 @NgModule({
   declarations: [
     AppComponent,
@@ -34,11 +36,12 @@ import {FormsModule} from '@angular/forms';
     BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
+    HttpModule,
     MDBBootstrapModule.forRoot(),
     AppRoutingModule,
     
   ],
-  providers: [],
+  providers: [AuthService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

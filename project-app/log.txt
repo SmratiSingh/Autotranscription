@@ -34,3 +34,59 @@
 2019-03-31T22:49:26.204-0400 I CONTROL  [initandlisten] 
 2019-03-31T22:49:26.623-0400 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
 2019-03-31T22:49:26.704-0400 I NETWORK  [initandlisten] waiting for connections on port 27017
+2019-04-24T03:51:18.477-0400 I CONTROL  [main] ***** SERVER RESTARTED *****
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten] MongoDB starting : pid=16568 port=27017 dbpath=/data/db 64-bit host=ved-G5
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten] db version v4.0.3
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten] git version: 7ea530946fa7880364d88c8d8b6026bbc9ffa48c
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.1.1b  26 Feb 2019
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten] allocator: tcmalloc
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten] modules: none
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten] build environment:
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten]     distarch: x86_64
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten]     target_arch: x86_64
+2019-04-24T03:51:19.025-0400 I CONTROL  [initandlisten] options: { processManagement: { fork: true }, systemLog: { destination: "file", logAppend: true, path: "log.txt" } }
+2019-04-24T03:51:19.142-0400 I STORAGE  [initandlisten] Detected data files in /data/db created by the 'wiredTiger' storage engine, so setting the active storage engine to 'wiredTiger'.
+2019-04-24T03:51:19.143-0400 I STORAGE  [initandlisten] 
+2019-04-24T03:51:19.143-0400 I STORAGE  [initandlisten] ** WARNING: Using the XFS filesystem is strongly recommended with the WiredTiger storage engine
+2019-04-24T03:51:19.143-0400 I STORAGE  [initandlisten] **          See http://dochub.mongodb.org/core/prodnotes-filesystem
+2019-04-24T03:51:19.143-0400 I STORAGE  [initandlisten] wiredtiger_open config: create,cache_size=3327M,session_max=20000,eviction=(threads_min=4,threads_max=4),config_base=false,statistics=(fast),log=(enabled=true,archive=true,path=journal,compressor=snappy),file_manager=(close_idle_time=100000),statistics_log=(wait=0),verbose=(recovery_progress),
+2019-04-24T03:51:20.228-0400 I STORAGE  [initandlisten] WiredTiger message [1556092280:228623][16568:0x7f08a7a0e9c0], txn-recover: Main recovery loop: starting at 10/523392
+2019-04-24T03:51:20.302-0400 I STORAGE  [initandlisten] WiredTiger message [1556092280:302609][16568:0x7f08a7a0e9c0], txn-recover: Recovering log 10 through 11
+2019-04-24T03:51:20.598-0400 I STORAGE  [initandlisten] WiredTiger message [1556092280:598630][16568:0x7f08a7a0e9c0], txn-recover: Recovering log 11 through 11
+2019-04-24T03:51:20.631-0400 I STORAGE  [initandlisten] WiredTiger message [1556092280:631856][16568:0x7f08a7a0e9c0], txn-recover: Set global recovery timestamp: 0
+2019-04-24T03:51:21.796-0400 I RECOVERY [initandlisten] WiredTiger recoveryTimestamp. Ts: Timestamp(0, 0)
+2019-04-24T03:51:22.941-0400 I CONTROL  [initandlisten] 
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] ** WARNING: Access control is not enabled for the database.
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] **          Read and write access to data and configuration is unrestricted.
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] 
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] ** WARNING: This server is bound to localhost.
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] **          Remote systems will be unable to connect to this server. 
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] **          Start the server with --bind_ip <address> to specify which IP 
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] **          addresses it should serve responses from, or with --bind_ip_all to
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] **          bind to all interfaces. If this behavior is desired, start the
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] **          server with --bind_ip 127.0.0.1 to disable this warning.
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] 
+2019-04-24T03:51:22.942-0400 W CONTROL  [initandlisten] 
+2019-04-24T03:51:22.942-0400 W CONTROL  [initandlisten] 
+2019-04-24T03:51:22.942-0400 I CONTROL  [initandlisten] 
+2019-04-24T03:51:23.710-0400 I FTDC     [initandlisten] Initializing full-time diagnostic data capture with directory '/data/db/diagnostic.data'
+2019-04-24T03:51:23.754-0400 I NETWORK  [initandlisten] waiting for connections on port 27017
+2019-04-24T03:51:54.726-0400 I NETWORK  [listener] connection accepted from 127.0.0.1:34218 #1 (1 connection now open)
+2019-04-24T03:51:54.742-0400 I NETWORK  [conn1] received client metadata from 127.0.0.1:34218 conn1: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.15.0-47-generic" }, platform: "Node.js v10.12.0, LE, mongodb-core: 3.1.11" }
+2019-04-24T03:51:54.785-0400 I NETWORK  [conn1] end connection 127.0.0.1:34218 (0 connections now open)
+2019-04-24T03:52:05.315-0400 I NETWORK  [listener] connection accepted from 127.0.0.1:34304 #2 (1 connection now open)
+2019-04-24T03:52:05.316-0400 I NETWORK  [conn2] received client metadata from 127.0.0.1:34304 conn2: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.15.0-47-generic" }, platform: "Node.js v10.12.0, LE, mongodb-core: 3.1.11" }
+2019-04-24T03:52:05.319-0400 I NETWORK  [conn2] end connection 127.0.0.1:34304 (0 connections now open)
+2019-04-24T03:52:16.793-0400 I NETWORK  [listener] connection accepted from 127.0.0.1:34406 #3 (1 connection now open)
+2019-04-24T03:52:16.793-0400 I NETWORK  [conn3] received client metadata from 127.0.0.1:34406 conn3: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.15.0-47-generic" }, platform: "Node.js v10.12.0, LE, mongodb-core: 3.1.11" }
+2019-04-24T03:52:16.796-0400 I NETWORK  [conn3] end connection 127.0.0.1:34406 (0 connections now open)
+2019-04-24T03:56:27.228-0400 I NETWORK  [listener] connection accepted from 127.0.0.1:36664 #4 (1 connection now open)
+2019-04-24T03:56:27.228-0400 I NETWORK  [conn4] received client metadata from 127.0.0.1:36664 conn4: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.15.0-47-generic" }, platform: "Node.js v10.12.0, LE, mongodb-core: 3.1.11" }
+2019-04-24T03:56:27.232-0400 I NETWORK  [conn4] end connection 127.0.0.1:36664 (0 connections now open)
+2019-04-24T03:56:31.888-0400 I NETWORK  [listener] connection accepted from 127.0.0.1:36702 #5 (1 connection now open)
+2019-04-24T03:56:31.888-0400 I NETWORK  [conn5] received client metadata from 127.0.0.1:36702 conn5: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.15.0-47-generic" }, platform: "Node.js v10.12.0, LE, mongodb-core: 3.1.11" }
+2019-04-24T03:56:31.892-0400 I NETWORK  [conn5] end connection 127.0.0.1:36702 (0 connections now open)
+2019-04-24T04:11:23.058-0400 I NETWORK  [listener] connection accepted from 127.0.0.1:44186 #6 (1 connection now open)
+2019-04-24T04:11:23.156-0400 I NETWORK  [conn6] received client metadata from 127.0.0.1:44186 conn6: { driver: { name: "nodejs", version: "3.1.13" }, os: { type: "Linux", name: "linux", architecture: "x64", version: "4.15.0-47-generic" }, platform: "Node.js v10.12.0, LE, mongodb-core: 3.1.11" }
+2019-04-24T04:11:23.685-0400 I COMMAND  [conn6] command test1.users command: find { find: "users", filter: { username: "vedharis", password: "vals1234" }, limit: 1, singleBatch: true, batchSize: 1, returnKey: false, showRecordId: false, lsid: { id: UUID("8bbafd47-d2ee-474b-a75d-f0d85fc9a297") }, $db: "test1" } planSummary: COLLSCAN keysExamined:0 docsExamined:2 cursorExhausted:1 numYields:2 nreturned:1 reslen:237 locks:{ Global: { acquireCount: { r: 3 } }, Database: { acquireCount: { r: 3 } }, Collection: { acquireCount: { r: 3 } } } protocol:op_query 398ms
+2019-04-24T04:11:23.746-0400 I NETWORK  [conn6] end connection 127.0.0.1:44186 (0 connections now open)
