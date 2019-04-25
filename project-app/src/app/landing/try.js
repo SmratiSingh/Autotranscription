@@ -1,5 +1,6 @@
 var express = require('express'); // Third Party Module
 var spawn = require("child_process").spawn; 
+var exec = require("child_process").exec; 
 var path = require('path');
 var mongo = require('../../assets/mongoFun')
 const https = require('https');
@@ -111,13 +112,24 @@ app.post('/signup', function (req, res) {
 });
 
 app.get('/keywords', function(req, res){
+    console.log('inside keywords');
     resp = req.param('trans')
-    var process = spawn('python',["./speech.py", 
+    var process = spawn('python',["./src/app/landing/speech.py", 
                             resp]);
-    
-    process.stdout.on('data', function(data) { 
+    console.log('process created');
+    process.stdout.on('data', (data) => { 
+        console.log('data is: '+data);
         res.send(data); 
-    } ) 
+    } )
+    // exec(`python ./src/app/landing/speech.py ${resp}` , (error,stdout,stderr) => {
+    //     if(error){
+    //         console.log('error occured');
+    //         console.log(error);
+    //     }
+    //     console.log('prining');
+    //     console.log(stdout);
+    //     res.send(stdout);
+    // })
     //res.send(resp);
 })
 
