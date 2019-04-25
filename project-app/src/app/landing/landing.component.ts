@@ -9,6 +9,6 @@ export class LandingComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
-    console.log('inside landing ts');
+    // console.log('inside landing ts');
   }
 }
