@@ -18,6 +18,7 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule} from '@angular/forms';
 import { AuthService } from './auth.service';
 import { HttpModule } from '@angular/http';
+
 @NgModule({
   declarations: [
     AppComponent,

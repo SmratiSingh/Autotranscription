@@ -4,8 +4,8 @@ import {AdminComponent} from './admin/admin.component';
 import {HomeComponent} from './home/home.component';
 import {LandingComponent} from './landing/landing.component';
 import { Routes, RouterModule } from '@angular/router';
-import { AppModule } from 'mdb-angular-free-7.5.0/projects/mdb-demo/src/app/app.module';
-import { AppComponent } from 'mdb-angular-free-7.5.0/projects/mdb-demo/src/app/app.component';
+// import { AppModule } from 'mdb-angular-free-7.5.0/projects/mdb-demo/src/app/app.module';
+// import { AppComponent } from 'mdb-angular-free-7.5.0/projects/mdb-demo/src/app/app.component';
 
 const routes: Routes = [
   {
@@ -27,7 +27,9 @@ const routes: Routes = [
 ];
 
 @NgModule({
-  imports: [RouterModule.forRoot(routes,{enableTracing: true})],
+  imports: [RouterModule.forRoot(routes
+    // {enableTracing: true}
+    )],
   exports: [RouterModule]
 })
 export class AppRoutingModule { }

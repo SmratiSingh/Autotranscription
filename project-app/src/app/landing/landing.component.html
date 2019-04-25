@@ -1,3 +1,4 @@
+<html>
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -21,16 +22,16 @@
   <!--Start here always--> 
   <div class="container">
     <header class="col-12">
-      <!-- <center>
+      
         <img
           height="20%"
-          ;
+          
           width="50%"
-          ;
+          
           src="./Web 1280 – 1.jpg"
           alt="logo"
         />
-      </center> -->
+     
     </header>
   </div>
   <div class="d-flex flex-row" style="height:60%; margin-top: 1%;">
@@ -42,7 +43,7 @@
 	  id = "transcriptText"
     >  
     </textarea> -->
-    <div><p class="scrollable-content" id="final"></p></div><p id="interim" style="color:grey;"></p>
+    <div><p class="scrollable-content" id="final"></p><span id="interim" style="color:grey;"></span></div>
   </div>
   <div id = "keywords" class="d-flex flex-col col-md-4 justify-content-around" style="padding:1%; margin-left:5%; display:inline-block; position: relative; background-color:#dcdfe5;  border-radius:3%; overflow-y: auto">
     
@@ -60,7 +61,7 @@
       class="form-control btn btn-dark item-h1 p-4 d-flex"
       type="submit"
 	  id = "recordBtn"
-	  onclick = "transcribe();"
+	  onclick = "transcribeSpeech();"
     >
       <i class="fas fa-microphone"></i>
     </button>
@@ -101,93 +102,7 @@
     src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
     integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
     crossorigin="anonymous"
-  ></script>
-  <script>
-    window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-	let finalTranscript = '';
-  const recognition = new window.webkitSpeechRecognition();
-  console.log("recognition created");
-	recognition.interimResults = true;
-	recognition.continuous = true;
-	recognition.lang = "en-US";
-  
-  function transcribe(){
-    console.log("Inside transcrib function");
-    document.getElementById("recordBtn").style.backgroundColor = 'red';
-    stopBtn.style.backgroundColor = '#2f4f4f';
-	
-    recognition.onresult = (event) => {
-    let interimTranscript = '';
-  //let finalTranscript = '';
-	  //const speechToText = event.results[0][0].transcript;
-	  for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
-			let transcript = event.results[i][0].transcript;
-			if (event.results[i].isFinal) {
-        finalTranscript += transcript;
-        //transcript = event.results[i][0].transcript;
-			  //document.write(transcript)
-			  //var tarea = document.getElementById("transcriptText")
-				//tarea.innerHTML = tarea.innerHTML + transcript 
-			  
-			 } else {
-			   interimTranscript += transcript;
-       }
-       //transcriptText.innerHTML +=finalTranscript;
-       //interim_span.innerHTML = linebreak(interim_transcript);
-       final.innerHTML = finalTranscript;
-       interim.innerHTML = interimTranscript;
-       trans.scrollTop = trans.scrollHeight;
-		  }
-	  //document.write(finalTranscript);
-	  //finalTranscript = ""
-	}
-	recognition.start();
-	recognition.onaudioend = function(){
-      //document.write("\n Speech ended.")
-      console.log('Audio ended');
-      recordBtn.style.backgroundColor = '#2f4f4f';
-      stopBtn.style.backgroundColor = '#dcdfe5';
-      getKeywords();
-		}
-  }
-  
-  function stopRecord(){
-    recognition.stop();
-    getKeywords();
-  }
-  function getKeywords(){ 
-    var xmlhttp = new XMLHttpRequest();
-    console.log('INside keyword extractor');
-		//var contentDiv = document.getElementById("summary");
-    var question = document.getElementById('final').innerHTML
-		xmlhttp.open("GET", "/keywords?trans="+question, true);
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var resp = xmlhttp.responseText;
-        console.log("resp is"+resp);
-        var keys = resp.split(',');
-        var count = 0; 
-        for(var i=0;i<keys.length;i++){
-				keywords.innerHTML += ` <p><div class='input-group mb-3 scrollable-content' style='height: 1%' name='k` +toString(count)+ `'>
-                                <div class='input-group-prepend'>
-                                  <span class='input-group-text' id=''>`+keys[i]+`</span>
-                                </div>
-                                <div class='input-group-append'>
-                                  <button class='btn btn-outline-info' style='color:rgb(49, 82, 82);' type='button' onclick='wipe(this.parentNode.parentNode.name);'>
-                                    X
-                                  </button>
-                                </div>
-                              </div></p> <br/>`
-                              count = count + 1;
-            }
-			}
-		}
-		xmlhttp.send(null);
-  }
+  > </script>
 
-  function wipe(rname){
-    console.log("rname is"+rname);
-    keywords.removeChild(rname);
-  }
-  </script>
 </body>
+</html>

@@ -54,7 +54,9 @@
                 "input": "src/styles.scss"
               }
             ],
-            "scripts": [],
+            "scripts": [
+              {"input": "src/app/landing/landing.js"}
+            ],
             "es5BrowserSupport": true
           },
           "configurations": {
