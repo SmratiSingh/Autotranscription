@@ -1,10 +1,10 @@
 var express = require('express'); // Third Party Module
 var spawn = require("child_process").spawn; 
 var exec = require("child_process").exec; 
-var path = require('path');
+// var path = require('path');
 var mongo = require('../../assets/mongoFun')
-const https = require('https');
-const fs = require('fs');
+// const https = require('https');
+// const fs = require('fs');
 var app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
@@ -18,9 +18,10 @@ console.log(__dirname)
 //     cert: cert
 //   };
 
-// app.get('/', function (req, res) {
-//     res.sendFile(path.resolve('../login/login.html'));
-// });
+app.get('/', function (req, res) {
+    res.send('ping from node server');
+});
+
 app.use(function (req, res, next) {        
     res.setHeader('Access-Control-Allow-Origin', 'http://localhost:4200');    
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');    
