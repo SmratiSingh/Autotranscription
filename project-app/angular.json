@@ -55,7 +55,6 @@
               }
             ],
             "scripts": [
-              {"input": "src/app/landing/landing.js"}
             ],
             "es5BrowserSupport": true
           },
