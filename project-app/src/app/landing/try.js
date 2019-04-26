@@ -1,6 +1,7 @@
 var express = require('express'); // Third Party Module
 var spawn = require("child_process").spawn; 
 var exec = require("child_process").exec; 
+var cors = require('cors');
 // var path = require('path');
 var mongo = require('../../assets/mongoFun')
 // const https = require('https');
@@ -18,17 +19,19 @@ console.log(__dirname)
 //     cert: cert
 //   };
 
-app.get('/', function (req, res) {
-    res.send('ping from node server');
-});
-
 app.use(function (req, res, next) {        
     res.setHeader('Access-Control-Allow-Origin', '*');    
+    // res.setHeader('Access-Control-Allow-Methods', '*');    
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');    
-    res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');      
+    res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');      
+    // res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content-Type, Accept');      
     res.setHeader('Access-Control-Allow-Credentials', true);       
     next();  
 });  
+
+app.get('/', function (req, res) {
+    res.send('ping from node server');
+});
 
 app.post('/login', function (req, res) {
     user = req.param('username');
