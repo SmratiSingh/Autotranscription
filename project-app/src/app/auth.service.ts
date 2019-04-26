@@ -8,9 +8,9 @@ import 'rxjs/add/operator/do';
 
 // import {map} from 'rxjs/operators'
   
-// @Injectable({
-//   providedIn: 'root'
-// })
+@Injectable({
+  providedIn: 'root'
+})
 @Injectable()
 export class AuthService {
 
@@ -18,6 +18,11 @@ export class AuthService {
 
   verifyUser(user){      
     return this.http.post('http://localhost:3000/login', user).map((response: Response) =>response.json())              
+  }
+
+  addUser(user){
+    // console.log(user);
+    return this.http.post('http://localhost:3000/signup', user).map((response: Response) =>response.json())              
   }
 
 }

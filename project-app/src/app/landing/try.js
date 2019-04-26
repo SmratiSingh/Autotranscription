@@ -56,12 +56,20 @@ app.post('/login', function (req, res) {
 });
 
 app.post('/signup', function (req, res) {
-    firstName = req.param('Fuser');
-    lastName = req.param('Luser');
-    // email = req.param('email')
-    nPass = req.param('Npass');
-    cPass = req.param('Cpass');
-    username = req.param('username');
+    // firstName = req.param('first_name');
+    // lastName = req.param('last_name');
+    // // email = req.param('email')
+    // nPass = req.param('new_password');
+    // cPass = req.param('re_password');
+    // username = req.param('username');
+    firstName = req.body.first_name;
+    lastName = req.body.last_name;
+    nPass = req.body.new_password;
+    cPass = req.body.re_password;
+    username = req.body.username;
+    // console.log("Signup Function");
+    // console.log(req.body);
+    // console.log(req.body.first_name);
     if(username == null) {
         // res.send('USER_NULL');
         return res.status(200).json({
@@ -77,11 +85,14 @@ app.post('/signup', function (req, res) {
         })
     }
     else if(nPass == cPass) {
+        
         mongo.checkUser(username, function(document){
+            
             if(document == null) {
                 // add user and redir
                 mongo.newUser(username, nPass, firstName, lastName);
                 // res.send('ADDED');
+                console.log("Signup successful for :" + username);
                 return res.status(200).json({
                     status: 'SUCCESS',
                     message: 'ADDED'

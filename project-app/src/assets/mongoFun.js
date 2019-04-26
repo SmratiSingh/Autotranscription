@@ -30,9 +30,13 @@ module.exports.newUser = function(username, pwd, fname, lname){
 
         var dbo = db.db(db_name);
 
+        console.log(username, pwd, fname, lname);
+
         dbo.collection(user_table).insertOne({'firstName':fname, 'lastName':lname, 'username': username, 'password': pwd}, function(err, res) {
             if (err) {
                 // res.sendStatus(500);
+                console.log(err);
+                console.log("add user error");
                 throw err;
             }
             db.close();
@@ -48,6 +52,8 @@ module.exports.checkUser = function(username, callback){
         dbo.collection(user_table).findOne({'username': username}, function(err, document) {
             if (err) {
                 // res.sendStatus(500);
+                // console.log(err);
+                console.log("check user error");
                 throw err;
             }
             db.close();

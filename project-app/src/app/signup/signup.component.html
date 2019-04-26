@@ -17,10 +17,11 @@
           <!-- E-mail -->
           <div class="md-form">
             <input
-              type="email"
+              type="text"
               id="materialRegisterFormEmail"
               class="form-control"
-              mdbInput
+              name = "nameField"
+              mdbInput [(ngModel)] = 'name'
             />
             <label for="materialRegisterFormEmail" style="color: teal;"
               >Name</label
@@ -32,7 +33,8 @@
               type="text"
               id="materialRegisterFormFirstName"
               class="form-control"
-              mdbInput
+              name = "usernameField"
+              mdbInput [(ngModel)] = 'username'
             />
             <label for="materialRegisterFormFirstName" style="color: teal;"
               >User name</label
@@ -47,8 +49,9 @@
           type="password"
           id="materialRegisterFormPassword"
           class="form-control"
+          name = "passwordField"
           aria-describedby="materialRegisterFormPasswordHelpBlock"
-          mdbInput
+          mdbInput [(ngModel)] = 'new_password'
         />
         <label for="materialRegisterFormPassword" style="color: teal;"
           >Password</label
@@ -59,8 +62,9 @@
           type="password"
           id="materialRegisterFormCPassword"
           class="form-control"
+          name = "rePasswordField"
           aria-describedby="materialRegisterFormCPasswordHelpBlock"
-          mdbInput
+          mdbInput [(ngModel)] = 're_password'
         />
         <label for="materialRegisterFormCPassword" style="color: teal;"
           >Confirm Password</label
@@ -77,6 +81,8 @@
         class="my-4 waves-effect z-depth-0"
         mdbWavesEffect
         type="submit"
+        (keyup.enter) = "addUser()"
+        (click) = "addUser()"
       >
         Sign up
       </button>

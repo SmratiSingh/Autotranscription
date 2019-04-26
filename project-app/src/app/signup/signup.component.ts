@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { AuthService } from '../auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-signup',
@@ -6,10 +8,37 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./signup.component.styl']
 })
 export class SignupComponent implements OnInit {
-
-  constructor() { }
+  public username: string = "";
+  public name: string = "";
+  public new_password: string = "";
+  public re_password: string = "";
+  constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
+  }
+
+  addUser(){
+
+    var usr = new NewUser();
+
+    usr.username = this.username;
+    usr.new_password = this.new_password;
+    usr.re_password = this.re_password;
+    usr.first_name = this.name;
+    usr.last_name = ' ';
+
+    this.auth.addUser(usr).subscribe(data => {
+        if(data['status'] == 'SUCCESS'){
+          // this.ngOnInit();
+          // console.log('SUCCESS!!!!');
+          // console.log(data);
+          this.router.navigate(['/landing']);
+        }
+        else if(data['status'] == 'FAIL'){
+          // alert(data.toString());
+          console.log('failed');
+        }
+      })
   }
 
 }
