@@ -24,7 +24,6 @@ export class SigninComponent implements OnInit {
   }
   
   authUser(){
-    console.log('hitting');
 
     var usr = new User();
 
