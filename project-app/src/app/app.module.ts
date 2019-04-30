@@ -18,7 +18,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FormsModule } from '@angular/forms';
 import { AuthService } from './auth.service';
 import { HttpModule } from '@angular/http';
-import { Navigation } from './Navigation/Navigation.component';
+import { NavigationComponent } from './navigation/navigation.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +32,7 @@ import { Navigation } from './Navigation/Navigation.component';
     LogoComponent,
     SignupComponent,
     SigninComponent,
-    Navigation
+    NavigationComponent,
   ],
   imports: [
     BrowserModule,

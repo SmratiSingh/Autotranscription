@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../auth.service';
 import { Router } from '@angular/router';
+import { sha256 } from 'js-sha256';
 
 @Component({
   selector: 'app-signup',
@@ -22,8 +23,8 @@ export class SignupComponent implements OnInit {
     var usr = new NewUser();
 
     usr.username = this.username;
-    usr.new_password = this.new_password;
-    usr.re_password = this.re_password;
+    usr.new_password = sha256(this.new_password);
+    usr.re_password = sha256(this.re_password);
     usr.first_name = this.name;
     usr.last_name = ' ';
 

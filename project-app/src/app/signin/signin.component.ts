@@ -5,6 +5,7 @@
 import { Component, OnInit } from '@angular/core';
 import { EmailValidator } from '@angular/forms';
 import { Router } from '@angular/router';
+import { sha256 } from 'js-sha256';
 // import {Http,Response, Headers, RequestOptions } from '@angular/http';
 
 import { AuthService } from '../auth.service';
@@ -28,7 +29,7 @@ export class SigninComponent implements OnInit {
     var usr = new User();
 
     usr.username = this.email;
-    usr.password = this.password;
+    usr.password = sha256(this.password);
 
     this.auth.verifyUser(usr).subscribe(data => {
         if(data['status'] == 'SUCCESS'){

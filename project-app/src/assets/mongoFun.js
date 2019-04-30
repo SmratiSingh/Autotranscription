@@ -7,6 +7,7 @@ var mongo_url = "mongodb://localhost:27017/";
 
 var db_name = "test1"
 var user_table = "users"
+var transcripts_table = "transcripts"
 
 module.exports.verifyLogin = function(username, pwd, callback){
     MongoClient.connect(mongo_url, function(err, db) {
@@ -60,5 +61,21 @@ module.exports.checkUser = function(username, callback){
             // console.log(document);
             callback(document);
         });
+    });
+};
+
+module.exports.saveTranscript = function() {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(user_table).insertOne(foo, function(err, result) {
+            if (err) {
+                // res.sendStatus(500);
+                console.log(err);
+                console.log("add user error");
+                throw err;
+            }
+            db.close();
+        });
+
     });
 };

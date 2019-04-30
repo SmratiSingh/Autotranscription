@@ -19,6 +19,7 @@
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
   crossorigin="anonymous"
 />
+<!-- <link rel="stylesheet" href="src/app/navigation/navigation.component.css" /> -->
 </head>
 <body>
   <app-root>Loading...</app-root>
@@ -127,6 +128,98 @@ window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecogn
     console.log("rname is"+rname);
     keywords.removeChild(rname);
   }
+</script>
+<script>
+  var state = 'closed';
+  function Togglslidemenu() {
+    if (state == 'closed') {
+      document.getElementById('navigation').style.width = '200px';
+      state = 'open';
+      var a = document.getElementsByClassName('navItems');
+      var i;
+      for (i = 0; i < a.length; i++) {
+        a[i].style.display = 'inline';
+      }
+    } else {
+      document.getElementById('navigation').style.width = '85px';
+      state = 'closed';
+      var a = document.getElementsByClassName('navItems');
+      var i;
+      for (i = 0; i < a.length; i++) {
+        a[i].style.display = 'none';
+      }
+    }
+  }
+  /* Profile functions */
+ function Ptoggle() {
+    state = 'closed';
+    // console.log('Hovering over PROFILE');
+    Togglslidemenu();
+    document.getElementById('FlexSgreen').style.visibility = 'visible';
+ }
+
+ function stay(){
+  state = 'closed';
+    Ptoggle();
+    document.getElementById('FlexSgreen').style.visibility = 'visible';
+    document.getElementById('p').style.backgroundColor="rgb(41, 68, 68)";
+        
+ }
+  function closeL() {
+    document.getElementById('FlexSgreen').style.visibility = 'hidden';
+  }
+
+  /* Domain functions */
+  function Dtoggle() {
+    state = 'closed';
+    Togglslidemenu();
+    document.getElementById('FlexSgreenD').style.visibility = 'visible';
+  }
+  function closeLD() {
+    document.getElementById('FlexSgreenD').style.visibility = 'hidden';
+  }
+  function stayD(){
+  state = 'closed';
+    Dtoggle();
+    document.getElementById('FlexSgreenD').style.visibility = 'visible';
+    document.getElementById('d').style.backgroundColor="rgb(41, 68, 68)";
+        
+ }
+ /* History functions */
+ function Htoggle() {
+    state = 'closed';
+    Togglslidemenu();
+    document.getElementById('FlexSgreenH').style.visibility = 'visible';
+  }
+  function closeLH() {
+    document.getElementById('FlexSgreenH').style.visibility = 'hidden';
+  }
+  function stayH(){
+  state = 'closed';
+    Htoggle();
+    document.getElementById('FlexSgreenH').style.visibility = 'visible';
+    document.getElementById('h').style.backgroundColor="rgb(41, 68, 68)";
+        
+ }
+
+  /* Settings functions */
+  function Stoggle() {
+    state = 'closed';
+    Togglslidemenu();
+    document.getElementById('FlexSgreenS').style.visibility = 'visible';
+  }
+  function closeLS() {
+    document.getElementById('FlexSgreenS').style.visibility = 'hidden';
+  }
+  function stayS(){
+  state = 'closed';
+    Stoggle();
+    document.getElementById('FlexSgreenS').style.visibility = 'visible';
+    document.getElementById('s').style.backgroundColor="rgb(41, 68, 68)";
+        
+ }
+
+
 </script>
 
 </body>

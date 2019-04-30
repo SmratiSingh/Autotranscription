@@ -1,6 +1,8 @@
 <html>
   <head>
-    <link rel="stylesheet" href="./Navigation.component.css" />
+    <!-- <link rel="stylesheet" href="file://./navigation.component.css" /> -->
+    <!-- <link rel="stylesheet" href="file://./navigation.component.styl" /> -->
+    <link rel="stylesheet" href="file://src/app/navigation/navigation.component.css">
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -94,7 +96,7 @@
       <div class="flexLblue LblueTwo">
         <!--logo div-->
         <div class="flexRed">
-          <img src="./assets/LogoD.jpg" class="img-fluid z-depth-1" />
+          <!-- <img src="./assets/LogoD.jpg" class="img-fluid z-depth-1" /> -->
         </div>
         <!--div holding transcription, buttons and summary divs-->
         <div class="flexRed" style="height:100%;">
@@ -109,7 +111,7 @@
             <div class="flexDblue" style="width:50%;">
               <!--title div-->
               <div class="flexPink" style="height:15%;">huuuu</div>
-            </br></br>
+            <br><br>
               <!--summary div-->
               <div class="flexPink" style="height:80%;">guygu</div>
             </div>
@@ -155,7 +157,7 @@
             ><span id="data"
               >Harry Potter&nbsp;&nbsp;</span>
           </p>
-        </br>
+        <br>
           <p>
             <span id="category">Password<i style="color:rgb(130, 151, 151); margin-left:10px;" class="fas fa-pencil-alt"></i
               ></span
@@ -398,7 +400,7 @@
   </body>
 
   <!--scripts-->
-  <script>
+  <!-- <script>
     var state = 'closed';
     function Togglslidemenu() {
       if (state == 'closed') {
@@ -420,11 +422,12 @@
       }
     }
     /* Profile functions */
-    function Ptoggle() {
+   function Ptoggle() {
       state = 'closed';
+      console.log('Hovering over PROFILE');
       Togglslidemenu();
       document.getElementById('FlexSgreen').style.visibility = 'visible';
-    }
+   }
 
    function stay(){
     state = 'closed';
@@ -488,7 +491,7 @@
    }
 
 
-  </script>
+  </script> -->
 </html>
 
 <!--

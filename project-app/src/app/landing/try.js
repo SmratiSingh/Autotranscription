@@ -20,7 +20,7 @@ console.log(__dirname)
 //   };
 
 app.use(function (req, res, next) {        
-    res.setHeader('Access-Control-Allow-Origin', '*');    
+    // res.setHeader('Access-Control-Allow-Origin', '*');    
     // res.setHeader('Access-Control-Allow-Methods', '*');    
     res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');    
     res.setHeader('Access-Control-Allow-Headers', 'X-Requested-With,content-type');      
@@ -148,9 +148,15 @@ app.get('/keywords', function(req, res){
     //res.send(resp);
 })
 
-// app.get('/landing',function(req,res){
-//     res.sendFile('landing.component.html',{root:__dirname});
-// })
+app.post('/transcript', function(req, res){
+
+    username = req.body.username;
+    trans_text = req.body.text;
+    keywords = req.body.keywords;
+    timestamp = new Date().toISOString().replace(/[-:.Z]/g, "").replace("T","_");
+    
+
+})
 
 app.listen(3000)
 // var httpsServer = https.createServer(options, app);
