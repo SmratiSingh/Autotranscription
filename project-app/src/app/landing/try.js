@@ -2,22 +2,22 @@ var express = require('express'); // Third Party Module
 var spawn = require("child_process").spawn; 
 var exec = require("child_process").exec; 
 var cors = require('cors');
-// var path = require('path');
+var path = require('path');
 var mongo = require('../../assets/mongoFun')
-// const https = require('https');
-// const fs = require('fs');
+const https = require('https');
+const fs = require('fs');
 var app = express();
 const bodyParser = require('body-parser');
 app.use(bodyParser.json());
 app.use(express.static(__dirname))
 app.use(bodyParser.urlencoded({ extended: true })); 
 console.log(__dirname)
-// var key = fs.readFileSync(path.resolve('./selfsigned.key'));
-// var cert = fs.readFileSync(path.resolve('./selfsigned.crt'));
-// var options = {
-//     key: key,
-//     cert: cert
-//   };
+var key = fs.readFileSync(path.resolve('./selfsigned.key'));
+var cert = fs.readFileSync(path.resolve('./selfsigned.crt'));
+var options = {
+    key: key,
+    cert: cert
+  };
 
 app.use(function (req, res, next) {        
     // res.setHeader('Access-Control-Allow-Origin', '*');    
@@ -158,6 +158,6 @@ app.post('/transcript', function(req, res){
 
 })
 
-app.listen(3000)
-// var httpsServer = https.createServer(options, app);
-// httpsServer.listen(3000);
+// app.listen(3000)
+var httpsServer = https.createServer(options, app);
+httpsServer.listen(3000);
