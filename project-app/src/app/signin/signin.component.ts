@@ -30,7 +30,7 @@ export class SigninComponent implements OnInit {
 
     usr.username = this.email;
     usr.password = sha256(this.password);
-
+    console.log(usr);
     this.auth.verifyUser(usr).subscribe(data => {
         if(data['status'] == 'SUCCESS'){
           // this.ngOnInit();

@@ -36,7 +36,7 @@ app.get('/', function (req, res) {
 app.post('/login', function (req, res) {
     user = req.param('username');
     pass = req.param('password');
-
+    console.log(user+pass);
     mongo.verifyLogin(user, pass, function(document){
         console.log(document);
         console.log("authenticating");
