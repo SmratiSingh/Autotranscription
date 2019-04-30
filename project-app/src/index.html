@@ -19,6 +19,13 @@
   integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
   crossorigin="anonymous"
 />
+<link rel="stylesheet" href="file://src/app/navigation/navigation.component.css">
+<link
+  rel="stylesheet"
+  href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+  crossorigin="anonymous"
+/>
 <!-- <link rel="stylesheet" href="src/app/navigation/navigation.component.css" /> -->
 </head>
 <body>
@@ -134,7 +141,7 @@ window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecogn
   var state = 'closed';
   function Togglslidemenu() {
     if (state == 'closed') {
-      document.getElementById('navigation').style.width = '200px';
+      document.getElementById('navigation').style.width = '209px';
       state = 'open';
       var a = document.getElementsByClassName('navItems');
       var i;
