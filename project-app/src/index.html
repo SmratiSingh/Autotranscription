@@ -99,7 +99,8 @@ window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecogn
     console.log('INside keyword extractor');
 		//var contentDiv = document.getElementById("summary");
     var question = document.getElementById('final').innerHTML;
-		xmlhttp.open("GET", "http://localhost:3000/keywords?trans="+question, true);
+    console.log(question);
+		xmlhttp.open("GET", "http://stark.cse.buffalo.edu:3000/keywords?trans="+question, true);
 		xmlhttp.onreadystatechange = function() {
 			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
         var resp = xmlhttp.responseText;

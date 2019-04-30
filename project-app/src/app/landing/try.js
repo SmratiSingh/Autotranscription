@@ -40,7 +40,7 @@ app.post('/login', function (req, res) {
     mongo.verifyLogin(user, pass, function(document){
         console.log(document);
         console.log("authenticating");
-        if(document == null){res.send('FAIL');}
+        if(document == null || length(document)==0){res.send('FAIL');}
         else if(pass == document.password) {
             console.log("Login successful for :" + document.username);
 

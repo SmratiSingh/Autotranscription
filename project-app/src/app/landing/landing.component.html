@@ -21,6 +21,7 @@
 
 <body>
   <!--Start here always--> 
+  <app-navigation style="width: 30%;position:absolute"></app-navigation>
   <div class="container" style="text-align: center">
     <header class="col-12">
       
@@ -39,7 +40,7 @@
       <a routerLink = "/login">Logout</a>
   </div>
   <div class="d-flex flex-row" style="height:60%; margin-top: 1%;">
-  <div id="trans" class="d-flex flex-col col-md-4 scrollable" style="padding:1%; margin-left:15%;  display:inline-block; position: relative; background-color: #dcdfe5;text-align: left;overflow-y:auto; border-radius:3%;">
+  <div id="trans" class="d-flex flex-col col-md-4 scrollable" style="padding:1%; margin-left:15%; display:inline-block; position: relative; background-color: #dcdfe5;text-align: left;overflow-y:auto; border-radius:3%;">
     <!-- <textarea
       class="form-control d-flex z-depth- rounded-20 col-4 text-muted"
       rows="20"
@@ -61,7 +62,7 @@
     style="padding-left:24%; padding-right:65%;"
   >
     <button
-      style="height:10%; background-color:#2f4f4f; border-radius:50%;"
+      style="height:10%; background-color:#2f4f4f; border-radius:50%;position:relative"
       class="form-control btn btn-dark item-h1 p-4 d-flex"
       type="submit"
 	  id = "recordBtn"
@@ -71,7 +72,7 @@
     </button>
 
     <button
-      style="height:10%; background-color: #dcdfe5; border-radius:50%;  margin-left:15%;"
+      style="height:10%; background-color: #dcdfe5; border-radius:50%;  margin-left:15%;position:relative"
       class="form-control btn item-h1 p-4 d-flex"
       type="submit"
 	  id = "stopBtn"
@@ -82,7 +83,7 @@
 
 
     <button
-      style=" height:10%; background-color:darkslategrey; border-radius:50%; margin-left:15%;"
+      style=" height:10%; background-color:darkslategrey; border-radius:50%; margin-left:15%;position:relative"
       class="form-control btn btn-dark item-h1 p-4 d-flex"
       type="submit" onclick = "getKeywords();"
     >
