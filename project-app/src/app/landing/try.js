@@ -12,8 +12,8 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname))
 app.use(bodyParser.urlencoded({ extended: true })); 
 console.log(__dirname)
-var key = fs.readFileSync(path.resolve('./selfsigned.key'));
-var cert = fs.readFileSync(path.resolve('./selfsigned.crt'));
+var key = fs.readFileSync(path.resolve('./src/app/landing/server.key'));
+var cert = fs.readFileSync(path.resolve('./src/app/landing/server.crt'));
 var options = {
     key: key,
     cert: cert
