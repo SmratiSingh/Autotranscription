@@ -1,0 +1,307 @@
+
+.flexBlack{
+    position: absolute;
+    background-color:white;
+     height:100%;
+     z-index: 0;
+    display: flex;
+}
+.flexLblue{
+    display: flex;
+    flex-direction:column;
+    background-color:white;
+    width:300px;
+
+}
+.flexRedF{
+    display: flex;
+    flex-direction: column;
+    background-color:darkslategray; 
+    width:85px; 
+    height:100%;
+    border-top-right-radius: 5px; 
+    border-bottom-right-radius: 5px;   
+}
+.BarDiv{
+    margin-left:25px; 
+    margin-top: 10px;
+}
+i{
+    color:floralwhite;
+}
+
+.flexgroup{
+    margin-top:200px;
+    display:flex;
+    flex-direction: column;
+}
+.flexGreen{
+    display: flex;
+    margin-top: 35px;
+    background-color:darkslategray;
+    
+}
+.flexGreen i{
+    margin-left:25px;
+    padding-right:12px;
+}
+.navItems{
+    color:white;
+    font-size:30;
+    display: none;
+}
+.LblueTwo{
+    margin-left:10px;
+    background-color: aqua;
+    width:800px;
+}
+.flexRed{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    background-color:red;
+    margin:5px;
+}
+flexRed img{
+    border-radius:10px;
+    margin-top:20px;
+    margin-left:10px;
+    margin-right:10px;
+    margin-bottom:10px;
+}
+.flexLGreen{
+    display:flex;
+    background-color:lightgreen;
+}
+.flexDblue{
+    display: flex;
+    flex-direction: column;
+    background-color:blue;
+    margin:5px;
+}
+.flexPink{
+    display: flex;
+    background-color: pink;
+}
+/*Profile*/
+#flexSgreen{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 300px 300px 300px 206px;
+    padding : 30px;
+    width: 300px;
+    height: 340px;
+    background-color:rgb(41, 68, 68);
+    visibility: hidden;
+    z-index: 1;
+  } 
+  .ProfileFlex{
+    display:flex;
+    flex-direction: column;
+}
+.imageFlex{
+    display:flex;
+}
+.formFlex{
+    display:flex;
+    font-family:Candara;
+    flex-direction: column;
+}
+
+p span{
+    display: block;
+   }
+#category{
+    color: rgb(90, 107, 107);
+    font-size: 20px;
+    font-style: italic;
+}
+#data{
+    color: rgb(109, 129, 129);
+    font-size:20px;
+    font-style: bold;
+    
+}
+/*Domain*/
+#FlexSgreenD{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 300px 300px 300px 206px;
+    padding : 30px;
+    width: 300px;
+    height: 340px;
+    background-color:rgb(41, 68, 68);
+    visibility: hidden;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+
+}
+.domainName{
+    background-color:rgb(24, 43, 43);
+    color: white;
+    font-size: 23px;
+    color: rgb(109, 129, 129);
+    font-style: italic;
+    margin-bottom: 5px;
+    margin-right: 20px;
+}
+.scrollable{
+    display: flex;
+    flex-direction: column;
+    color: rgb(109, 129, 129);
+}
+
+#Udomain{
+    font-size: 17px;
+    font-family:Candara;
+    color: rgb(109, 129, 129);
+}
+
+#uploadButtonIcon{
+    background-color:transparent;
+    color:rgb(109, 129, 129);
+    
+}
+
+
+/*History*/
+#FlexSgreenH{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 300px 300px 300px 206px;
+    padding : 30px;
+    width: 300px;
+    height: 340px;
+    background-color:rgb(41, 68, 68);
+    visibility: hidden;
+    z-index: 1;
+
+}
+.Dbody{
+    display: flex;
+    flex-direction: column;
+  
+    height: 240px;
+   
+
+}
+.item{
+    display: flex;
+    margin-bottom: 15px;
+  
+}
+.right{
+    display: flex;
+    flex-direction: column;
+}
+.left{
+    display: flex; 
+    flex-direction: column;  
+}
+#words{
+    color: rgb(90, 107, 107);
+    font-size: 12px;
+    font-style: italic;
+    text-align: right;
+}
+.fileLink{
+    margin-left:20px;
+}
+#FLink{
+    color: rgb(90, 107, 107);  
+    text-decoration: underline;
+    margin-left:1px;
+    font-size:18px;
+
+}
+.sentiment{
+    margin-left:30px;
+}
+.filename{
+    text-align: right;
+}
+
+/*Settings*/
+#FlexSgreenS{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 300px 300px 300px 206px;
+    padding : 30px;
+    width: 300px;
+    height: 340px;
+    background-color:rgb(41, 68, 68);
+    visibility: hidden;
+    z-index: 1;
+
+}
+                   /*toggl*/
+.lbl {
+      position: relative;
+      display: block;
+      height: 20px;
+      width: 44px;
+      background: #898989;
+      border-radius: 100px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+    
+    .lbl:after {
+      position: absolute;
+      left: -2px;
+      top: -3px;
+      display: block;
+      width: 26px;
+      height: 26px;
+      border-radius: 100px;
+      background: #fff;
+      box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
+      content: '';
+      transition: all 0.3s ease;
+    }
+
+    .lbl:active:after { transform: scale(1.15, 0.85); }
+    .cbx:checked ~ label { background: #6fbeb5; }
+    .cbx:checked ~ label:after {
+      left: 20px;
+      background: #179588;
+    }
+    .cbx:disabled ~ label {
+      background: #d5d5d5;
+      pointer-events: none;
+    }
+    .cbx:disabled ~ label:after { background: #bcbdbc; }
+    .hidden { display: none; }
+
+                /*toggl hide*/
+    .autos{
+        display:flex;
+    }
+
+
+/*functions and changes*/
+
+a.aa:hover{
+    background-color:rgb(41, 68, 68);
+}
+
+a:link {
+    text-decoration: none;
+  }
+
+
+  
+ 
