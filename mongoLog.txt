@@ -1,0 +1,19 @@
+2019-04-25T00:09:53.658-0400 I CONTROL  [main] Automatically disabling TLS 1.0, to force-enable TLS 1.0 specify --sslDisabledProtocols 'none'
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten] MongoDB starting : pid=2878 port=27017 dbpath=/data/db 64-bit host=stark.cse.buffalo.edu
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten] db version v4.0.6
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten] git version: caa42a1f75a56c7643d0b68d3880444375ec42e3
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.0.1e-fips 11 Feb 2013
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten] allocator: tcmalloc
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten] modules: none
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten] build environment:
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten]     distmod: rhel70
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten]     distarch: x86_64
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten]     target_arch: x86_64
+2019-04-25T00:09:53.662-0400 I CONTROL  [initandlisten] options: { processManagement: { fork: true }, systemLog: { destination: "file", path: "mongoLog.txt" } }
+2019-04-25T00:09:53.662-0400 E NETWORK  [initandlisten] Failed to unlink socket file /tmp/mongodb-27017.sock Unknown error
+2019-04-25T00:09:53.662-0400 F -        [initandlisten] Fatal Assertion 40486 at src/mongo/transport/transport_layer_asio.cpp 685
+2019-04-25T00:09:53.662-0400 F -        [initandlisten] 
+
+***aborting after fassert() failure
+
+
