@@ -2,6 +2,7 @@
 //      in module.exports with or without callbacks.
 
 var MongoClient = require('mongodb').MongoClient;
+var Grid = require('mongodb').Grid;
 
 var mongo_url = "mongodb://localhost:27017/";
 
@@ -64,18 +65,36 @@ module.exports.checkUser = function(username, callback){
     });
 };
 
-module.exports.saveTranscript = function() {
+module.exports.saveTranscript = function(username, title, text, keywords, timestamp, callback) {
     MongoClient.connect(mongo_url, function(err, db) {
         var dbo = db.db(db_name);
-        dbo.collection(user_table).insertOne(foo, function(err, result) {
+        dbo.collection(transcripts_table).insertOne({'username':username, 'title':title, 'transcript':text, 'keywords':keywords, 'timestamp':timestamp}, function(err, result) {
             if (err) {
                 // res.sendStatus(500);
                 console.log(err);
-                console.log("add user error");
+                console.log("history saving error");
                 throw err;
             }
             db.close();
+            callback(result);
         });
 
+    });
+};
+
+module.exports.saveText = function(text, callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var grid = new Grid(db, 'fs');
+        var buffer = new Buffer(text);
+
+        grid.put(buffer, {metadata:{category:'text'}, content_type:'text'}, function(err, fileInfo) {
+            if (err) {
+                // res.sendStatus(500);
+                console.log(err);
+                console.log("gridfs text save error");
+                throw err;
+            }
+            callback(fileInfo);
+        });
     });
 };

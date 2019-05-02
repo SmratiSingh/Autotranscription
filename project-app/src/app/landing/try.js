@@ -154,7 +154,23 @@ app.post('/transcript', function(req, res){
     username = req.body.username;
     trans_text = req.body.text;
     keywords = req.body.keywords;
-    timestamp = new Date().toISOString().replace(/[-:.Z]/g, "").replace("T","_");
+    title = req.body.title;
+    // timestamp = new Date().toISOString().replace(/[-:.Z]/g, "").replace("T","_");
+    timestamp = new Date().toISOString();
+
+    // recieved_key = ""
+
+    mongo.saveText(trans_text, function(fileInfo) {
+        console.log(fileInfo);
+        recieved_key = fileInfo._id;
+        mongo.saveTranscript(username, title, recieved_key, keywords, timestamp, function(result){
+            return res.status(200).json({
+                status: 'SUCCESS',
+                message: 'USER_EXISTS'
+            })
+        })
+    });
+    
     
 
 })
