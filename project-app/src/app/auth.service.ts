@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient} from '@angular/common/http'
 import {Http,Response, Headers, RequestOptions } from '@angular/http'; 
-
 import { Observable } from 'rxjs/Observable'; 
 import 'rxjs/add/operator/map';  
 import 'rxjs/add/operator/do';  
@@ -18,13 +17,13 @@ export class AuthService {
 
   verifyUser(user){
     console.log(user);      
-    return this.http.post('http://localhost:3000/login', user).map((response: Response) =>response.json())              
+    return this.http.post('https://localhost:3000/login', user).map((response: Response) =>response.json())              
     // return this.http.post('https://stark.cse.buffalo.edu:3000/login', user).map((response: Response) =>response.json())              
   }
 
   addUser(user){
     // console.log(user);
-    return this.http.post('http://localhost:3000/signup', user).map((response: Response) =>response.json())              
+    return this.http.post('https://localhost:3000/signup', user).map((response: Response) =>response.json())              
     // return this.http.post('https://stark.cse.buffalo.edu:3000/signup', user).map((response: Response) =>response.json())              
   }
 

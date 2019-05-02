@@ -1,3 +1,4 @@
+process.env.NODE_TLS_REJECT_UNAUTHORIZED = '0';
 var express = require('express'); // Third Party Module
 var spawn = require("child_process").spawn; 
 var exec = require("child_process").exec; 
