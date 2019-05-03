@@ -63,6 +63,13 @@
 
       function transcribeSpeech() {
         console.log('Inside transcrib function');
+        /*recording popup*/
+        var x = document.getElementById('PopUpRecording');
+        x.className = 'show';
+        setTimeout(function() {
+          x.className = x.className.replace('show', '');
+        }, 3000);
+        /*popup ends*/
         document.getElementById('recordBtn').style.backgroundColor = 'red';
         stopBtn.style.backgroundColor = '#2f4f4f';
         keyGenFlag = false;
@@ -92,7 +99,7 @@
           console.log('Audio ended');
           recordBtn.style.backgroundColor = '#2f4f4f';
           stopBtn.style.backgroundColor = '#dcdfe5';
-          if(!keyGenFlag){
+          if (!keyGenFlag) {
             keyGenFlag = true;
             getKeywords();
           }
@@ -100,12 +107,18 @@
       }
 
       function stopRecord() {
+        /*recording popup*/
+        var x = document.getElementById('PopUpRecordingE');
+        x.className = 'show';
+        setTimeout(function() {
+          x.className = x.className.replace('show', '');
+        }, 3000);
+        /*popup ends*/
         recognition.stop();
-        if(!keyGenFlag){
+        if (!keyGenFlag) {
           keyGenFlag = true;
           getKeywords();
         }
- 
       }
       function getKeywords() {
         keywords.innerHTML = '';
@@ -124,11 +137,11 @@
             var resp = xmlhttp.responseText;
             console.log('resp is' + resp);
             var keys = resp.split(',');
-            console.log('keys length is '+ keys.length);
+            console.log('keys length is ' + keys.length);
             var count = 0;
             for (var i = 0; i < keys.length; i++) {
               keywords.innerHTML +=
-               `<div
+                `<div
         class="bubble"
         style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); overflow-wrap: break-word; height: fit-content; background:darkslategray;
         position: relative; margin-left: 5%; margin-top: 5%"
@@ -136,14 +149,16 @@
         <p
           style="font-style:medium; color:white; margin-right:10px; padding-top:7px;padding-left:5px; padding-bottom: 1px;"
         >
-          `+ keys[i] +`
+          ` +
+                keys[i] +
+                `
         </p>
-        <i
+        <i onclick="myFunction();"
           class="fas fa-window-close fa-2x"
           style="padding-top:5px; color:white; background:darkslategray;margin-right:10px;"
         ></i>
       </div>
-               `
+               `;
               count = count + 1;
             }
           }
@@ -251,6 +266,21 @@
       }
       /* dummy function */
       function dummy() {}
+
+      /*toast functions*/
+
+      function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById('snackbar');
+
+        // Add the "show" class to DIV
+        x.className = 'show';
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function() {
+          x.className = x.className.replace('show', '');
+        }, 3000);
+      }
     </script>
   </body>
 </html>

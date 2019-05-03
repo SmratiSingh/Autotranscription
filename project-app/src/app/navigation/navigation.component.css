@@ -239,7 +239,7 @@ p span{
     bottom: 0;
     left: 0;
     margin: 225px 300px 300px 199px;
-    padding : 30px;
+    padding : 20px;
     width: 300px;
     height: 340px;
     background-color:rgb(41, 68, 68);
@@ -247,52 +247,103 @@ p span{
     z-index: 1;
 
 }
-                   /*toggl*/
-.lbl {
-      position: relative;
-      display: block;
-      height: 20px;
-      width: 44px;
-      background: #898989;
-      border-radius: 100px;
-      cursor: pointer;
-      transition: all 0.3s ease;
-    }
-    
-    .lbl:after {
-      position: absolute;
-      left: -2px;
-      top: -3px;
-      display: block;
-      width: 26px;
-      height: 26px;
-      border-radius: 100px;
-      background: #fff;
-      box-shadow: 0px 3px 3px rgba(0,0,0,0.05);
-      content: '';
-      transition: all 0.3s ease;
-    }
-
-    .lbl:active:after { transform: scale(1.15, 0.85); }
-    .cbx:checked ~ label { background: #6fbeb5; }
-    .cbx:checked ~ label:after {
-      left: 20px;
-      background: #179588;
-    }
-    .cbx:disabled ~ label {
-      background: #d5d5d5;
-      pointer-events: none;
-    }
-    .cbx:disabled ~ label:after { background: #bcbdbc; }
-    .hidden { display: none; }
-
-                /*toggl hide*/
-    .autos{
+   .autos{
         display:flex;
     }
 
 
 /*Hidden Pop-ups here */
+
+/*error toast*/
+
+/* The snackbar - position it at the bottom and in the middle of the screen */
+#snackbar {
+    visibility: hidden; /* Hidden by default. Visible on click */
+    min-width: 250px; /* Set a default minimum width */
+    margin-left: -125px; /* Divide value of min-width by 2 */
+    background-color:rgb(43, 71, 71); /* Black background color */
+    color: #fff; /* White text color */
+    text-align: center; /* Centered text */
+    border-radius: 20px; /* Rounded borders */
+    padding: 16px; /* Padding */
+    position: fixed; /* Sit on top of the screen */
+    z-index: 1; /* Add a z-index if needed */
+    left: 50%; /* Center the snackbar */
+    bottom: 100px; /* 30px from the bottom */
+  }
+  
+  /* Show the snackbar when clicking on a button (class added with JavaScript) */
+  #snackbar.show {
+    visibility: visible; /* Show the snackbar */
+    /* Add animation: Take 0.5 seconds to fade in and out the snackbar. 
+    However, delay the fade out process for 2.5 seconds */
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+  }
+  
+  /* Animations to fade the snackbar in and out */
+  @-webkit-keyframes fadein {
+    from {bottom: 0; opacity: 0;} 
+    to {bottom: 100px; opacity: 1;}
+  }
+  
+  @keyframes fadein {
+    from {bottom: 0; opacity: 0;}
+    to {bottom: 100px; opacity: 1;}
+  }
+  
+  @-webkit-keyframes fadeout {
+    from {bottom: 100px; opacity: 1;} 
+    to {bottom: 0; opacity: 0;}
+  }
+  
+  @keyframes fadeout {
+    from {bottom: 100px; opacity: 1;}
+    to {bottom: 0; opacity: 0;}
+  }
+
+/*Recording popup*/
+#PopUpRecording{
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color:rgb(43, 71, 71);
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 100px;
+}
+#PopUpRecording.show{
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+/*Recording ends popup*/
+#PopUpRecordingE{
+    visibility: hidden;
+    min-width: 250px;
+    margin-left: -125px;
+    background-color:rgb(43, 71, 71);
+    color: #fff;
+    text-align: center;
+    border-radius: 20px;
+    padding: 16px;
+    position: fixed;
+    z-index: 1;
+    left: 50%;
+    bottom: 100px;
+}
+#PopUpRecordingE.show{
+    visibility: visible;
+    -webkit-animation: fadein 0.5s, fadeout 0.5s 2.5s;
+    animation: fadein 0.5s, fadeout 0.5s 2.5s;
+}
+
+
 
 /*Domain Form*/
 #DomainForm{
