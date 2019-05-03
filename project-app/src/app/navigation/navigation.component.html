@@ -198,14 +198,14 @@
       </div>
       <div class="addDomain">
         <p id="Udomain">
-          New Domain&nbsp;&nbsp;&nbsp;&nbsp;<button
+          Got a New Domain?<button
             style="background: transparent; border: transparent;"
           >
             <i
               id="uploadButtonIcon"
               class="fas fa-upload fa-x"
               onclick="displayForm();"
-              >&nbsp;&nbsp;Select</i
+              >Create</i
             >
           </button>
         </p>
@@ -432,7 +432,8 @@
 
     <!--Hidden pop-ups-->
     <!--hidden form Domain-->
-    <div id="DomainForm" class="md-form">
+    <div id="DomainForm">
+      <p id="titleError">Title already exists!</p>
       <div class="Cross">
         <i
           id="closeFbutton"
@@ -442,25 +443,24 @@
       </div>
       <div class="twouf">
         <div class="TitleCross">
-          <p id="titleError">Title already exists!</p>
           <div class="DomainTitle">
-            <input type="text" placeholder="Enter Domain Name" />
+            <input id="newDName" type="text" placeholder="Enter Domain Name" />
           </div>
         </div>
         <div class="KeywordsSection">
-          <p></p>
           <div class="editBoxKeyword">
             <textarea
-              class="form-control rounded-0"
+              class="form-control rounded-1"
               id="exampleFormControlTextarea1"
               rows="7"
-              placeholder="Provide keywords here seperated by commas"
+              placeholder="Provide Keywords Here :           Seperated By Commas"
+              style="background-color:#dcdfe5;"
             ></textarea>
+            <p id="keywordEmpty">Keywords cannot be empty</p>
           </div>
         </div>
-        <div class="SaveButtonSection">
-          <button>Save</button>
-          <p></p>
+        <div class="SaveSection">
+          <button class="SaveButtonSection">Save</button>
         </div>
       </div>
     </div>

@@ -324,10 +324,31 @@ p span{
 }
 .DomainTitle{
     display: flex;
+    
 }
 #titleError{
     position: absolute;
     visibility: hidden;
+    color: red;
+}
+#keywordEmpty{
+    position: absolute;
+    visibility: hidden;
+    color: red;
+}
+.KeywordsSection{
+    margin-top: 9px;
+}
+#newDName{
+    margin-top:15px;
+    width: 290px;
+    border: none;
+    border-radius: 5px;
+    background-color:#dcdfe5;
+}
+.SaveSection{
+    display: flex;
+    flex-direction:column;
 }
 
 #closeFbutton{
@@ -335,6 +356,11 @@ p span{
     border:none;
     background-color:transparent;
     margin-right: 0px;
+}
+.SaveButtonSection{
+    margin-top: 30px;
+    border-radius: 5px;
+    font-style: bold;
 }
 
 
