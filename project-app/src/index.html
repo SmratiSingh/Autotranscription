@@ -87,7 +87,9 @@
             //transcriptText.innerHTML +=finalTranscript;
             //interim_span.innerHTML = linebreak(interim_transcript);
             final.innerHTML = finalTranscript;
+            
             interim.innerHTML = interimTranscript;
+            console.log(finalTranscript);
             trans.scrollTop = trans.scrollHeight;
           }
           //document.write(finalTranscript);
@@ -115,7 +117,7 @@
         console.log(question);
         xmlhttp.open(
           'GET',
-          'https://stark.cse.buffalo.edu:3000/keywords?trans=' + question,
+          'http://stark.cse.buffalo.edu:3000/keywords?trans=' + question,
           true
         );
         xmlhttp.onreadystatechange = function() {

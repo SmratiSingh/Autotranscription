@@ -13,12 +13,12 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname))
 app.use(bodyParser.urlencoded({ extended: true })); 
 console.log(__dirname)
-var key = fs.readFileSync(path.resolve('./src/app/landing/server.key'));
-var cert = fs.readFileSync(path.resolve('./src/app/landing/server.crt'));
-var options = {
-    key: key,
-    cert: cert
-  };
+// var key = fs.readFileSync(path.resolve('./src/app/landing/server.key'));
+// var cert = fs.readFileSync(path.resolve('./src/app/landing/server.crt'));
+// var options = {
+//     key: key,
+//     cert: cert
+//   };
 
 app.use(function (req, res, next) {        
     res.setHeader('Access-Control-Allow-Origin', '*');    
@@ -130,7 +130,7 @@ app.post('/signup', function (req, res) {
 app.get('/keywords', function(req, res){
     console.log('inside keywords');
     resp = req.param('trans')
-    var process = spawn('python',["./src/app/landing/speech.py", 
+    var process = spawn('python36',["./src/app/landing/speech.py", 
                             resp]);
     console.log('process created');
     process.stdout.on('data', (data) => { 
