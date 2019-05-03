@@ -151,7 +151,7 @@ app.get('/keywords', function(req, res){
 
 app.post('/transcript', function(req, res){
     
-    console.log('save data is: '+ JSON.parse(req.body));
+    console.log('save data is: '+ JSON.stringify(req));
     username = req.body.username;
     trans_text = req.body.text;
     keywords = req.body.keywords;
