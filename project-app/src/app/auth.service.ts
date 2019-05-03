@@ -16,13 +16,15 @@ export class AuthService {
   constructor(private http: Http) { }
 
   verifyUser(user){
-    // console.log(user);      
+    // console.log(user);
+    this.username = user.username;
     // return this.http.post('https://localhost:3000/login', user).map((response: Response) =>response.json())
     return this.http.post('http://stark.cse.buffalo.edu:3000/login', user).map((response: Response) =>response.json());
   }
 
   addUser(user){
     // console.log(user);
+    this.username = user.username;
     // return this.http.post('https://localhost:3000/signup', user).map((response: Response) =>response.json())              
     return this.http.post('http://stark.cse.buffalo.edu:3000/signup', user).map((response: Response) =>response.json())              
   }

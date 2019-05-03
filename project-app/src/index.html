@@ -104,20 +104,20 @@
         if(!keyGenFlag){
           keyGenFlag = true;
           getKeywords();
-          var xhr = new XMLHttpRequest();
-          var data = {'username':'harshal', 'text':final.innerHTML, 'keywords':'harshal,ved,rajat,shubhra'};
-          data = JSON.stringify(data);
-          xhr.open(
-          'POST',
-          'http://stark.cse.buffalo.edu:3000/transcript',true);
-            // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+          // var xhr = new XMLHttpRequest();
+          // var data = {'username':'harshal', 'text':final.innerHTML, 'keywords':'harshal,ved,rajat,shubhra'};
+          // data = JSON.stringify(data);
+          // xhr.open(
+          // 'POST',
+          // 'http://stark.cse.buffalo.edu:3000/transcript',true);
+          //   // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
+          //   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
             
-            console.log('data is: '+data["username"]);
-            xhr.send(data);
-            xhr.onreadystatechange = function() {
-              console.log("Save status: "+ xhr.responseText);
-            }
+          //   console.log('data is: '+data["username"]);
+          //   xhr.send(data);
+          //   xhr.onreadystatechange = function() {
+          //     console.log("Save status: "+ xhr.responseText);
+          //   }
         }
  
       }
@@ -159,6 +159,29 @@
       </div>
                `
               count = count + 1;
+            }
+          var xhr = new XMLHttpRequest();
+            var username1 = document.getElementById('materialRegisterFormFirstName').value;
+            var username2 = document.getElementById('materialLoginFormEmail').value;
+
+            console.log("SIGNUP:"+username1+"///SIGNIN:"+username2);
+            var uname = '';
+            if (username1 != null) { uname = username1}
+            else if(username2 != null){uname = username2}
+            else {uname = 'ved'}
+
+          var data = {'username':uname, 'text':final.innerHTML, 'keywords':resp};
+          data = JSON.stringify(data);
+          xhr.open(
+          'POST',
+          'http://stark.cse.buffalo.edu:3000/transcript',true);
+            // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            
+            console.log('data is: '+data["username"]);
+            xhr.send(data);
+            xhr.onreadystatechange = function() {
+              console.log("Save status: "+ xhr.responseText);
             }
           }
         };
