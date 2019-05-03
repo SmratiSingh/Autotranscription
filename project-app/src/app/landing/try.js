@@ -41,7 +41,7 @@ app.post('/login', function (req, res) {
     mongo.verifyLogin(user, pass, function(document){
         console.log(document);
         console.log("authenticating");
-        if(document == null || length(document)==0){res.send('FAIL');}
+        if(document == null || document.length==0){res.send('FAIL');}
         else if(pass == document.password) {
             console.log("Login successful for :" + document.username);
 
@@ -108,7 +108,7 @@ app.post('/signup', function (req, res) {
                 return res.status(200).json({
                     status: 'FAIL',
                     message: 'USER_EXISTS'
-                })
+                });
             }
         });
 
@@ -121,7 +121,7 @@ app.post('/signup', function (req, res) {
         return res.status(200).json({
             status: 'FAIL',
             message: 'AUTH_FAIL'
-        })
+        });
     }
     // TODO: Add checks for first name and last name.
 
@@ -137,7 +137,7 @@ app.get('/keywords', function(req, res){
         console.log('data is: '+data);
         res.send(data); 
     } )
-    // exec(`python ./src/app/landing/speech.py ${resp}` , (error,stdout,stderr) => {
+    // exec(`python36 ./src/app/landing/speech.py ${resp}` , (error,stdout,stderr) => {
     //     if(error){
     //         console.log('error occured');
     //         console.log(error);
@@ -147,33 +147,60 @@ app.get('/keywords', function(req, res){
     //     res.send(stdout);
     // })
     //res.send(resp);
-})
+});
 
 app.post('/transcript', function(req, res){
-
-    username = req.body.username;
-    trans_text = req.body.text;
-    keywords = req.body.keywords;
+    
+    // console.log('save data is: '+ JSON.stringify(req.body));
+    data = JSON.parse(Object.keys(req.body));
+    username = data.username;
+    trans_text = data.text;
+    keywords = data.keywords;
     // title = req.body.title;
     // timestamp = new Date().toISOString().replace(/[-:.Z]/g, "").replace("T","_");
     timestamp = new Date().toISOString();
 
+    // mongo.saveTranscript(username, title, trans_text, keywords, timestamp, function(result){
+    mongo.saveTranscript(username, trans_text, keywords, timestamp, function(result){
+        return res.status(200).json({
+            status: 'SUCCESS',
+            message: 'ROW_ADDED',
+            id: result['insertedId']
+        });
+    });
+
     // recieved_key = ""
 
-    mongo.saveText(trans_text, function(fileInfo) {
-        console.log(fileInfo);
-        recieved_key = fileInfo._id;
-        // mongo.saveTranscript(username, title, recieved_key, keywords, timestamp, function(result){
-        mongo.saveTranscript(username , recieved_key, keywords, timestamp, function(result){
-            return res.status(200).json({
-                status: 'SUCCESS',
-                message: 'ROW_ADDED',
-                id: result['insertedId']
-            })
-        })
-    });
-    
-    
+    // mongo.saveText(trans_text, function(fileInfo) {
+    //     console.log(fileInfo);
+    //     recieved_key = fileInfo._id;
+    //     // mongo.saveTranscript(username, title, recieved_key, keywords, timestamp, function(result){
+    //     mongo.saveTranscript(username , recieved_key, keywords, timestamp, function(result){
+    //         return res.status(200).json({
+    //             status: 'SUCCESS',
+    //             message: 'ROW_ADDED',
+    //             id: result['insertedId']
+    //         });
+    //     });
+    // });
+
+    // mongo.getUniqueKeywords(domain, function(result){
+    //     key_list = keywords.split(",");
+    //     rows = [];
+    //     for (var i = 0; i < key_list.length; i++){
+    //         if (result.indexOf(key_list[i]) < 0) {
+    //             rows.push({"Domain":domain, "word":key_list[i].trim(), "confidence" : 0.5});
+    //         }
+    //     }
+
+    //     mongo.addDomain(rows, function(results){
+    //         return res.status(200).json({
+    //             status: 'SUCCESS',
+    //             message: 'ROWS_ADDED'
+    //         });
+    //     });
+
+    // });
 
 })
 
@@ -194,18 +221,59 @@ app.post('/domain', function(req, res) {
                 return res.status(200).json({
                     status: 'SUCCESS',
                     message: 'ROWS_ADDED'
-                })
+                });
             });
         }
         else {
             return res.status(200).json({
                 status: 'FAIL',
                 message: 'DOMAIN_EXISTS'
-            })
+            });
         }
     });
-    
-})
+
+});
+
+app.post('/update', function(req, res) {
+    // title = req.body.title;
+    keywords = req.body.keywords;
+    title = req.body.title;
+    _id = req.body._id;
+
+    mongo.updateSession(_id, title, keywords, function(results) {
+        if (results.nModified > 0) {
+            return res.status(200).json({
+                status: 'SUCCESS',
+                message: 'DATA_MODIFIED'
+            });
+        }
+        else {
+            return res.status(200).json({
+                status: 'SUCCESS',
+                message: 'DATA_MODIFIED_MAYBE'
+            });
+        }
+    });
+
+    // mongo.getUniqueKeywords(domain, function(result){
+    //     key_list = keywords.split(",");
+    //     rows = [];
+    //     for (var i = 0; i < key_list.length; i++){
+    //         if (result.indexOf(key_list[i]) < 0) {
+    //             rows.push({"Domain":domain, "word":key_list[i].trim(), "confidence" : 0.5});
+    //         }
+    //     }
+
+    //     mongo.addDomain(rows, function(results){
+    //         return res.status(200).json({
+    //             status: 'SUCCESS',
+    //             message: 'ROWS_ADDED'
+    //         });
+    //     });
+
+    // });
+
+});
 
 app.listen(3000)
 // var httpsServer = https.createServer(options, app);

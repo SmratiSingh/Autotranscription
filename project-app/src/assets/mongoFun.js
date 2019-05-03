@@ -66,10 +66,12 @@ module.exports.checkUser = function(username, callback){
     });
 };
 
-module.exports.saveTranscript = function(username, title, text, keywords, timestamp, callback) {
+// module.exports.saveTranscript = function(username, title, text, keywords, timestamp, callback) {
+module.exports.saveTranscript = function(username, text, keywords, timestamp, callback) {
     MongoClient.connect(mongo_url, function(err, db) {
         var dbo = db.db(db_name);
-        dbo.collection(transcripts_table).insertOne({'username':username, 'title':title, 'transcript':text, 'keywords':keywords, 'timestamp':timestamp}, function(err, result) {
+        // dbo.collection(transcripts_table).insertOne({'username':username, 'title':title, 'transcript':text, 'keywords':keywords, 'timestamp':timestamp}, function(err, result) {
+        dbo.collection(transcripts_table).insertOne({'username':username, 'transcript':text, 'keywords':keywords, 'timestamp':timestamp}, function(err, result) {
             if (err) {
                 // res.sendStatus(500);
                 console.log(err);
@@ -131,5 +133,33 @@ module.exports.saveText = function(text, callback) {
             }
             callback(fileInfo);
         });
+    });
+};
+
+module.exports.getUniqueKeywords = function(domain, callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(keywords_table).distinct("word", {"Domain":domain}, function(err, result) {
+            if (err) {
+                console.log(err);
+                throw err;
+            }
+            callback(result);
+        });
+        
+    });
+};
+
+module.exports.updateSession = function(id, title, keywords, callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(transcripts_table).update({"_id":id}, {"title":title, 'keywords':keywords}, function(err, result) {
+            if (err) {
+                console.log(err);
+                throw err;
+            }
+            callback(result);
+        });
+        
     });
 };
