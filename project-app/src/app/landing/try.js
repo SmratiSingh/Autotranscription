@@ -137,7 +137,7 @@ app.get('/keywords', function(req, res){
         console.log('data is: '+data);
         res.send(data); 
     } )
-    // exec(`python ./src/app/landing/speech.py ${resp}` , (error,stdout,stderr) => {
+    // exec(`python36 ./src/app/landing/speech.py ${resp}` , (error,stdout,stderr) => {
     //     if(error){
     //         console.log('error occured');
     //         console.log(error);
