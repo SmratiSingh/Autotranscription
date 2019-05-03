@@ -154,7 +154,7 @@ app.post('/transcript', function(req, res){
     username = req.body.username;
     trans_text = req.body.text;
     keywords = req.body.keywords;
-    title = req.body.title;
+    // title = req.body.title;
     // timestamp = new Date().toISOString().replace(/[-:.Z]/g, "").replace("T","_");
     timestamp = new Date().toISOString();
 
@@ -163,16 +163,48 @@ app.post('/transcript', function(req, res){
     mongo.saveText(trans_text, function(fileInfo) {
         console.log(fileInfo);
         recieved_key = fileInfo._id;
-        mongo.saveTranscript(username, title, recieved_key, keywords, timestamp, function(result){
+        // mongo.saveTranscript(username, title, recieved_key, keywords, timestamp, function(result){
+        mongo.saveTranscript(username , recieved_key, keywords, timestamp, function(result){
             return res.status(200).json({
                 status: 'SUCCESS',
-                message: 'USER_EXISTS'
+                message: 'ROW_ADDED',
+                id: result['insertedId']
             })
         })
     });
     
     
 
+})
+
+app.post('/domain', function(req, res) {
+    domain = req.body.domain.toLowerCase().trim();
+    keywords = req.body.keywords;
+
+    rows = [];
+
+    mongo.checkDomain(domain, function(results){
+        if (results == null) {
+            key_list = keywords.split(",");
+            for (var i = 0; i < key_list.length; i++){
+                rows.push({"Domain":domain, "word":key_list[i].trim(), "confidence" : 0.5});
+            }
+
+            mongo.addDomain(rows, function(results){
+                return res.status(200).json({
+                    status: 'SUCCESS',
+                    message: 'ROWS_ADDED'
+                })
+            });
+        }
+        else {
+            return res.status(200).json({
+                status: 'FAIL',
+                message: 'DOMAIN_EXISTS'
+            })
+        }
+    });
+    
 })
 
 app.listen(3000)

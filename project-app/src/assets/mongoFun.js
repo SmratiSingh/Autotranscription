@@ -9,6 +9,7 @@ var mongo_url = "mongodb://localhost:27017/";
 var db_name = "test1"
 var user_table = "users"
 var transcripts_table = "transcripts"
+var keywords_table = "keywords"
 
 module.exports.verifyLogin = function(username, pwd, callback){
     MongoClient.connect(mongo_url, function(err, db) {
@@ -73,6 +74,40 @@ module.exports.saveTranscript = function(username, title, text, keywords, timest
                 // res.sendStatus(500);
                 console.log(err);
                 console.log("history saving error");
+                throw err;
+            }
+            db.close();
+            callback(result);
+        });
+
+    });
+};
+
+module.exports.addDomain = function(rows, callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(keywords_table).insert(rows, function(err, result) {
+            if (err) {
+                // res.sendStatus(500);
+                console.log(err);
+                console.log("keywords saving error");
+                throw err;
+            }
+            db.close();
+            callback(result);
+        });
+
+    });
+};
+
+module.exports.checkDomain = function(domain, callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(keywords_table).find({"Domain":domain}, function(err, result) {
+            if (err) {
+                // res.sendStatus(500);
+                console.log(err);
+                console.log("keywords saving error");
                 throw err;
             }
             db.close();
