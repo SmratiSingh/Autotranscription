@@ -81,12 +81,10 @@ def updateConfidence(domain, receivedKeyword, isSelected):
 
 
 def getSentiments(text):
-  if os.path.isfile('positive.txt'):
-    with open("positive.txt", "r") as file:
-      pos = file.read().split("\n")
-  if os.path.isfile('negative.txt'):
-    with open("negative.txt", "r") as file:
-      neg = file.read().split("\n")
+  with open("positive.txt", "r") as file:
+    pos = file.read().split("\n")
+  with open("negative.txt", "r") as file:
+    neg = file.read().split("\n")
 
   sentences = text.split(".")
   total_lines = len(sentences)
@@ -116,7 +114,7 @@ def writeData(text, sentiment):
   for data in text:
     final_keywords += data + ","
   final_keywords = final_keywords[:-1]
-  print(final_keywords+":"+sentiment)
+  print(final_keywords + ":" + sentiment)
 
 
 # while (True):
@@ -134,7 +132,7 @@ if __name__ == "__main__":
   params = {}
   # receivedKeywords = getKeywords(text)
   text = sys.argv[1]
-  #text = """In any case, there’s something pure and powerful about this movie. I can’t recall a science fiction film hard-sold to a director’s fans as multiplex-“awesome” in which so many major characters wept openly in close-up, voices breaking, tears streaming down their cheeks. Matthew McConaughey’s widowed astronaut Cooper and his colleague Amelia Brand (Anne Hathaway) pour on the waterworks in multiple scenes, with justification: like everyone on the crew of the Endurance, the starship sent to a black hole near Jupiter that will slingshot the heroes towards colonize-able worlds, they’re separated from everything that defines them: their loved ones, their personal histories, their culture, the planet itself. Other characters—including Amelia's father, an astrophysicist played by Michael Caine, and a space explorer (played by an un-billed guest actor) who’s holed up on a forbidding arctic world—express a vulnerability to loneliness and doubt that’s quite raw for this director. The film’s central family (headed by Cooper, grounded after the dismantling of NASA) lives on a corn farm, for goodness’ sake, like the gentle Iowans in "Field of Dreams" (a film whose daddy-issues-laden story syncs up nicely with the narrative of "Interstellar"). Granted, they're growing the crop to feed the human race, which is whiling away its twilight hours on a planet so ecologically devastated that at first you mistake it for the American Dust Bowl circa 1930 or so; but there's still something amusingly cheeky about the notion of corn as sustenance, especially in a survival story in which the future of humanity is at stake. (Ellen Burstyn plays one of many witnesses in a documentary first glimpsed in the movie's opening scene—and which, in classic Nolan style, is a setup for at least two twists.)"""
+  # text = """In any case, there’s something pure and powerful about this movie. I can’t recall a science fiction film hard-sold to a director’s fans as multiplex-“awesome” in which so many major characters wept openly in close-up, voices breaking, tears streaming down their cheeks. Matthew McConaughey’s widowed astronaut Cooper and his colleague Amelia Brand (Anne Hathaway) pour on the waterworks in multiple scenes, with justification: like everyone on the crew of the Endurance, the starship sent to a black hole near Jupiter that will slingshot the heroes towards colonize-able worlds, they’re separated from everything that defines them: their loved ones, their personal histories, their culture, the planet itself. Other characters—including Amelia's father, an astrophysicist played by Michael Caine, and a space explorer (played by an un-billed guest actor) who’s holed up on a forbidding arctic world—express a vulnerability to loneliness and doubt that’s quite raw for this director. The film’s central family (headed by Cooper, grounded after the dismantling of NASA) lives on a corn farm, for goodness’ sake, like the gentle Iowans in "Field of Dreams" (a film whose daddy-issues-laden story syncs up nicely with the narrative of "Interstellar"). Granted, they're growing the crop to feed the human race, which is whiling away its twilight hours on a planet so ecologically devastated that at first you mistake it for the American Dust Bowl circa 1930 or so; but there's still something amusingly cheeky about the notion of corn as sustenance, especially in a survival story in which the future of humanity is at stake. (Ellen Burstyn plays one of many witnesses in a documentary first glimpsed in the movie's opening scene—and which, in classic Nolan style, is a setup for at least two twists.)"""
 
   sentiment = getSentiments(text)
   receivedKeywords = getKeywords(text)
