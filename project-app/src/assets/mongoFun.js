@@ -147,3 +147,17 @@ module.exports.getUniqueKeywords = function(domain, callback) {
         
     });
 };
+
+module.exports.updateSession = function(id, title, keywords, callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(transcripts_table).update({"_id":id}, {"title":title, 'keywords':keywords}, function(err, result) {
+            if (err) {
+                console.log(err);
+                throw err;
+            }
+            callback(result);
+        });
+        
+    });
+};

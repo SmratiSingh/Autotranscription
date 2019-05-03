@@ -226,7 +226,23 @@ app.post('/domain', function(req, res) {
 app.post('/update', function(req, res) {
     // title = req.body.title;
     keywords = req.body.keywords;
-    domain = req.body.domain;
+    title = req.body.title;
+    _id = req.body._id;
+
+    mongo.updateSession(_id, title, keywords, function(results) {
+        if (results.nModified > 0) {
+            return res.status(200).json({
+                status: 'SUCCESS',
+                message: 'DATA_MODIFIED'
+            });
+        }
+        else {
+            return res.status(200).json({
+                status: 'SUCCESS',
+                message: 'DATA_MODIFIED_MAYBE'
+            });
+        }
+    });
 
     // mongo.getUniqueKeywords(domain, function(result){
     //     key_list = keywords.split(",");
