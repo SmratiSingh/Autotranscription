@@ -151,10 +151,11 @@ app.get('/keywords', function(req, res){
 
 app.post('/transcript', function(req, res){
     
-    console.log('save data is: '+ JSON.stringify(req.body));
-    username = req.body.username;
-    trans_text = req.body.text;
-    keywords = req.body.keywords;
+    // console.log('save data is: '+ JSON.stringify(req.body));
+    data = JSON.parse(Object.keys(req.body));
+    username = data.username;
+    trans_text = data.text;
+    keywords = data.keywords;
     // title = req.body.title;
     // timestamp = new Date().toISOString().replace(/[-:.Z]/g, "").replace("T","_");
     timestamp = new Date().toISOString();

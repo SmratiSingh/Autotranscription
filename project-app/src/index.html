@@ -105,13 +105,15 @@
           keyGenFlag = true;
           getKeywords();
           var xhr = new XMLHttpRequest();
+          var data = {'username':'harshal', 'text':final.innerHTML, 'keywords':'harshal,ved,rajat,shubhra'};
+          data = JSON.stringify(data);
           xhr.open(
           'POST',
           'http://stark.cse.buffalo.edu:3000/transcript',true);
-            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-            var data = JSON.stringify({"username":"harshal", "text":final.innerHTML, "keywords":"harshal,ved,rajat,shubhra"});
-            console.log('data is: '+data);
+            // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+            
+            console.log('data is: '+data["username"]);
             xhr.send(data);
             xhr.onreadystatechange = function() {
               console.log("Save status: "+ xhr.responseText);
@@ -125,7 +127,7 @@
         console.log('INside keyword extractor');
         //var contentDiv = document.getElementById("summary");
         var question = document.getElementById('final').innerHTML;
-        console.log(question);
+        // console.log(question);
         xmlhttp.open(
           'GET',
           'http://stark.cse.buffalo.edu:3000/keywords?trans=' + question,
