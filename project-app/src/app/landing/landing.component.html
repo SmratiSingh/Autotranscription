@@ -22,6 +22,7 @@
   <body>
     <!--Start here always-->
     <app-navigation style="position:absolute"></app-navigation>
+    
     <div class="container" style="text-align: center">
       <header class="col-12">
         <img height="20%" width="50%" src="../../assets/LogoD.jpg" alt="logo" />
@@ -30,6 +31,7 @@
     <div style="float: right">
       <a routerLink="/">Logout</a>
     </div>
+    <div style="float: right;"><p style="color: black;">Hello {{this.landingUser}}</p></div>
     <div class="d-flex flex-row" style="height:60%; margin-top: 1%;">
       <div
         id="trans"
@@ -43,6 +45,7 @@
 	  id = "transcriptText"
     >  
     </textarea> -->
+    
         <div>
           <p class="scrollable-content" id="final"></p>
           <span id="interim" style="color:grey;"></span>
