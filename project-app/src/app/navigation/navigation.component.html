@@ -439,6 +439,7 @@
           id="closeFbutton"
           class="fas fa-window-close fa-2x"
           style="background-color:transparent;"
+          onclick="CloseDform();"
         ></i>
       </div>
       <div class="twouf">
@@ -460,7 +461,9 @@
           </div>
         </div>
         <div class="SaveSection">
-          <button class="SaveButtonSection">Save</button>
+          <button class="SaveButtonSection" (click)="saveDomain()">
+            Save
+          </button>
         </div>
       </div>
     </div>
