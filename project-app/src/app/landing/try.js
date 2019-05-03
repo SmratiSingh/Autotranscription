@@ -130,7 +130,7 @@ app.post('/signup', function (req, res) {
 app.get('/keywords', function(req, res){
     console.log('inside keywords');
     resp = req.param('trans')
-    var process = spawn('python',["./src/app/landing/speech.py", 
+    var process = spawn('python36',["./src/app/landing/speech.py", 
                             resp]);
     console.log('process created');
     process.stdout.on('data', (data) => { 
