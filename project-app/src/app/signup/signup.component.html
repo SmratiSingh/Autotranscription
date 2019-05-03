@@ -14,27 +14,45 @@
     <form class="text-center" style="color: #757575;">
       <div class="form-row">
         <div class="col">
-          <!-- E-mail -->
-          <div class="md-form">
-            <input
-              type="text"
-              id="materialRegisterFormEmail"
-              class="form-control"
-              name = "nameField"
-              mdbInput [(ngModel)] = 'name'
-            />
-            <label for="materialRegisterFormEmail" style="color: teal;"
-              >Name</label
-            >
+          <div class="row">
+            <!-- First name-->
+            <div class="md-form col">
+              <input
+                type="text"
+                id="materialRegisterFormEmail"
+                class="form-control"
+                name="nameField"
+                mdbInput
+                [(ngModel)]="name"
+              />
+              <label for="materialRegisterFormEmail" style="color: teal;"
+                >&nbsp;&nbsp;&nbsp;&nbsp;First Name</label
+              >
+            </div>
+            <!--Last name -->
+            <div class="md-form col">
+              <input
+                type="text"
+                id="materialRegisterFormLEmail"
+                class="form-control"
+                name="LnameField"
+                mdbInput
+                [(ngModel)]="Lname"
+              />
+              <label for="materialRegisterFormLEmail" style="color: teal;"
+                >&nbsp;&nbsp;&nbsp;&nbsp;Last Name</label
+              >
+            </div>
           </div>
-          <!-- First name -->
+          <!-- User name -->
           <div class="md-form  mt-0">
             <input
               type="text"
               id="materialRegisterFormFirstName"
               class="form-control"
-              name = "usernameField"
-              mdbInput [(ngModel)] = 'username'
+              name="usernameField"
+              mdbInput
+              [(ngModel)]="username"
             />
             <label for="materialRegisterFormFirstName" style="color: teal;"
               >User name</label
@@ -49,9 +67,10 @@
           type="password"
           id="materialRegisterFormPassword"
           class="form-control"
-          name = "passwordField"
+          name="passwordField"
           aria-describedby="materialRegisterFormPasswordHelpBlock"
-          mdbInput [(ngModel)] = 'new_password'
+          mdbInput
+          [(ngModel)]="new_password"
         />
         <label for="materialRegisterFormPassword" style="color: teal;"
           >Password</label
@@ -62,9 +81,10 @@
           type="password"
           id="materialRegisterFormCPassword"
           class="form-control"
-          name = "rePasswordField"
+          name="rePasswordField"
           aria-describedby="materialRegisterFormCPasswordHelpBlock"
-          mdbInput [(ngModel)] = 're_password'
+          mdbInput
+          [(ngModel)]="re_password"
         />
         <label for="materialRegisterFormCPassword" style="color: teal;"
           >Confirm Password</label
@@ -81,8 +101,8 @@
         class="my-4 waves-effect z-depth-0"
         mdbWavesEffect
         type="submit"
-        (keyup.enter) = "addUser()"
-        (click) = "addUser()"
+        (keyup.enter)="addUser()"
+        (click)="addUser()"
       >
         Sign up
       </button>
