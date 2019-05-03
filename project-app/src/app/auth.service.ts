@@ -16,9 +16,9 @@ export class AuthService {
   constructor(private http: Http) { }
 
   verifyUser(user){
-    console.log(user);      
-    // return this.http.post('https://localhost:3000/login', user).map((response: Response) =>response.json())              
-    return this.http.post('http://stark.cse.buffalo.edu:3000/login', user).map((response: Response) =>response.json())              
+    // console.log(user);      
+    // return this.http.post('https://localhost:3000/login', user).map((response: Response) =>response.json())
+    return this.http.post('http://stark.cse.buffalo.edu:3000/login', user).map((response: Response) =>response.json());
   }
 
   addUser(user){

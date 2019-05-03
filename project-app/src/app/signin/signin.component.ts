@@ -35,7 +35,7 @@ export class SigninComponent implements OnInit {
         if(data['status'] == 'SUCCESS'){
           // this.ngOnInit();
           // console.log('SUCCESS!!!!');
-          console.log(data);
+          // console.log(data);
           this.router.navigate(['/landing']);
         }
         else if(data['status'] == 'FAIL'){
