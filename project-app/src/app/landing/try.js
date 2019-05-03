@@ -160,20 +160,28 @@ app.post('/transcript', function(req, res){
     // timestamp = new Date().toISOString().replace(/[-:.Z]/g, "").replace("T","_");
     timestamp = new Date().toISOString();
 
-    // recieved_key = ""
-
-    mongo.saveText(trans_text, function(fileInfo) {
-        console.log(fileInfo);
-        recieved_key = fileInfo._id;
-        // mongo.saveTranscript(username, title, recieved_key, keywords, timestamp, function(result){
-        mongo.saveTranscript(username , recieved_key, keywords, timestamp, function(result){
-            return res.status(200).json({
-                status: 'SUCCESS',
-                message: 'ROW_ADDED',
-                id: result['insertedId']
-            });
+    mongo.saveTranscript(username , trans_text, keywords, timestamp, function(result){
+        return res.status(200).json({
+            status: 'SUCCESS',
+            message: 'ROW_ADDED',
+            id: result['insertedId']
         });
     });
+
+    // recieved_key = ""
+
+    // mongo.saveText(trans_text, function(fileInfo) {
+    //     console.log(fileInfo);
+    //     recieved_key = fileInfo._id;
+    //     // mongo.saveTranscript(username, title, recieved_key, keywords, timestamp, function(result){
+    //     mongo.saveTranscript(username , recieved_key, keywords, timestamp, function(result){
+    //         return res.status(200).json({
+    //             status: 'SUCCESS',
+    //             message: 'ROW_ADDED',
+    //             id: result['insertedId']
+    //         });
+    //     });
+    // });
 
     // mongo.getUniqueKeywords(domain, function(result){
     //     key_list = keywords.split(",");
