@@ -81,9 +81,9 @@ def updateConfidence(domain, receivedKeyword, isSelected):
 
 
 def getSentiments(text):
-  with open("positive.txt", "r") as file:
+  with open("./src/app/landing/positive.txt", "r") as file:
     pos = file.read().split("\n")
-  with open("negative.txt", "r") as file:
+  with open("./src/app/landing/negative.txt", "r") as file:
     neg = file.read().split("\n")
 
   sentences = text.split(".")
