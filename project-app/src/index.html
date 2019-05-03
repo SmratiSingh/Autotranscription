@@ -54,6 +54,7 @@
       window.SpeechRecognition =
         window.webkitSpeechRecognition || window.SpeechRecognition;
       let finalTranscript = '';
+      let keyGenFlag = false;
       const recognition = new window.webkitSpeechRecognition();
       console.log('recognition created');
       recognition.interimResults = true;
@@ -64,7 +65,7 @@
         console.log('Inside transcrib function');
         document.getElementById('recordBtn').style.backgroundColor = 'red';
         stopBtn.style.backgroundColor = '#2f4f4f';
-
+        keyGenFlag = false;
         recognition.onresult = event => {
           let interimTranscript = '';
           //let finalTranscript = '';
@@ -77,36 +78,34 @@
             let transcript = event.results[i][0].transcript;
             if (event.results[i].isFinal) {
               finalTranscript += transcript;
-              //transcript = event.results[i][0].transcript;
-              //document.write(transcript)
-              //var tarea = document.getElementById("transcriptText")
-              //tarea.innerHTML = tarea.innerHTML + transcript
             } else {
               interimTranscript += transcript;
             }
-            //transcriptText.innerHTML +=finalTranscript;
-            //interim_span.innerHTML = linebreak(interim_transcript);
             final.innerHTML = finalTranscript;
 
             interim.innerHTML = interimTranscript;
             trans.scrollTop = trans.scrollHeight;
           }
-          //document.write(finalTranscript);
-          //finalTranscript = ""
         };
         recognition.start();
         recognition.onaudioend = function() {
-          //document.write("\n Speech ended.")
           console.log('Audio ended');
           recordBtn.style.backgroundColor = '#2f4f4f';
           stopBtn.style.backgroundColor = '#dcdfe5';
-          getKeywords();
+          if(!keyGenFlag){
+            keyGenFlag = true;
+            getKeywords();
+          }
         };
       }
 
       function stopRecord() {
         recognition.stop();
-        getKeywords();
+        if(!keyGenFlag){
+          keyGenFlag = true;
+          getKeywords();
+        }
+ 
       }
       function getKeywords() {
         keywords.innerHTML = '';
@@ -125,12 +124,14 @@
             var resp = xmlhttp.responseText;
             console.log('resp is' + resp);
             var keys = resp.split(',');
+            console.log('keys length is '+ keys.length);
             var count = 0;
             for (var i = 0; i < keys.length; i++) {
               keywords.innerHTML +=
                `<div
         class="bubble"
-        style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); overflow-wrap: break-word; height: fit-content; background:darkslategray;"
+        style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); overflow-wrap: break-word; height: fit-content; background:darkslategray;
+        position: relative; margin-left: 5%; margin-top: 5%"
       >
         <p
           style="font-style:medium; color:white; margin-right:10px; padding-top:7px;padding-left:5px; padding-bottom: 1px;"
