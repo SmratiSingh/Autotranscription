@@ -150,7 +150,7 @@ app.get('/keywords', function(req, res){
 });
 
 app.post('/transcript', function(req, res){
-    
+    console.log('inside transcript');
     // console.log('save data is: '+ JSON.stringify(req.body));
     data = JSON.parse(Object.keys(req.body));
     username = data.username;
@@ -162,6 +162,7 @@ app.post('/transcript', function(req, res){
 
     // mongo.saveTranscript(username, title, trans_text, keywords, timestamp, function(result){
     mongo.saveTranscript(username, trans_text, keywords, timestamp, function(result){
+        console.log('got reply from db');
         return res.status(200).json({
             status: 'SUCCESS',
             message: 'ROW_ADDED',
