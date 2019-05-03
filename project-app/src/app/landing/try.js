@@ -150,7 +150,7 @@ app.get('/keywords', function(req, res){
 });
 
 app.post('/transcript', function(req, res){
-
+    console.log('save data is: '+ req);
     username = req.body.username;
     trans_text = req.body.text;
     keywords = req.body.keywords;
@@ -173,23 +173,23 @@ app.post('/transcript', function(req, res){
         });
     });
 
-    mongo.getUniqueKeywords(domain, function(result){
-        key_list = keywords.split(",");
-        rows = [];
-        for (var i = 0; i < key_list.length; i++){
-            if (result.indexOf(key_list[i]) < 0) {
-                rows.push({"Domain":domain, "word":key_list[i].trim(), "confidence" : 0.5});
-            }
-        }
+    // mongo.getUniqueKeywords(domain, function(result){
+    //     key_list = keywords.split(",");
+    //     rows = [];
+    //     for (var i = 0; i < key_list.length; i++){
+    //         if (result.indexOf(key_list[i]) < 0) {
+    //             rows.push({"Domain":domain, "word":key_list[i].trim(), "confidence" : 0.5});
+    //         }
+    //     }
 
-        mongo.addDomain(rows, function(results){
-            return res.status(200).json({
-                status: 'SUCCESS',
-                message: 'ROWS_ADDED'
-            });
-        });
+    //     mongo.addDomain(rows, function(results){
+    //         return res.status(200).json({
+    //             status: 'SUCCESS',
+    //             message: 'ROWS_ADDED'
+    //         });
+    //     });
 
-    });
+    // });
 
 })
 

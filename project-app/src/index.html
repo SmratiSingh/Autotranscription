@@ -104,6 +104,17 @@
         if(!keyGenFlag){
           keyGenFlag = true;
           getKeywords();
+          var xhr = new XMLHttpRequest();
+          xhr.open(
+          'POST',
+          'http://stark.cse.buffalo.edu:3000/transcript',true);
+            xhr.setRequestHeader('X-Requested-With', 'XMLHttpRequest');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            var data = JSON.stringify({"username":"harshal", "text":final.innerHTML, "keywords":"harshal,ved,rajat,shubhra"});
+            xhr.send(data);
+            xhr.onreadystatechange = function() {
+              console.log("Save status: "+ xhr.responseText);
+            }
         }
  
       }
