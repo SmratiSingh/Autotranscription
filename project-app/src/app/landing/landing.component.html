@@ -64,8 +64,8 @@
         </div>
         <div
           id="keywords"
-          class="d-flex flex-col"
-          style="display:inline-block; position: relative; background-color:#dcdfe5; text-align: left; border-radius:3%; overflow-y:scroll; height:75%;"
+          class="d-flex flex-col scrollable"
+          style="display:inline-block; position: relative; background-color:#dcdfe5; text-align: left; border-radius:3%; overflow-y:auto; height:75%;"
         ></div>
       </div>
     </div>
@@ -103,6 +103,23 @@
       >
         <i class="fas fa-upload"></i>
       </button>
+
+      <!--bubble-->
+      <div
+        class="bubble"
+        style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); overflow-wrap: break-word; height: fit-content; background:darkslategray;"
+      >
+        <p
+          style="font-style:medium; color:white; margin-right:10px; padding-top:7px;padding-left:5px; padding-bottom: 1px;"
+        >
+          Keyword
+        </p>
+        <i
+          class="fas fa-window-close fa-2x"
+          style="padding-top:5px; color:white; background:darkslategray;margin-right:10px;"
+        ></i>
+      </div>
+      <!--bubble end-->
     </div>
 
     <!--scripts-->
