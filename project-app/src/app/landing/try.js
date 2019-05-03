@@ -108,7 +108,7 @@ app.post('/signup', function (req, res) {
                 return res.status(200).json({
                     status: 'FAIL',
                     message: 'USER_EXISTS'
-                })
+                });
             }
         });
 
@@ -121,7 +121,7 @@ app.post('/signup', function (req, res) {
         return res.status(200).json({
             status: 'FAIL',
             message: 'AUTH_FAIL'
-        })
+        });
     }
     // TODO: Add checks for first name and last name.
 
@@ -147,7 +147,7 @@ app.get('/keywords', function(req, res){
     //     res.send(stdout);
     // })
     //res.send(resp);
-})
+});
 
 app.post('/transcript', function(req, res){
 
@@ -169,11 +169,27 @@ app.post('/transcript', function(req, res){
                 status: 'SUCCESS',
                 message: 'ROW_ADDED',
                 id: result['insertedId']
-            })
-        })
+            });
+        });
     });
-    
-    
+
+    mongo.getUniqueKeywords(domain, function(result){
+        key_list = keywords.split(",");
+        rows = [];
+        for (var i = 0; i < key_list.length; i++){
+            if (result.indexOf(key_list[i]) < 0) {
+                rows.push({"Domain":domain, "word":key_list[i].trim(), "confidence" : 0.5});
+            }
+        }
+
+        mongo.addDomain(rows, function(results){
+            return res.status(200).json({
+                status: 'SUCCESS',
+                message: 'ROWS_ADDED'
+            });
+        });
+
+    });
 
 })
 
@@ -194,18 +210,43 @@ app.post('/domain', function(req, res) {
                 return res.status(200).json({
                     status: 'SUCCESS',
                     message: 'ROWS_ADDED'
-                })
+                });
             });
         }
         else {
             return res.status(200).json({
                 status: 'FAIL',
                 message: 'DOMAIN_EXISTS'
-            })
+            });
         }
     });
-    
-})
+
+});
+
+app.post('/update', function(req, res) {
+    // title = req.body.title;
+    keywords = req.body.keywords;
+    domain = req.body.domain;
+
+    // mongo.getUniqueKeywords(domain, function(result){
+    //     key_list = keywords.split(",");
+    //     rows = [];
+    //     for (var i = 0; i < key_list.length; i++){
+    //         if (result.indexOf(key_list[i]) < 0) {
+    //             rows.push({"Domain":domain, "word":key_list[i].trim(), "confidence" : 0.5});
+    //         }
+    //     }
+
+    //     mongo.addDomain(rows, function(results){
+    //         return res.status(200).json({
+    //             status: 'SUCCESS',
+    //             message: 'ROWS_ADDED'
+    //         });
+    //     });
+
+    // });
+
+});
 
 app.listen(3000)
 // var httpsServer = https.createServer(options, app);

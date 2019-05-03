@@ -133,3 +133,17 @@ module.exports.saveText = function(text, callback) {
         });
     });
 };
+
+module.exports.getUniqueKeywords = function(domain, callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(keywords_table).distinct("word", {"Domain":domain}, function(err, result) {
+            if (err) {
+                console.log(err);
+                throw err;
+            }
+            callback(result);
+        });
+        
+    });
+};
