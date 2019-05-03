@@ -12,7 +12,7 @@ import 'rxjs/add/operator/do';
 })
 @Injectable()
 export class AuthService {
-  username: String = 'harshal';
+  username: String = '';
   constructor(private http: Http) { }
 
   verifyUser(user){

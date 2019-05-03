@@ -156,12 +156,14 @@ app.post('/transcript', function(req, res){
     username = data.username;
     trans_text = data.text;
     keywords = data.keywords;
+    title = data.title;
+    sentiment = data.sentiment;
     // title = req.body.title;
     // timestamp = new Date().toISOString().replace(/[-:.Z]/g, "").replace("T","_");
     timestamp = new Date().toISOString();
 
     // mongo.saveTranscript(username, title, trans_text, keywords, timestamp, function(result){
-    mongo.saveTranscript(username, trans_text, keywords, timestamp, function(result){
+    mongo.saveTranscript(username, title, sentiment, trans_text, keywords, timestamp, function(result){
         console.log('got reply from db');
         return res.status(200).json({
             status: 'SUCCESS',

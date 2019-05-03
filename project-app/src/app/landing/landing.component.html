@@ -31,7 +31,8 @@
     <div style="float: right">
       <a routerLink="/">Logout</a>
     </div>
-    <div style="float: right;"><p style="color: black;">Hello {{this.landingUser}}</p></div>
+    <div style="float: right;"><p style="color: black;">Welcome {{this.landingUser}}   </p></div>
+    <input type="hidden" id="username" value={{this.landingUser}}>
     <div class="d-flex flex-row" style="height:60%; margin-top: 1%;">
       <div
         id="trans"
@@ -106,7 +107,7 @@
       >
         <i class="fas fa-upload"></i>
       </button>
-
+      <div style="position: relative; margin-left: 50%; color: darkgreen"> Sentiment: <p id="sentiment"> </p></div>
       
     </div>
 

@@ -118,20 +118,6 @@
         if (!keyGenFlag) {
           keyGenFlag = true;
           getKeywords();
-          // var xhr = new XMLHttpRequest();
-          // var data = {'username':'harshal', 'text':final.innerHTML, 'keywords':'harshal,ved,rajat,shubhra'};
-          // data = JSON.stringify(data);
-          // xhr.open(
-          // 'POST',
-          // 'http://stark.cse.buffalo.edu:3000/transcript',true);
-          //   // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
-          //   xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-            
-          //   console.log('data is: '+data["username"]);
-          //   xhr.send(data);
-          //   xhr.onreadystatechange = function() {
-          //     console.log("Save status: "+ xhr.responseText);
-          //   }
         }
       }
       function getKeywords() {
@@ -150,7 +136,11 @@
           if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
             var resp = xmlhttp.responseText;
             console.log('resp is' + resp);
-            var keys = resp.split(',');
+            var elems = resp.split(':');
+            var keys = elems[0].split(',');
+            var sentiment = elems[1];
+            console.log('sentiment is: '+ sentiment);
+            document.getElementById('sentiment').innerHTML = sentiment;
             console.log('keys length is ' + keys.length);
             var count = 0;
             for (var i = 0; i < keys.length; i++) {
@@ -176,16 +166,10 @@
               count = count + 1;
             }
           var xhr = new XMLHttpRequest();
-            var username1 = document.getElementById('materialRegisterFormFirstName').value;
-            var username2 = document.getElementById('materialLoginFormEmail').value;
 
-            console.log("SIGNUP:"+username1+"///SIGNIN:"+username2);
-            var uname = '';
-            if (username1 != null) { uname = username1}
-            else if(username2 != null){uname = username2}
-            else {uname = 'ved'}
-
-          var data = {'username':uname, 'text':final.innerHTML, 'keywords':resp};
+          var uname = username.value;
+          console.log("User is: "+uname);
+          var data = {'username':uname, 'text':final.innerHTML, 'keywords':elems[0], 'title':' ', 'sentiment':elems[1].trim()};
           data = JSON.stringify(data);
           xhr.open(
           'POST',
