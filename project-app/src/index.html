@@ -87,7 +87,7 @@
             //transcriptText.innerHTML +=finalTranscript;
             //interim_span.innerHTML = linebreak(interim_transcript);
             final.innerHTML = finalTranscript;
-            
+
             interim.innerHTML = interimTranscript;
             console.log(finalTranscript);
             trans.scrollTop = trans.scrollHeight;
@@ -128,18 +128,17 @@
             var count = 0;
             for (var i = 0; i < keys.length; i++) {
               keywords.innerHTML +=
-                ` <p><div class='input-group mb-3 scrollable-content' style='height: 1%'>
+                `<p><div class='input-group mb-3 scrollable-content' style='height: 1%'>
                                 <div class='input-group-prepend'>
                                   <span class='input-group-text' id=''>` +
                 keys[i] +
                 `</span>
                                 </div>
                                 <div class='input-group-append'>
-                                  <button class='btn btn-outline-info' style='color:rgb(49, 82, 82);' type='button' onclick='wipe(this.parentNode.parentNode.name);'>
-                                    X
+                                  <button class='btn btn-outline-info' style='color:rgb(49, 82, 82);' type='button' onclick='wipe(this.parentNode.parentNode.name);'>X
                                   </button>
                                 </div>
-                              </div></p> <br/>`;
+                              </div></p>`;
               count = count + 1;
             }
           }

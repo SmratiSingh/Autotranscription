@@ -1,113 +1,126 @@
 <html>
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-  <link
-    rel="stylesheet"
-    href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-    integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-    crossorigin="anonymous"
-  />
-  <link
-    rel="stylesheet"
-    href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-    crossorigin="anonymous"
-  />
-  <!-- <link rel="stylesheet" href="css/style.css" /> -->
-  <title>Landing Page</title>
-</head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="css/style.css" /> -->
+    <title>Landing Page</title>
+  </head>
 
-<body>
-  <!--Start here always--> 
-  <app-navigation style="position:absolute"></app-navigation>
-  <div class="container" style="text-align: center">
-    <header class="col-12">
-      
-        <img
-          height="20%"
-          
-          width="50%"
-          
-          src="../../assets/LogoD.jpg"
-          alt="logo" 
-        />
-     
-    </header>
-  </div>
-  <div style="float: right">
-      <a routerLink = "/login">Logout</a>
-  </div>
-  <div class="d-flex flex-row" style="height:60%; margin-top: 1%;">
-  <div id="trans" class="d-flex flex-col col-md-4 scrollable" style="padding:1%; margin-left:15%; display:inline-block; position: relative; background-color: #dcdfe5;text-align: left;overflow-y:auto; border-radius:3%;">
-    <!-- <textarea
+  <body>
+    <!--Start here always-->
+    <app-navigation style="position:absolute"></app-navigation>
+    <div class="container" style="text-align: center">
+      <header class="col-12">
+        <img height="20%" width="50%" src="../../assets/LogoD.jpg" alt="logo" />
+      </header>
+    </div>
+    <div style="float: right">
+      <a routerLink="/login">Logout</a>
+    </div>
+    <div class="d-flex flex-row" style="height:60%; margin-top: 1%;">
+      <div
+        id="trans"
+        class="d-flex flex-col col-md-4 scrollable"
+        style="padding:1%; margin-left:15%; margin-top:1%; margin-bottom:1%; display:inline-block; position: relative; background-color: #dcdfe5;text-align: left; overflow-y:auto; border-radius:3%;"
+      >
+        <!-- <textarea
       class="form-control d-flex z-depth- rounded-20 col-4 text-muted"
       rows="20"
       readonly="false"
 	  id = "transcriptText"
     >  
     </textarea> -->
-    <div><p class="scrollable-content" id="final"></p><span id="interim" style="color:grey;"></span></div>
-  </div>
-  <div id = "keywords" class="d-flex flex-col col-md-4 justify-content-around" style="padding:1%; margin-left:5%; display:inline-block; position: relative; background-color:#dcdfe5;  border-radius:3%; overflow-y: auto">
-    
-    
-  </div>
-</div>
-  <br />
-  
-  <div
-    class="d-flex flex-row row-h1 justify-content-between"
-    style="padding-left:24%; padding-right:65%;"
-  >
-    <button
-      style="height:10%; background-color:#2f4f4f; border-radius:50%;position:relative"
-      class="form-control btn btn-dark item-h1 p-4 d-flex"
-      type="submit"
-	  id = "recordBtn"
-	  onclick = "transcribeSpeech();"
+        <div>
+          <p class="scrollable-content" id="final"></p>
+          <span id="interim" style="color:grey;"></span>
+        </div>
+      </div>
+      <div
+        class="ContainerTwo d-flex flex-col col-md-4 justify-content-around"
+        style="background-color:transparent; margin-left:5%; display:inline-block; position: relative; border-radius:5%; flex-direction: column;"
+      >
+        <div
+          id="ColTitle"
+          class="d-flex flex-col"
+          style="display:inline-block; position: relative; background-color:#dcdfe5;  border-radius:3%; height: 15%;"
+        >
+          <textarea
+            placeholder="Enter Title here"
+            style="background-color:transparent; padding:4%; border: none; border-radius:5%; font-size:23px; width:100%;"
+          ></textarea>
+        </div>
+        <div
+          id="keywords"
+          class="d-flex flex-col"
+          style="display:inline-block; position: relative; background-color:#dcdfe5; text-align: left; border-radius:3%; overflow-y:scroll; height:75%;"
+        ></div>
+      </div>
+    </div>
+    <br />
+
+    <div
+      class="d-flex flex-row row-h1 justify-content-between"
+      style="padding-left:24%; padding-right:65%;"
     >
-      <i class="fas fa-microphone"></i>
-    </button>
+      <button
+        style="height:10%; background-color:#2f4f4f; border-radius:50%;position:relative"
+        class="form-control btn btn-dark item-h1 p-4 d-flex"
+        type="submit"
+        id="recordBtn"
+        onclick="transcribeSpeech();"
+      >
+        <i class="fas fa-microphone"></i>
+      </button>
 
-    <button
-      style="height:10%; background-color: #dcdfe5; border-radius:50%;  margin-left:15%;position:relative"
-      class="form-control btn item-h1 p-4 d-flex"
-      type="submit"
-	  id = "stopBtn"
-	  onclick = "stopRecord();"
-    >
-      <i class="fas fa-stop"></i>
-    </button>
+      <button
+        style="height:10%; background-color: #dcdfe5; border-radius:50%;  margin-left:15%;position:relative"
+        class="form-control btn item-h1 p-4 d-flex"
+        type="submit"
+        id="stopBtn"
+        onclick="stopRecord();"
+      >
+        <i class="fas fa-stop"></i>
+      </button>
 
+      <button
+        style=" height:10%; background-color:darkslategrey; border-radius:50%; margin-left:15%;position:relative"
+        class="form-control btn btn-dark item-h1 p-4 d-flex"
+        type="submit"
+        onclick="getKeywords();"
+      >
+        <i class="fas fa-upload"></i>
+      </button>
+    </div>
 
-    <button
-      style=" height:10%; background-color:darkslategrey; border-radius:50%; margin-left:15%;position:relative"
-      class="form-control btn btn-dark item-h1 p-4 d-flex"
-      type="submit" onclick = "getKeywords();"
-    >
-      <i class="fas fa-upload"></i>
-    </button>
-  </div>
+    <!--scripts-->
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
 
-  <!--scripts-->
-  <script
-    src="http://code.jquery.com/jquery-3.3.1.min.js"
-    integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
-    crossorigin="anonymous"
-  ></script>
-
-  <script
-    src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
-    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
-    crossorigin="anonymous"
-  ></script>
-  <script
-    src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
-    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
-    crossorigin="anonymous"
-  > </script>
-
-</body>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+  </body>
 </html>
