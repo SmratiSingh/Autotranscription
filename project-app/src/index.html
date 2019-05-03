@@ -1,123 +1,136 @@
-<!doctype html style= "height:100%">
+<!DOCTYPE html style= "height:100%">
 <html lang="en">
-<head>
-  <meta charset="utf-8">
-  <title>ProjectApp</title>
-  <base href="/">
+  <head>
+    <meta charset="utf-8" />
+    <title>ProjectApp</title>
+    <base href="/" />
 
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <link rel="icon" type="image/x-icon" href="favicon.ico">
-  <link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
-  integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
-  crossorigin="anonymous"
-/>
-<link
-  rel="stylesheet"
-  href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
-  integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
-  crossorigin="anonymous"
-/>
-<link rel="stylesheet" href="file://src/app/navigation/navigation.component.css">
-<link
-  rel="stylesheet"
-  href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
-  integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
-  crossorigin="anonymous"
-/>
-<!-- <link rel="stylesheet" href="src/app/navigation/navigation.component.css" /> -->
-</head>
-<body>
-  <app-root style="height:100%">Loading...</app-root>
-  <!--scripts-->
- <script
- src="http://code.jquery.com/jquery-3.3.1.min.js"
- integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
- crossorigin="anonymous"
-></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="file://src/app/navigation/navigation.component.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="src/app/navigation/navigation.component.css" /> -->
+  </head>
+  <body>
+    <app-root style="height:100%">Loading...</app-root>
+    <!--scripts-->
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
 
-<script
- src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
- integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
- crossorigin="anonymous"
-></script>
-<script
- src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
- integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
- crossorigin="anonymous"
-></script>
-<script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.SpeechRecognition =
+        window.webkitSpeechRecognition || window.SpeechRecognition;
+      let finalTranscript = '';
+      const recognition = new window.webkitSpeechRecognition();
+      console.log('recognition created');
+      recognition.interimResults = true;
+      recognition.continuous = true;
+      recognition.lang = 'en-US';
 
-window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
-	let finalTranscript = '';
-  const recognition = new window.webkitSpeechRecognition();
-  console.log("recognition created");
-	recognition.interimResults = true;
-	recognition.continuous = true;
-	recognition.lang = "en-US";
-  
-  function transcribeSpeech(){
-    console.log("Inside transcrib function");
-    document.getElementById("recordBtn").style.backgroundColor = 'red';
-    stopBtn.style.backgroundColor = '#2f4f4f';
-	
-    recognition.onresult = (event) => {
-    let interimTranscript = '';
-  //let finalTranscript = '';
-	  //const speechToText = event.results[0][0].transcript;
-	  for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
-			let transcript = event.results[i][0].transcript;
-			if (event.results[i].isFinal) {
-        finalTranscript += transcript;
-        //transcript = event.results[i][0].transcript;
-			  //document.write(transcript)
-			  //var tarea = document.getElementById("transcriptText")
-				//tarea.innerHTML = tarea.innerHTML + transcript 
-			  
-			 } else {
-			   interimTranscript += transcript;
-       }
-       //transcriptText.innerHTML +=finalTranscript;
-       //interim_span.innerHTML = linebreak(interim_transcript);
-       final.innerHTML = finalTranscript;
-       interim.innerHTML = interimTranscript;
-       trans.scrollTop = trans.scrollHeight;
-		  }
-	  //document.write(finalTranscript);
-	  //finalTranscript = ""
-	}
-	recognition.start();
-	recognition.onaudioend = function(){
-      //document.write("\n Speech ended.")
-      console.log('Audio ended');
-      recordBtn.style.backgroundColor = '#2f4f4f';
-      stopBtn.style.backgroundColor = '#dcdfe5';
-      getKeywords();
-		}
-  }
-  
-  function stopRecord(){
-    recognition.stop();
-    getKeywords();
-  }
-  function getKeywords(){ 
-    var xmlhttp = new XMLHttpRequest();
-    console.log('INside keyword extractor');
-		//var contentDiv = document.getElementById("summary");
-    var question = document.getElementById('final').innerHTML;
-    console.log(question);
-		xmlhttp.open("GET", "https://stark.cse.buffalo.edu:3000/keywords?trans="+question, true);
-		xmlhttp.onreadystatechange = function() {
-			if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
-        var resp = xmlhttp.responseText;
-        console.log("resp is"+resp);
-        var keys = resp.split(',');
-        var count = 0; 
-        for(var i=0;i<keys.length;i++){
-				keywords.innerHTML += ` <p><div class='input-group mb-3 scrollable-content' style='height: 1%'>
+      function transcribeSpeech() {
+        console.log('Inside transcrib function');
+        document.getElementById('recordBtn').style.backgroundColor = 'red';
+        stopBtn.style.backgroundColor = '#2f4f4f';
+
+        recognition.onresult = event => {
+          let interimTranscript = '';
+          //let finalTranscript = '';
+          //const speechToText = event.results[0][0].transcript;
+          for (
+            let i = event.resultIndex, len = event.results.length;
+            i < len;
+            i++
+          ) {
+            let transcript = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript;
+              //transcript = event.results[i][0].transcript;
+              //document.write(transcript)
+              //var tarea = document.getElementById("transcriptText")
+              //tarea.innerHTML = tarea.innerHTML + transcript
+            } else {
+              interimTranscript += transcript;
+            }
+            //transcriptText.innerHTML +=finalTranscript;
+            //interim_span.innerHTML = linebreak(interim_transcript);
+            final.innerHTML = finalTranscript;
+            interim.innerHTML = interimTranscript;
+            trans.scrollTop = trans.scrollHeight;
+          }
+          //document.write(finalTranscript);
+          //finalTranscript = ""
+        };
+        recognition.start();
+        recognition.onaudioend = function() {
+          //document.write("\n Speech ended.")
+          console.log('Audio ended');
+          recordBtn.style.backgroundColor = '#2f4f4f';
+          stopBtn.style.backgroundColor = '#dcdfe5';
+          getKeywords();
+        };
+      }
+
+      function stopRecord() {
+        recognition.stop();
+        getKeywords();
+      }
+      function getKeywords() {
+        var xmlhttp = new XMLHttpRequest();
+        console.log('INside keyword extractor');
+        //var contentDiv = document.getElementById("summary");
+        var question = document.getElementById('final').innerHTML;
+        console.log(question);
+        xmlhttp.open(
+          'GET',
+          'https://stark.cse.buffalo.edu:3000/keywords?trans=' + question,
+          true
+        );
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var resp = xmlhttp.responseText;
+            console.log('resp is' + resp);
+            var keys = resp.split(',');
+            var count = 0;
+            for (var i = 0; i < keys.length; i++) {
+              keywords.innerHTML +=
+                ` <p><div class='input-group mb-3 scrollable-content' style='height: 1%'>
                                 <div class='input-group-prepend'>
-                                  <span class='input-group-text' id=''>`+keys[i]+`</span>
+                                  <span class='input-group-text' id=''>` +
+                keys[i] +
+                `</span>
                                 </div>
                                 <div class='input-group-append'>
                                   <button class='btn btn-outline-info' style='color:rgb(49, 82, 82);' type='button' onclick='wipe(this.parentNode.parentNode.name);'>
@@ -125,111 +138,107 @@ window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecogn
                                   </button>
                                 </div>
                               </div></p> <br/>`;
-                              count = count + 1;
+              count = count + 1;
             }
-			}
-		}
-		xmlhttp.send(null);
-  }
-
-  function wipe(rname){
-    console.log("rname is"+rname);
-    keywords.removeChild(rname);
-  }
-</script>
-<script>
-  var state = 'closed';
-  function Togglslidemenu() {
-    if (state == 'closed') {
-      document.getElementById('navigation').style.width = '209px';
-      state = 'open';
-      var a = document.getElementsByClassName('navItems');
-      var i;
-      for (i = 0; i < a.length; i++) {
-        a[i].style.display = 'inline';
+          }
+        };
+        xmlhttp.send(null);
       }
-    } else {
-      document.getElementById('navigation').style.width = '85px';
-      state = 'closed';
-      var a = document.getElementsByClassName('navItems');
-      var i;
-      for (i = 0; i < a.length; i++) {
-        a[i].style.display = 'none';
+
+      function wipe(rname) {
+        console.log('rname is' + rname);
+        keywords.removeChild(rname);
       }
-    }
-  }
-  /* Profile functions */
- function Ptoggle() {
-    state = 'closed';
-    // console.log('Hovering over PROFILE');
-    Togglslidemenu();
-    document.getElementById('FlexSgreen').style.visibility = 'visible';
- }
+    </script>
+    <script>
+      var state = 'closed';
+      function Togglslidemenu() {
+        if (state == 'closed') {
+          document.getElementById('navigation').style.width = '209px';
+          state = 'open';
+          var a = document.getElementsByClassName('navItems');
+          var i;
+          for (i = 0; i < a.length; i++) {
+            a[i].style.display = 'inline';
+          }
+        } else {
+          document.getElementById('navigation').style.width = '85px';
+          state = 'closed';
+          var a = document.getElementsByClassName('navItems');
+          var i;
+          for (i = 0; i < a.length; i++) {
+            a[i].style.display = 'none';
+          }
+        }
+      }
+      /* Profile functions */
+      function Ptoggle() {
+        state = 'closed';
+        // console.log('Hovering over PROFILE');
+        Togglslidemenu();
+        document.getElementById('FlexSgreen').style.visibility = 'visible';
+      }
 
- function stay(){
-  state = 'closed';
-    Ptoggle();
-    document.getElementById('FlexSgreen').style.visibility = 'visible';
-    document.getElementById('p').style.backgroundColor="rgb(41, 68, 68)";
-        
- }
-  function closeL() {
-    document.getElementById('FlexSgreen').style.visibility = 'hidden';
-  }
+      function stay() {
+        state = 'closed';
+        Ptoggle();
+        document.getElementById('FlexSgreen').style.visibility = 'visible';
+        document.getElementById('p').style.backgroundColor = 'rgb(41, 68, 68)';
+      }
+      function closeL() {
+        document.getElementById('FlexSgreen').style.visibility = 'hidden';
+      }
 
-  /* Domain functions */
-  function Dtoggle() {
-    state = 'closed';
-    Togglslidemenu();
-    document.getElementById('FlexSgreenD').style.visibility = 'visible';
-  }
-  function closeLD() {
-    document.getElementById('FlexSgreenD').style.visibility = 'hidden';
-  }
-  function stayD(){
-  state = 'closed';
-    Dtoggle();
-    document.getElementById('FlexSgreenD').style.visibility = 'visible';
-    document.getElementById('d').style.backgroundColor="rgb(41, 68, 68)";
-        
- }
- /* History functions */
- function Htoggle() {
-    state = 'closed';
-    Togglslidemenu();
-    document.getElementById('FlexSgreenH').style.visibility = 'visible';
-  }
-  function closeLH() {
-    document.getElementById('FlexSgreenH').style.visibility = 'hidden';
-  }
-  function stayH(){
-  state = 'closed';
-    Htoggle();
-    document.getElementById('FlexSgreenH').style.visibility = 'visible';
-    document.getElementById('h').style.backgroundColor="rgb(41, 68, 68)";
-        
- }
+      /* Domain functions */
+      function Dtoggle() {
+        state = 'closed';
+        Togglslidemenu();
+        document.getElementById('FlexSgreenD').style.visibility = 'visible';
+      }
+      function closeLD() {
+        document.getElementById('FlexSgreenD').style.visibility = 'hidden';
+      }
+      function stayD() {
+        state = 'closed';
+        Dtoggle();
+        document.getElementById('FlexSgreenD').style.visibility = 'visible';
+        document.getElementById('d').style.backgroundColor = 'rgb(41, 68, 68)';
+      }
+      function displayForm() {
+        document.getElementById('DomainForm').style.visibility = 'visible';
+      }
 
-  /* Settings functions */
-  function Stoggle() {
-    state = 'closed';
-    Togglslidemenu();
-    document.getElementById('FlexSgreenS').style.visibility = 'visible';
-  }
-  function closeLS() {
-    document.getElementById('FlexSgreenS').style.visibility = 'hidden';
-  }
-  function stayS(){
-  state = 'closed';
-    Stoggle();
-    document.getElementById('FlexSgreenS').style.visibility = 'visible';
-    document.getElementById('s').style.backgroundColor="rgb(41, 68, 68)";
-        
- }
+      /* History functions */
+      function Htoggle() {
+        state = 'closed';
+        Togglslidemenu();
+        document.getElementById('FlexSgreenH').style.visibility = 'visible';
+      }
+      function closeLH() {
+        document.getElementById('FlexSgreenH').style.visibility = 'hidden';
+      }
+      function stayH() {
+        state = 'closed';
+        Htoggle();
+        document.getElementById('FlexSgreenH').style.visibility = 'visible';
+        document.getElementById('h').style.backgroundColor = 'rgb(41, 68, 68)';
+      }
 
-
-</script>
-
-</body>
-
+      /* Settings functions */
+      function Stoggle() {
+        state = 'closed';
+        Togglslidemenu();
+        document.getElementById('FlexSgreenS').style.visibility = 'visible';
+      }
+      function closeLS() {
+        document.getElementById('FlexSgreenS').style.visibility = 'hidden';
+      }
+      function stayS() {
+        state = 'closed';
+        Stoggle();
+        document.getElementById('FlexSgreenS').style.visibility = 'visible';
+        document.getElementById('s').style.backgroundColor = 'rgb(41, 68, 68)';
+      }
+    </script>
+  </body>
 </html>
