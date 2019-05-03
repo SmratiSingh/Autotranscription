@@ -66,7 +66,7 @@ module.exports.checkUser = function(username, callback){
     });
 };
 
-module.exports.saveTranscript = function(username, title, text, keywords, timestamp, callback) {
+module.exports.saveTranscript = function(username, text, keywords, timestamp, callback) {
     MongoClient.connect(mongo_url, function(err, db) {
         var dbo = db.db(db_name);
         dbo.collection(transcripts_table).insertOne({'username':username, 'title':title, 'transcript':text, 'keywords':keywords, 'timestamp':timestamp}, function(err, result) {
