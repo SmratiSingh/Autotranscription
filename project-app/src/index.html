@@ -64,13 +64,31 @@
       var keywordMap = {};
 
       function transcribeSpeech() {
-        console.log('Inside transcrib function');
         
-       document.getElementById('final').innerHTML=''; //clears everything
+        if(document.getElementById('domainOut').innerHTML=="") {
+          console.log('please select domain');
+          // var y = document.getElementById('domainSelect');
+          // y.className = 'show';
+          // console.log(y);
+          // setTimeout(function() {
+          // y.className = y.className.replace('show', '');
+          //   }, 3000);
+          var x = document.getElementById('PopUpRecording');
+          x.innerHTML = 'Please select domain first...'
+        x.className = 'show';
+        setTimeout(function() {
+          x.className = x.className.replace('show', '');
+        }, 3000);
+          return 0;
+        }
+        
+        
+        document.getElementById('final').innerHTML=''; //clears everything
       
         /*recording popup*/
         // document.getElementById('trans').value='';
         var x = document.getElementById('PopUpRecording');
+        x.innerHTML = 'Recording started...';
         x.className = 'show';
         setTimeout(function() {
           x.className = x.className.replace('show', '');
