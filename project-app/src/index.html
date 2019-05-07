@@ -60,7 +60,7 @@
       recognition.interimResults = true;
       recognition.continuous = true;
       recognition.lang = 'en-US';
-      
+      var statusResp = '';
       var keywordMap = {};
 
       function transcribeSpeech() {
@@ -80,9 +80,10 @@
         document.getElementById('recordBtn').style.backgroundColor = 'red';
         stopBtn.style.backgroundColor = '#2f4f4f';
         keyGenFlag = false;
+        let finalTranscript = '';
         recognition.onresult = event => {
           let interimTranscript = '';
-          let finalTranscript = '';
+          
           //const speechToText = event.results[0][0].transcript;
           for (
             let i = event.resultIndex, len = event.results.length;
@@ -189,15 +190,7 @@
         ></i>
       </div>
                `;
-              //  floatType = 'none';
-              //  if(count % 3 == 0){
-              //     topMar = topMar + 15;
-              //     leftMar = 0;
-              //     floatType = 'left';
-              //     // posType = 'absolute';
-              //  }
               count = count + 1;
-              // posType = 'relative';
               }
              
               
@@ -206,7 +199,7 @@
 
           var uname = username.value;
           console.log("User is: "+uname);
-          var data = {'username':uname, 'text':final.innerHTML, 'keywords':elems[0], 'title': titleBar.value, 'sentiment':elems[1].trim()};
+          var data = {'username':uname, 'text':final.innerHTML, 'keywords':elems[0], 'title': 'defaultTitle', 'sentiment':elems[1].trim()};
           data = JSON.stringify(data);
           xhr.open(
           'POST',
@@ -214,10 +207,14 @@
             // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
             xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
             
-            console.log('data is: '+data["username"]);
+            console.log('data is: '+data);
             xhr.send(data);
             xhr.onreadystatechange = function() {
               console.log("Save status: "+ xhr.responseText);
+              statusResp = JSON.parse(xhr.responseText).id;
+              console.log('Status resp is: '+ statusResp);
+              document.getElementById('transactionID').value = statusResp;
+              sessionStorage.setItem('transactionID',statusResp);
             }
           }
         };
@@ -232,7 +229,35 @@
         console.log('title is: '+titleValue);
         var toRemove = document.getElementById(keyID);
         toRemove.parentNode.removeChild(toRemove);
+        var xhr = new XMLHttpRequest();
+        var data = {'keyword':keyValue, 'title':titleValue, 'id':statusResp };
+        data = JSON.stringify(data);
+        xhr.open(
+          'POST',
+          'http://stark.cse.buffalo.edu:3000/removekey',true);
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.send(data);
+          xhr.onreadystatechange = function() {
+            console.log("Save status: "+ xhr.responseText);
+          }
       }
+
+      function loadDomains(){
+        var xhr = new XMLHttpRequest();
+        var data = {'rtype':'loadDomains'};
+        data = JSON.stringify(data);
+        console.log('newdata is: '+data);
+        xhr.open(
+          'POST',
+          'http://stark.cse.buffalo.edu:3000/alldomains',true);
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.send(data);
+          xhr.onreadystatechange = function() {
+            console.log("Save status: "+ xhr.responseText);
+            
+          }
+      }
+
     </script>
     <script>
       var state = 'closed';
@@ -256,7 +281,10 @@
         }
       }
 
+    
       
+    </script>
+    <script>
       /* Profile functions */
       function Ptoggle() {
         state = 'closed';
@@ -291,7 +319,12 @@
         document.getElementById('d').style.backgroundColor = 'rgb(41, 68, 68)';
       }
       function displayForm() {
+        //first clears the form on click create new form
+        
         document.getElementById('DomainForm').style.visibility = 'visible';
+        document.getElementById('newDName').value='';
+        document.getElementById('exampleFormControlTextarea1').value='';
+
       }
       function CloseDform() {
         document.getElementById('DomainForm').style.visibility = 'hidden';

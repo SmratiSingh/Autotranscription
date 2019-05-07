@@ -48,7 +48,7 @@
               <a
                 class="aa"
                 id="d"
-                onmouseover="Dtoggle()"
+                onmouseover="Dtoggle(); loadDomains();"
                 onmouseout="closeLD()"
               >
                 <i class="fas fa-th-large fa-3x"> </i
@@ -177,7 +177,7 @@
           Select a Domain
         </p>
       </div>
-      <div class="scrollable" style="overflow-y: scroll;">
+      <div class="scrollable" style="overflow-y: scroll;" id="domainList">
         <span class="domainName">domain 1</span>
         <span class="domainName">domain 1</span>
         <span class="domainName">domain 1</span>
