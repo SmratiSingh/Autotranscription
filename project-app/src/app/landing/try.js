@@ -240,16 +240,14 @@ app.post('/domain', function(req, res) {
 app.post('/removekey', function(req, res) {
     // title = req.body.title;
     console.log("Inside removekey");
-    console.log(req.body);
-    console.log(req.body.id);
     data = JSON.parse(Object.keys(req.body));
-    console.log("data:");
-    console.log(data);
-    console.log(data.id);
+    // console.log("data:");
+    // console.log(data);
+    // console.log(data.id);
     
-    keyword = req.body.keyword;
-    title = req.body.title;
-    id = req.body.id;
+    keyword = data.keyword;
+    title = data.title;
+    id = data.id;
 
     mongo.getSession(id, function(results) {
         
