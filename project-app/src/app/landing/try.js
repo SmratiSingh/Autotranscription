@@ -237,25 +237,47 @@ app.post('/domain', function(req, res) {
 
 });
 
-app.post('/update', function(req, res) {
+app.post('/removekey', function(req, res) {
     // title = req.body.title;
-    keywords = req.body.keywords;
+    keyword = req.body.keyword;
     title = req.body.title;
-    _id = req.body._id;
+    _id = req.body.id;
 
-    mongo.updateSession(_id, title, keywords, function(results) {
-        if (results.nModified > 0) {
-            return res.status(200).json({
-                status: 'SUCCESS',
-                message: 'DATA_MODIFIED'
-            });
-        }
-        else {
-            return res.status(200).json({
-                status: 'SUCCESS',
-                message: 'DATA_MODIFIED_MAYBE'
-            });
-        }
+    mongo.getSession(_id, function(results) {
+        
+        results["keywords"] = results["keywords"].replace(keyword, "").replace(",,", ",");
+        results["title"] = title;
+
+        mongo.updateSession(_id, results, function(output){
+            console.log("UPDATION RESULT");
+            console.log(output);
+            if (output.nModified > 0) {
+                return res.status(200).json({
+                    status: 'SUCCESS',
+                    message: 'DATA_MODIFIED'
+                });
+            }   
+            else {
+                return res.status(200).json({
+                    status: 'SUCCESS',
+                    message: 'DATA_MODIFIED_MAYBE'
+                });
+            }
+        });
+
+
+        // if (results.nModified > 0) {
+        //     return res.status(200).json({
+        //         status: 'SUCCESS',
+        //         message: 'DATA_MODIFIED'
+        //     });
+        // }
+        // else {
+        //     return res.status(200).json({
+        //         status: 'SUCCESS',
+        //         message: 'DATA_MODIFIED_MAYBE'
+        //     });
+        // }
     });
 
     // mongo.getUniqueKeywords(domain, function(result){
@@ -275,6 +297,31 @@ app.post('/update', function(req, res) {
     //     });
 
     // });
+
+});
+
+app.post('/alldomains', function(req, res) {
+    
+    mongo.getDomains(function(result){
+        return res.status(200).json({
+            status: 'SUCCESS',
+            message: 'DOMAINS',
+            domains: result
+        });
+    });
+});
+
+app.post('/history', function(req, res){
+
+    username = req.body.username;
+
+    mongo.getHistory(username, function(result_list){
+        return res.status(200).json({
+            status: 'SUCCESS',
+            message: 'HISTORY',
+            resultList: result_list
+        });
+    });
 
 });
 

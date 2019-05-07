@@ -3,6 +3,7 @@
 
 var MongoClient = require('mongodb').MongoClient;
 var Grid = require('mongodb').Grid;
+var ObjectID = require('mongodb').ObjectID;
 
 var mongo_url = "mongodb://localhost:27017/";
 
@@ -150,10 +151,25 @@ module.exports.getUniqueKeywords = function(domain, callback) {
     });
 };
 
-module.exports.updateSession = function(id, title, keywords, callback) {
+module.exports.getSession = function(id, callback) {
     MongoClient.connect(mongo_url, function(err, db) {
         var dbo = db.db(db_name);
-        dbo.collection(transcripts_table).update({"_id":id}, {"title":title, 'keywords':keywords}, function(err, result) {
+        dbo.collection(transcripts_table).findOne({"_id":ObjectID(id)}, {_id:0}, function(err, result) {
+            if (err) {
+                console.log(err);
+                // throw err;
+            }
+            else callback(result);
+        });
+        
+    });
+};
+
+module.exports.updateSession = function(id, data, callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        // dbo.collection(transcripts_table).update({"_id":ObjectID(id)}, {'username':username, 'title':title, 'sentiment':sentiment, 'transcript':text, 'keywords':keywords, 'timestamp':timestamp, function(err, result) {
+        dbo.collection(transcripts_table).update({"_id":ObjectID(id)}, data, function(err, result) {
             if (err) {
                 console.log(err);
                 throw err;
@@ -163,3 +179,32 @@ module.exports.updateSession = function(id, title, keywords, callback) {
         
     });
 };
+
+module.exports.getDomains = function(callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        // dbo.collection(transcripts_table).update({"_id":ObjectID(id)}, {'username':username, 'title':title, 'sentiment':sentiment, 'transcript':text, 'keywords':keywords, 'timestamp':timestamp, function(err, result) {
+        dbo.collection(keywords_table).distinct("Domain", function(err, result) {
+            if (err) {
+                console.log(err);
+            }
+            else callback(result);
+        });
+        
+    });
+};
+
+module.exports.getHistory = function(username, callback) {
+    MongoClient.connect(mongo_url, function(err, db) {
+        var dbo = db.db(db_name);
+        dbo.collection(transcripts_table).find({"username":username}, {_id:1, title:1, keywords:1, sentiment:1}).toArray(function(err, result) {
+            if (err) {
+                console.log(err);
+            }
+            else callback(result);
+        });
+        
+    });
+};
+
+// dbo.collection(transcripts_table).update({"_id":id}, {"title":title, 'keywords':keywords}, function(err, result) {
