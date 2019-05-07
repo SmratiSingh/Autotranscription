@@ -11,6 +11,7 @@ import { sha256 } from 'js-sha256';
 export class SignupComponent implements OnInit {
   public username: string = "";
   public name: string = "";
+  public Lname: string = "";
   public new_password: string = "";
   public re_password: string = "";
   constructor(private router: Router, private auth: AuthService) { }
@@ -26,12 +27,12 @@ export class SignupComponent implements OnInit {
     usr.new_password = sha256(this.new_password);
     usr.re_password = sha256(this.re_password);
     usr.first_name = this.name;
-    usr.last_name = ' ';
+    usr.last_name = this.Lname;
 
     this.auth.addUser(usr).subscribe(data => {
         if(data['status'] == 'SUCCESS'){
           // this.ngOnInit();
-          // console.log('SUCCESS!!!!');
+          console.log('SUCCESS!!!!');
           // console.log(data);
           this.router.navigate(['/landing']);
         }

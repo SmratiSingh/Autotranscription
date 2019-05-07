@@ -27,6 +27,8 @@ export class AuthService {
   addUser(user){
     // console.log(user);
     this.username = user.username;
+    sessionStorage.setItem('isLoggedIn','true');
+    sessionStorage.setItem('username',user.username);
     // return this.http.post('https://localhost:3000/signup', user).map((response: Response) =>response.json())              
     return this.http.post('http://stark.cse.buffalo.edu:3000/signup', user).map((response: Response) =>response.json())              
   }
