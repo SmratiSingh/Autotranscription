@@ -121,7 +121,7 @@
         }
       }
       function getKeywords() {
-        keywords.innerHTML = '';
+        newGrid.innerHTML = '';
         var xmlhttp = new XMLHttpRequest();
         console.log('INside keyword extractor');
         //var contentDiv = document.getElementById("summary");
@@ -143,12 +143,25 @@
             document.getElementById('sentiment').innerHTML = sentiment;
             console.log('keys length is ' + keys.length);
             var count = 0;
+            const maxLength = 3;
+            var topMar = 5;
+            var leftMar = 5;
+            var posType = 'static';
+            var floatType = 'none';
+            var maxRows = Math.ceil(keys.length/3);
+            var propString = "60px";
+            for(var k=0; k<maxRows-1; k++){
+                propString += " 60px";
+            }
+            console.log('Prop stirng is: '+ propString);
+            document.getElementById('newGrid').style.gridTemplateRows = propString;
+            
             for (var i = 0; i < keys.length; i++) {
-              keywords.innerHTML +=
+              document.getElementById('newGrid').innerHTML +=
                 `<div
-        class="bubble"
-        style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); overflow-wrap: break-word; height: fit-content; background:darkslategray;
-        position: relative; margin-left: 5%; margin-top: 5%"
+        class="bubble scrollable-content"
+        style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); height: fit-content; background:darkslategray;
+        position: 'relative'; margin-left: `+leftMar+`%; margin-top: `+topMar+`%; width: fit-content;"
       >
         <p
           style="font-style:medium; color:white; margin-right:10px; padding-top:7px;padding-left:5px; padding-bottom: 1px;"
@@ -163,8 +176,19 @@
         ></i>
       </div>
                `;
+              //  floatType = 'none';
+              //  if(count % 3 == 0){
+              //     topMar = topMar + 15;
+              //     leftMar = 0;
+              //     floatType = 'left';
+              //     // posType = 'absolute';
+              //  }
               count = count + 1;
-            }
+              // posType = 'relative';
+              }
+             
+              
+            
           var xhr = new XMLHttpRequest();
 
           var uname = username.value;
