@@ -254,7 +254,7 @@ app.post('/removekey', function(req, res) {
         results["keywords"] = results["keywords"].replace(keyword, "").replace(",,", ",");
         results["title"] = title;
 
-        mongo.updateSession(_id, results, function(output){
+        mongo.updateSession(id, results, function(output){
             console.log("UPDATION RESULT");
             console.log(output);
             if (output.nModified > 0) {
