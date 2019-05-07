@@ -274,14 +274,12 @@
         var xhr = new XMLHttpRequest();
         var data = {'username':document.getElementById('username').value};
         data = JSON.stringify(data);
-        console.log('newdata is: '+data);
         xhr.open(
           'POST',
           'http://stark.cse.buffalo.edu:3000/history',true);
           xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         xhr.send(data);
           xhr.onreadystatechange = function() {
-            console.log("Save status: "+ xhr.responseText);
             var hList = document.getElementById('historyList');
             var resList = JSON.parse(xhr.responseText).resultList;
             hList.innerHTML = "";

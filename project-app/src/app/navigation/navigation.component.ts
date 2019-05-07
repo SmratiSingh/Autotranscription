@@ -8,11 +8,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NavigationComponent implements OnInit {
   navUser: String = '';
+  navFirstName: String = '';
+  navLastName: String = '';
   constructor() {}
 
   ngOnInit() {
     
     this.navUser = sessionStorage.getItem('username');
+    this.navFirstName = sessionStorage.getItem('firstName');
+    this.navLastName = sessionStorage.getItem('lastName');
+    console.log('fname: '+this.navFirstName);
   }
 
   saveDomain() {}

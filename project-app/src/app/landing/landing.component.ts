@@ -14,7 +14,6 @@ export class LandingComponent implements OnInit {
   ngOnInit() {
     // console.log('inside landing ts');
     this.landingUser = sessionStorage.getItem('username');
-    console.log(sessionStorage.getItem('isLoggedIn'));
     if(sessionStorage.getItem('isLoggedIn') != 'true'){
       this.rout.navigate(['/']);
     }
