@@ -246,14 +246,13 @@
         var xhr = new XMLHttpRequest();
         var data = {'rtype':'loadDomains'};
         data = JSON.stringify(data);
-        console.log('newdata is: '+data);
+        
         xhr.open(
           'POST',
           'http://stark.cse.buffalo.edu:3000/alldomains',true);
           xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
         xhr.send(data);
           xhr.onreadystatechange = function() {
-            console.log("Save status: "+ xhr.responseText);
             var allDomains = JSON.parse(xhr.responseText).domains
             var dList = document.getElementById('domainList')
             dList.innerHTML = "";
@@ -268,8 +267,58 @@
       function printDomain(domainToPrint){
           console.log(domainToPrint);
           domainOut.innerHTML = domainToPrint;
+          Togglslidemenu();
       }
 
+      function loadHistory(){
+        var xhr = new XMLHttpRequest();
+        var data = {'username':document.getElementById('username').value};
+        data = JSON.stringify(data);
+        console.log('newdata is: '+data);
+        xhr.open(
+          'POST',
+          'http://stark.cse.buffalo.edu:3000/history',true);
+          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.send(data);
+          xhr.onreadystatechange = function() {
+            console.log("Save status: "+ xhr.responseText);
+            var hList = document.getElementById('historyList');
+            var resList = JSON.parse(xhr.responseText).resultList;
+            hList.innerHTML = "";
+            for(var i=0;i<resList.length;i++){
+              var entry = resList[i];
+               var hTitle = entry['title'];
+               
+               hList.innerHTML += `
+               <div class="item">
+              <div class="right">
+                <div class="filename">
+                  <span id="data" style="color:#6e8181;">`+hTitle+`</span>
+                </div>
+                <div class="keywords">
+                  <span id="words" style="color:#6e8181;">`+ entry['keywords']+`</span>
+                </div>
+              </div>
+              <div class="left">
+                <div class="fileLink">
+                  <span id="category">
+                    <i
+                      style="color:rgb(130, 151, 151); margin-left:5px;"
+                      class="fas fa-file fa"
+                    ></i>
+                    <a id="Flink" style="color:#6e8181;">View</a>
+                  </span>
+                </div>
+                <div class="sentiment">
+                  <span id="words" style="color: #6e8181">Positive</span>
+                </div>
+              </div>
+            </div>
+               `
+            }
+            
+          }
+      }
     </script>
     <script>
       var state = 'closed';

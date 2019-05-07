@@ -62,7 +62,7 @@
               <a
                 class="aa"
                 id="h"
-                onmouseover="Htoggle()"
+                onmouseover="Htoggle(); loadHistory();"
                 onmouseout="closeLH()"
               >
                 <i class="fas fa-clock fa-3x"> </i
@@ -155,7 +155,7 @@
                 style="color:rgb(130, 151, 151); margin-left:10px;"
                 class="fas fa-pencil-alt"
               ></i></span
-            ><span id="data">Harry Potter&nbsp;&nbsp;</span>
+            ><span id="data">{{this.navUser}}&nbsp;&nbsp;</span>
           </p>
           <br />
           <p>
@@ -178,17 +178,6 @@
         </p>
       </div>
       <div class="scrollable" style="overflow-y: scroll;" id="domainList">
-        <!-- <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span>
-        <span class="domainName">domain 1</span> -->
       </div>
       <div class="addDomain">
         <p id="Udomain">
@@ -207,15 +196,15 @@
     </div>
 
     <!--hidden div here History-->
-    <div id="FlexSgreenH" onmouseover="stayH()" onmouseout="closeLH()">
+    <div id="FlexSgreenH" onmouseover="stayH();" onmouseout="closeLH()">
       <div class="heading">
         <p id="data" style="margin-top:1px; text-align:center;">
           Your Transcripts
         </p>
       </div>
-      <div class="Dbody" style="overflow-y: scroll;">
-        <!--one-->
-        <div class="item">
+      <div class="Dbody" style="overflow-y: scroll;" id="historyList">;
+        
+        <!-- <div class="item">
           <div class="right">
             <div class="filename">
               <span id="data">Meeting One</span>
@@ -231,169 +220,15 @@
                   style="color:rgb(130, 151, 151); margin-left:5px;"
                   class="fas fa-file fa"
                 ></i>
-                <a id="Flink">View</a>
+                <a id="Flink" onclick="pushHistory();">View</a>
               </span>
             </div>
             <div class="sentiment">
               <span id="words">Positive</span>
             </div>
           </div>
-        </div>
-        <!--two-->
-        <div class="item">
-          <div class="right">
-            <div class="filename">
-              <span id="data">Meeting One</span>
-            </div>
-            <div class="keywords">
-              <span id="words">word1, word2, word3</span>
-            </div>
-          </div>
-          <div class="left">
-            <div class="fileLink">
-              <span id="category">
-                <i
-                  style="color:rgb(130, 151, 151); margin-left:10px;"
-                  class="fas fa-file"
-                ></i>
-                <a id="Flink">View</a>
-              </span>
-            </div>
-            <div class="sentiment">
-              <span id="words">Positive</span>
-            </div>
-          </div>
-        </div>
-        <!--three-->
-        <div class="item">
-          <div class="right">
-            <div class="filename">
-              <span id="data">Meeting One</span>
-            </div>
-            <div class="keywords">
-              <span id="words">word1, word2, word3</span>
-            </div>
-          </div>
-          <div class="left">
-            <div class="fileLink">
-              <span id="category">
-                <i
-                  style="color:rgb(130, 151, 151); margin-left:10px;"
-                  class="fas fa-file"
-                ></i>
-                <a id="Flink">View</a>
-              </span>
-            </div>
-            <div class="sentiment">
-              <span id="words">Positive</span>
-            </div>
-          </div>
-        </div>
-        <!--four-->
-        <div class="item">
-          <div class="right">
-            <div class="filename">
-              <span id="data">Meeting One</span>
-            </div>
-            <div class="keywords">
-              <span id="words">word1, word2, word3</span>
-            </div>
-          </div>
-          <div class="left">
-            <div class="fileLink">
-              <span id="category">
-                <i
-                  style="color:rgb(130, 151, 151); margin-left:10px;"
-                  class="fas fa-file"
-                ></i>
-                <a id="Flink">View</a>
-              </span>
-            </div>
-            <div class="sentiment">
-              <span id="words">Positive</span>
-            </div>
-          </div>
-        </div>
-        <!--five-->
-        <div class="item">
-          <div class="right">
-            <div class="filename">
-              <span id="data">Meeting One</span>
-            </div>
-            <div class="keywords">
-              <span id="words">word1, word2, word3</span>
-            </div>
-          </div>
-          <div class="left">
-            <div class="fileLink">
-              <span id="category">
-                <i
-                  style="color:rgb(130, 151, 151); margin-left:10px;"
-                  class="fas fa-file"
-                ></i>
-                <a id="Flink">View</a>
-              </span>
-            </div>
-            <div class="sentiment">
-              <span id="words">Positive</span>
-            </div>
-          </div>
-        </div>
-        <!--five-->
-        <div class="item">
-          <div class="right">
-            <div class="filename">
-              <span id="data">Meeting One</span>
-            </div>
-            <div class="keywords">
-              <span id="words">word1, word2, word3</span>
-            </div>
-          </div>
-          <div class="left">
-            <div class="fileLink">
-              <span id="category">
-                <i
-                  style="color:rgb(130, 151, 151); margin-left:10px;"
-                  class="fas fa-file"
-                ></i>
-                <a id="Flink">View</a>
-              </span>
-            </div>
-            <div class="sentiment">
-              <span id="words">Positive</span>
-            </div>
-          </div>
-        </div>
-        <!--six-->
-        <div class="item">
-          <div class="right">
-            <div class="filename">
-              <span id="data">Meeting One</span>
-            </div>
-            <div class="keywords">
-              <span id="words">word1, word2, word3</span>
-            </div>
-          </div>
-          <div class="left">
-            <div class="fileLink">
-              <span id="category">
-                <i
-                  style="color:rgb(130, 151, 151); margin-left:10px;"
-                  class="fas fa-file"
-                ></i>
-                <a id="Flink">View</a>
-              </span>
-            </div>
-            <div class="sentiment">
-              <span id="words">Positive</span>
-            </div>
-          </div>
-        </div>
-        <!--end-->
-        <div class="last">
-          &nbsp;
-        </div>
-      </div>
+        </div>-->
+      </div> 
     </div>
 
     <!--hidden div here Settings-->
