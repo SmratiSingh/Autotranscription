@@ -60,6 +60,13 @@
       recognition.interimResults = true;
       recognition.continuous = true;
       recognition.lang = 'en-US';
+      
+      function popBubble(keyID){
+        console.log('key to pop is: '+ keyID.toString());
+        var toRemove = document.getElementById(keyID);
+        console.log('bubb '+toRemove);
+        toRemove.parentNode.removeChild(toRemove);
+      }
 
       function transcribeSpeech() {
         console.log('Inside transcrib function');
@@ -155,11 +162,14 @@
             }
             console.log('Prop stirng is: '+ propString);
             document.getElementById('newGrid').style.gridTemplateRows = propString;
-            
             for (var i = 0; i < keys.length; i++) {
-              document.getElementById('newGrid').innerHTML +=
+              var wrap = document.createElement('div');
+              wrap.id = 'key'+i.toString();
+              document.getElementById('newGrid').appendChild(wrap);
+              wrap.innerHTML +=
                 `<div
-        class="bubble scrollable-content"
+        class="bubble scrollable-content",
+        
         style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); height: fit-content; background:darkslategray;
         position: 'relative'; margin-left: `+leftMar+`%; margin-top: `+topMar+`%; width: fit-content;"
       >
@@ -170,9 +180,11 @@
                 keys[i] +
                 `
         </p>
-        <i onclick="myFunction();"
-          class="fas fa-window-close fa-2x"
+        <i 
+          onclick="popBubble('key`+i.toString()+`');",
+          class="fas fa-window-close fa-2x",
           style="padding-top:5px; color:white; background:darkslategray;margin-right:10px;"
+          
         ></i>
       </div>
                `;
@@ -237,6 +249,8 @@
           }
         }
       }
+
+      
       /* Profile functions */
       function Ptoggle() {
         state = 'closed';
