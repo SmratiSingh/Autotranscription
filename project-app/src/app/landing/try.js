@@ -174,7 +174,7 @@ app.post('/transcript', function(req, res){
 app.post('/adddomain', function(req, res) {
 
     data = JSON.parse(Object.keys(req.body));
-    domain = data.domain.toLowerCase().trim();
+    domain = data.domain.trim();
     keywords = data.keywords;
 
     rows = [];

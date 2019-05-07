@@ -317,6 +317,26 @@
             
           }
       }
+
+      function saveDomain(){
+          var dname = document.getElementById('newDName');
+          var newKey = document.getElementById('newKeys');
+          var xhr = new XMLHttpRequest();
+          var data = {'domain':dname, 'keywords': newKey};
+          data = JSON.stringify(data);
+          console.log('new data is '+ data);
+          xhr.open(
+            'POST',
+            'http://stark.cse.buffalo.edu:3000/adddomain',true);
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+          xhr.send(data);
+            xhr.onreadystatechange = function() {
+              console.log(xhr.responseText);
+              
+              
+            }
+
+      }
     </script>
     <script>
       var state = 'closed';
@@ -388,7 +408,6 @@
       function CloseDform() {
         document.getElementById('DomainForm').style.visibility = 'hidden';
       }
-      function saveDomain2() {}
 
       /* History functions */
       function Htoggle() {

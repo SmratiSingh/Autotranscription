@@ -88,53 +88,7 @@
         </div>
         <!--end of nav bar div-->
       </div>
-      <!--end of div holding nav bar-->
 
-      <!--mid screen div have 2 partitions-->
-      <!-- <div class="flexLblue LblueTwo"> -->
-      <!--logo div-->
-      <!-- <div class="flexRed"> -->
-      <!-- <img src="./assets/LogoD.jpg" class="img-fluid z-depth-1" /> -->
-      <!-- </div> -->
-      <!--div holding transcription, buttons and summary divs-->
-      <!-- <div class="flexRed" style="height:100%;"> -->
-      <!--div holding transcription and summary divs-->
-      <!-- <div -->
-      <!-- class="flexLGreen" -->
-      <!-- style="margin:5px;height:80%; justify-content: space-around;" -->
-      <!-- > -->
-      <!--transcription div-->
-      <!-- <div class="flexDblue" style="width:50%;"></div> -->
-      <!-- div holding title & summary divs -->
-      <!-- <div class="flexDblue" style="width:50%;"> -->
-      <!--title div-->
-      <!-- <div class="flexPink" style="height:15%;">huuuu</div> -->
-      <!-- <br><br> -->
-      <!--summary div-->
-      <!-- <div class="flexPink" style="height:80%;">guygu</div> -->
-      <!-- </div> -->
-      <!--end of div holding title & summary-->
-      <!-- </div> -->
-      <!--end of div holding transcription & summary divs -->
-      <!--div holding buttons-->
-      <!-- <div -->
-      <!-- class="flexLGreen" -->
-      <!-- style="padding:10px; margin:5px; height:20%; justify-self: flex-end;" -->
-      <!-- > -->
-      <!--record button-->
-      <!-- <div class="flexDblue" style="width:100px;"></div> -->
-      <!--stop button-->
-      <!-- <div class="flexDblue" style="width:100px;"></div> -->
-      <!--upload button-->
-      <!-- <div class="flexDblue" style="width:100px;"></div> -->
-      <!-- </div> -->
-      <!--end of buttons div-->
-      <!-- </div> -->
-      <!--end of div holding transcription, buttons & summary divs -->
-      <!-- </div> -->
-      <!--end of mid screen div-->
-
-      <!--side div for logout-->
       <div class="flexLblue Lbluethree" style="padding:10px; margin:5px;"></div>
     </div>
     <!--end of full screen div-->
@@ -288,7 +242,7 @@
           <div class="editBoxKeyword">
             <textarea
               class="form-control rounded-1"
-              id="exampleFormControlTextarea1"
+              id="newKeys"
               rows="7"
               placeholder="Provide Keywords Here :           Seperated By Commas"
               style="background-color:#dcdfe5;"
@@ -297,7 +251,7 @@
           </div>
         </div>
         <div class="SaveSection">
-          <button class="SaveButtonSection" (click)="saveDomain()">
+          <button class="SaveButtonSection" onclick="saveDomain();">
             Save
           </button>
         </div>
