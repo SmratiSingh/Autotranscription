@@ -207,9 +207,11 @@ app.post('/transcript', function(req, res){
 
 })
 
-app.post('/domain', function(req, res) {
-    domain = req.body.domain.toLowerCase().trim();
-    keywords = req.body.keywords;
+app.post('/adddomain', function(req, res) {
+
+    data = JSON.parse(Object.keys(req.body));
+    domain = data.domain.toLowerCase().trim();
+    keywords = data.keywords;
 
     rows = [];
 
@@ -238,12 +240,8 @@ app.post('/domain', function(req, res) {
 });
 
 app.post('/removekey', function(req, res) {
-    // title = req.body.title;
     console.log("Inside removekey");
     data = JSON.parse(Object.keys(req.body));
-    // console.log("data:");
-    // console.log(data);
-    // console.log(data.id);
     
     keyword = data.keyword;
     title = data.title;
@@ -270,39 +268,7 @@ app.post('/removekey', function(req, res) {
                 });
             }
         });
-
-
-        // if (results.nModified > 0) {
-        //     return res.status(200).json({
-        //         status: 'SUCCESS',
-        //         message: 'DATA_MODIFIED'
-        //     });
-        // }
-        // else {
-        //     return res.status(200).json({
-        //         status: 'SUCCESS',
-        //         message: 'DATA_MODIFIED_MAYBE'
-        //     });
-        // }
     });
-
-    // mongo.getUniqueKeywords(domain, function(result){
-    //     key_list = keywords.split(",");
-    //     rows = [];
-    //     for (var i = 0; i < key_list.length; i++){
-    //         if (result.indexOf(key_list[i]) < 0) {
-    //             rows.push({"Domain":domain, "word":key_list[i].trim(), "confidence" : 0.5});
-    //         }
-    //     }
-
-    //     mongo.addDomain(rows, function(results){
-    //         return res.status(200).json({
-    //             status: 'SUCCESS',
-    //             message: 'ROWS_ADDED'
-    //         });
-    //     });
-
-    // });
 
 });
 
@@ -319,13 +285,30 @@ app.post('/alldomains', function(req, res) {
 
 app.post('/history', function(req, res){
 
-    username = req.body.username;
+    data = JSON.parse(Object.keys(req.body));
+    username = data.username;
 
     mongo.getHistory(username, function(result_list){
         return res.status(200).json({
             status: 'SUCCESS',
             message: 'HISTORY',
             resultList: result_list
+        });
+    });
+
+});
+
+app.post('/getitem', function(req, res){
+
+    data = JSON.parse(Object.keys(req.body));
+    id = data.id;
+
+    mongo.getSession(id, function(results) {
+    // mongo.getHistory(username, function(result_list){
+        return res.status(200).json({
+            status: 'SUCCESS',
+            message: 'ITEM',
+            results: results
         });
     });
 
