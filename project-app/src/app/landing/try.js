@@ -176,7 +176,7 @@ app.post('/adddomain', function(req, res) {
     data = JSON.parse(Object.keys(req.body));
     domain = data.domain;
     keywords = data.keywords;
-
+    console.log('domain');
     rows = [];
 
     mongo.checkDomain(domain, function(results){

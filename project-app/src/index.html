@@ -322,7 +322,7 @@
           var dname = document.getElementById('newDName');
           var newKey = document.getElementById('newKeys');
           var xhr = new XMLHttpRequest();
-          var data = {'domain':dname, 'keywords': newKey};
+          var data = {'domain':dname.value, 'keywords': newKey.value};
           data = JSON.stringify(data);
           console.log('new data is '+ data);
           xhr.open(
