@@ -213,8 +213,13 @@ app.post('/removekey', function(req, res) {
 
     mongo.getSession(id, function(results) {
         
-        results["keywords"] = results["keywords"].replace(keyword, "").replace(",,", ",");
-        results["title"] = title;
+        
+        if(keyword == null || keyword == "") {
+            results["keywords"] = results["keywords"].replace(keyword, "").replace(",,", ",");
+        }
+        if(title == null || title == "") {
+            results["title"] = title;
+        }
 
         mongo.updateSession(id, results, function(output){
             console.log("UPDATION RESULT");
@@ -281,6 +286,32 @@ app.post('/getitem', function(req, res){
             message: 'ITEM',
             results: results
         });
+    });
+
+});
+
+app.post('/changepassword', function(req, res){
+
+    data = JSON.parse(Object.keys(req.body));
+    username = data.username;
+    old_password = data.old_password;
+    new_password = data.new_password;
+    // re_password = data.re_password;
+
+    mongo.updatePassword(username, old_password, new_password, function(pass_result){
+        console.log(pass_result);
+        if(pass_result["modifiedCount"] == 0) {
+            return res.status(200).json({
+                status: 'FAIL',
+                message: 'PWD_UPDATE'
+            });
+        }
+        else {
+            return res.status(200).json({
+                status: 'SUCCESS',
+                message: 'PWD_UPDATE'
+            });
+        }
     });
 
 });
