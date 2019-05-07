@@ -61,15 +61,11 @@
       recognition.continuous = true;
       recognition.lang = 'en-US';
       
-      function popBubble(keyID){
-        console.log('key to pop is: '+ keyID.toString());
-        var toRemove = document.getElementById(keyID);
-        console.log('bubb '+toRemove);
-        toRemove.parentNode.removeChild(toRemove);
-      }
+      var keywordMap = {};
 
       function transcribeSpeech() {
         console.log('Inside transcrib function');
+       // document.getElementById('trans').innerHTML = ""; //clears everything
         /*recording popup*/
         var x = document.getElementById('PopUpRecording');
         x.className = 'show';
@@ -77,6 +73,7 @@
           x.className = x.className.replace('show', '');
         }, 3000);
         /*popup ends*/
+        //document.getElementById('trans').innerHTML = ""; //clears everything
         document.getElementById('recordBtn').style.backgroundColor = 'red';
         stopBtn.style.backgroundColor = '#2f4f4f';
         keyGenFlag = false;
@@ -163,6 +160,7 @@
             console.log('Prop stirng is: '+ propString);
             document.getElementById('newGrid').style.gridTemplateRows = propString;
             for (var i = 0; i < keys.length; i++) {
+              keywordMap['key'+i.toString()] = keys[i];
               var wrap = document.createElement('div');
               wrap.id = 'key'+i.toString();
               document.getElementById('newGrid').appendChild(wrap);
@@ -205,7 +203,7 @@
 
           var uname = username.value;
           console.log("User is: "+uname);
-          var data = {'username':uname, 'text':final.innerHTML, 'keywords':elems[0], 'title':' ', 'sentiment':elems[1].trim()};
+          var data = {'username':uname, 'text':final.innerHTML, 'keywords':elems[0], 'title': titleBar.value, 'sentiment':elems[1].trim()};
           data = JSON.stringify(data);
           xhr.open(
           'POST',
@@ -223,9 +221,14 @@
         xmlhttp.send(null);
       }
 
-      function wipe(rname) {
-        console.log('rname is' + rname);
-        keywords.removeChild(rname);
+      function popBubble(keyID){
+        console.log('key to pop is: '+ keyID.toString());
+        keyValue = keywordMap[keyID];
+        console.log('keyvalue is: '+ keyValue);
+        var titleValue = document.getElementById('titleBar').value;
+        console.log('title is: '+titleValue);
+        var toRemove = document.getElementById(keyID);
+        toRemove.parentNode.removeChild(toRemove);
       }
     </script>
     <script>
