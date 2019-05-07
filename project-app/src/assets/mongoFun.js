@@ -198,7 +198,7 @@ module.exports.getDomains = function(callback) {
 module.exports.getHistory = function(username, callback) {
     MongoClient.connect(mongo_url, function(err, db) {
         var dbo = db.db(db_name);
-        dbo.collection(transcripts_table).find({"username":username}, {_id:1, title:1, keywords:1, sentiment:1}).toArray(function(err, result) {
+        dbo.collection(transcripts_table).find({"username":username}, {"_id":1, "title":1, "keywords":1, "sentiment":1}).toArray(function(err, result) {
             if (err) {
                 console.log(err);
             }
@@ -207,5 +207,3 @@ module.exports.getHistory = function(username, callback) {
         
     });
 };
-
-// dbo.collection(transcripts_table).update({"_id":id}, {"title":title, 'keywords':keywords}, function(err, result) {

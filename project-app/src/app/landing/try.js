@@ -151,15 +151,12 @@ app.get('/keywords', function(req, res){
 
 app.post('/transcript', function(req, res){
     console.log('inside transcript');
-    // console.log('save data is: '+ JSON.stringify(req.body));
     data = JSON.parse(Object.keys(req.body));
     username = data.username;
     trans_text = data.text;
     keywords = data.keywords;
     title = data.title;
     sentiment = data.sentiment;
-    // title = req.body.title;
-    // timestamp = new Date().toISOString().replace(/[-:.Z]/g, "").replace("T","_");
     timestamp = new Date().toISOString();
 
     // mongo.saveTranscript(username, title, trans_text, keywords, timestamp, function(result){
@@ -171,39 +168,6 @@ app.post('/transcript', function(req, res){
             id: result['insertedId']
         });
     });
-
-    // recieved_key = ""
-
-    // mongo.saveText(trans_text, function(fileInfo) {
-    //     console.log(fileInfo);
-    //     recieved_key = fileInfo._id;
-    //     // mongo.saveTranscript(username, title, recieved_key, keywords, timestamp, function(result){
-    //     mongo.saveTranscript(username , recieved_key, keywords, timestamp, function(result){
-    //         return res.status(200).json({
-    //             status: 'SUCCESS',
-    //             message: 'ROW_ADDED',
-    //             id: result['insertedId']
-    //         });
-    //     });
-    // });
-
-    // mongo.getUniqueKeywords(domain, function(result){
-    //     key_list = keywords.split(",");
-    //     rows = [];
-    //     for (var i = 0; i < key_list.length; i++){
-    //         if (result.indexOf(key_list[i]) < 0) {
-    //             rows.push({"Domain":domain, "word":key_list[i].trim(), "confidence" : 0.5});
-    //         }
-    //     }
-
-    //     mongo.addDomain(rows, function(results){
-    //         return res.status(200).json({
-    //             status: 'SUCCESS',
-    //             message: 'ROWS_ADDED'
-    //         });
-    //     });
-
-    // });
 
 })
 
@@ -289,6 +253,9 @@ app.post('/history', function(req, res){
     username = data.username;
 
     mongo.getHistory(username, function(result_list){
+        for (var i = 0; i < result_list.length; i++){
+            result_list[i]["keywords"] = result_list[i]["keywords"].split(",").slice(0, 3).join(",");
+        }
         return res.status(200).json({
             status: 'SUCCESS',
             message: 'HISTORY',
@@ -305,6 +272,7 @@ app.post('/getitem', function(req, res){
 
     mongo.getSession(id, function(results) {
     // mongo.getHistory(username, function(result_list){
+        
         return res.status(200).json({
             status: 'SUCCESS',
             message: 'ITEM',
