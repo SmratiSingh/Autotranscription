@@ -254,8 +254,20 @@
         xhr.send(data);
           xhr.onreadystatechange = function() {
             console.log("Save status: "+ xhr.responseText);
+            var allDomains = JSON.parse(xhr.responseText).domains
+            var dList = document.getElementById('domainList')
+            dList.innerHTML = "";
+            for(var k=0;k<allDomains.length;k++){
+              dList.innerHTML += `<a class="domainName" onclick="printDomain('`+allDomains[k]+`');">`+ allDomains[k] +`</a>`;
+            }
             
           }
+
+      }
+      
+      function printDomain(domainToPrint){
+          console.log(domainToPrint);
+          domainOut.innerHTML = domainToPrint;
       }
 
     </script>
