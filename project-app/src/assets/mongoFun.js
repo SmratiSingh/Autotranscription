@@ -154,6 +154,7 @@ module.exports.getUniqueKeywords = function(domain, callback) {
 module.exports.getSession = function(id, callback) {
     MongoClient.connect(mongo_url, function(err, db) {
         var dbo = db.db(db_name);
+        console.log(ObjectID(id));
         dbo.collection(transcripts_table).findOne({"_id":ObjectID(id)}, {_id:0}, function(err, result) {
             if (err) {
                 console.log(err);
