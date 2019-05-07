@@ -13,14 +13,14 @@ export class LandingComponent implements OnInit {
 
   ngOnInit() {
     // console.log('inside landing ts');
-    this.landingUser = localStorage.getItem('username');
-    console.log(localStorage.getItem('isLoggedIn'));
-    if(localStorage.getItem('isLoggedIn') != 'true'){
+    this.landingUser = sessionStorage.getItem('username');
+    console.log(sessionStorage.getItem('isLoggedIn'));
+    if(sessionStorage.getItem('isLoggedIn') != 'true'){
       this.rout.navigate(['/']);
     }
   }
   invalidate(){
-    localStorage.setItem('isLoggedIn','false');
-    localStorage.clear();
+    sessionStorage.setItem('isLoggedIn','false');
+    sessionStorage.clear();
   }
 }
