@@ -29,7 +29,7 @@
       </header>
     </div>
     <div style="float: right">
-      <a routerLink="/">Logout</a>
+      <a routerLink="/" (click)='invalidate();'>Logout</a>
     </div>
     <div style="float: right;"><p style="color: black;">Welcome {{this.landingUser}}   </p></div>
     <input type="hidden" id="username" value={{this.landingUser}}>
