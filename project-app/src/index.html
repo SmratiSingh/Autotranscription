@@ -65,8 +65,11 @@
 
       function transcribeSpeech() {
         console.log('Inside transcrib function');
-       // document.getElementById('trans').innerHTML = ""; //clears everything
+        
+       document.getElementById('final').innerHTML=''; //clears everything
+      
         /*recording popup*/
+        // document.getElementById('trans').value='';
         var x = document.getElementById('PopUpRecording');
         x.className = 'show';
         setTimeout(function() {
@@ -79,7 +82,7 @@
         keyGenFlag = false;
         recognition.onresult = event => {
           let interimTranscript = '';
-          //let finalTranscript = '';
+          let finalTranscript = '';
           //const speechToText = event.results[0][0].transcript;
           for (
             let i = event.resultIndex, len = event.results.length;
