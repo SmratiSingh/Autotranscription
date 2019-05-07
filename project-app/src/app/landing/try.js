@@ -239,11 +239,19 @@ app.post('/domain', function(req, res) {
 
 app.post('/removekey', function(req, res) {
     // title = req.body.title;
+    console.log("Inside removekey");
+    console.log(req.body);
+    console.log(req.body.id);
+    data = JSON.parse(Object.keys(req.body));
+    console.log("data:");
+    console.log(data);
+    console.log(data.id);
+    
     keyword = req.body.keyword;
     title = req.body.title;
-    _id = req.body.id;
+    id = req.body.id;
 
-    mongo.getSession(_id, function(results) {
+    mongo.getSession(id, function(results) {
         
         results["keywords"] = results["keywords"].replace(keyword, "").replace(",,", ",");
         results["title"] = title;
