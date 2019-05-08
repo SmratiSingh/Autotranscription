@@ -16,7 +16,7 @@ console.log(__dirname)
 // var key = fs.readFileSync(path.resolve('./src/app/landing/server.key'));
 // var cert = fs.readFileSync(path.resolve('./src/app/landing/server.crt'));
 var key = fs.readFileSync(path.resolve('/etc/pki/tls/private/webdev.key'));
-var cert = fs.readFileSync(path.resolve(' /etc/pki/tls/certs/webdev_cse_buffalo_edu_cert.cer'));
+var cert = fs.readFileSync(path.resolve('/etc/pki/tls/certs/webdev_cse_buffalo_edu_cert.cer'));
 var options = {
     key: key,
     cert: cert
