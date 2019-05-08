@@ -109,7 +109,9 @@
                 style="color:rgb(130, 151, 151); margin-left:10px;"
                 class="fas fa-pencil-alt"
               ></i></span
-            ><span id="data">{{this.navFirstName}}  {{this.navLastName}}&nbsp;&nbsp;</span>
+            ><span id="data"
+              >{{ this.navFirstName }} {{ this.navLastName }}&nbsp;&nbsp;</span
+            >
           </p>
           <br />
           <p>
@@ -132,8 +134,7 @@
           Select a Domain
         </p>
       </div>
-      <div class="scrollable" style="overflow-y: scroll;" id="domainList">
-      </div>
+      <div class="scrollable" style="overflow-y: scroll;" id="domainList"></div>
       <div class="addDomain">
         <p id="Udomain">
           Got a New Domain?<button
@@ -157,8 +158,9 @@
           Your Transcripts
         </p>
       </div>
-      <div class="Dbody" style="overflow-y: scroll;" id="historyList">;
-        
+      <div class="Dbody" style="overflow-y: scroll;" id="historyList">
+        ;
+
         <!-- <div class="item">
           <div class="right">
             <div class="filename">
@@ -183,7 +185,7 @@
             </div>
           </div>
         </div>-->
-      </div> 
+      </div>
     </div>
 
     <!--hidden div here Settings-->
@@ -218,11 +220,11 @@
     <!--saved on cross bubble-->
     <div id="snackbar">Saved ..</div>
     <!--recording started-->
-    <div id="domainSelect"  >Please select a domain first...</div>
+    <div id="domainSelect">Please select a domain first...</div>
     <div id="PopUpRecording">Recording Started..</div>
     <!--recording ended-->
     <div id="PopUpRecordingE">Recording Ended..</div>
-    
+
     <!--hidden form Domain-->
     <div id="DomainForm">
       <p id="titleError">Title already exists!</p>
@@ -260,43 +262,60 @@
       </div>
     </div>
 
+    <!--hidden form change passowrd-->
 
-<!--hidden form for change passowrd-->
-
-<div id="changePassForm">
-  <p id="PasswordError">Password do not match!</p>
-  <div class="Cross">
-    <i
-      id="closeFbutton"
-      class="fas fa-window-close fa-2x"
-      style="background-color:transparent;"
-      onclick="CloseDform();"
-    ></i>
-  </div>
-  <div class="twouf">
-    <div class="TitleCross">
-      <div class="DomainTitle">
-        <input id="oldPass" type="password" placeholder="Enter current passowrd" />
+    <div id="changePassForm">
+      <p id="PasswordError">Password do not match!</p>
+      <div class="Cross">
+        <i
+          id="closeFbutton"
+          class="fas fa-window-close fa-2x"
+          style="background-color:transparent;"
+          onclick="CloseDform();"
+        ></i>
       </div>
-    </div>
-    <div class="abcd">
-      <div class="TitleCross">
-        <div class="DomainTitle">
-          <input id="newPass" type="password" placeholder="Enter new passowrd" />
+      <div class="twouf">
+        <div class="TitleCross">
+          <div class="DomainTitle">
+            <input
+              id="oldPass"
+              type="password"
+              placeholder="Enter current passowrd"
+            />
+          </div>
+        </div>
+        <div class="abcd">
+          <div class="TitleCross">
+            <div class="DomainTitle">
+              <input
+                id="newPass"
+                type="password"
+                placeholder="Enter new passowrd"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="SaveSection">
+          <button class="SaveButtonSection" (click)="CPass()">
+            Change Password
+          </button>
         </div>
       </div>
     </div>
-    <div class="SaveSection">
-      <button class="SaveButtonSection" onclick="CPass();">
-        Change Password
-      </button>
+
+    <!--hidden transcript display form-->
+
+    <div id="displayForm">
+      <div class="editTitleDiv"></div>
+      <div class="transcriptDisplayDiv"></div>
+      <div class="thirdcontainerdiv">
+        <div class="keywordsDisplayDiv"></div>
+        <div class="sentimentAndButtonsDiv">
+          <div class="sentimentanddomnain"></div>
+          <div class="bothButtons"></div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
-
-
-
-
   </body>
 
   <!--scripts-->

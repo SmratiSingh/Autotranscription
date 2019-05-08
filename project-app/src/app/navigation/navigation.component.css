@@ -455,6 +455,25 @@ p span{
     background-color:#dcdfe5;
 }
 
+/*Display transcription pop up*/
+#displayForm{
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 100px 100px 100px 200px;
+    padding :5px;
+    width: 940px;
+    height: 640px;
+    background-color:rgb(63, 94, 94);
+    visibility: visible;
+    z-index: 1;
+    display:flex;
+    flex-direction: column;
+
+}
+
 
 
 /*functions and changes*/
