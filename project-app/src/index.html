@@ -132,6 +132,37 @@
         };
       }
 
+
+         //navbar pass change
+        function changePass(){
+        document.getElementById('changePassForm').style.visibility = 'visible'; //change ID to changePassForm
+      }
+      //DB call for old and new pass
+      function CPass(){
+        var oldP = document.getElementById('oldPass').innerHTML;
+        var newP = document.getElementById('newPass').innerHTML;
+        var uname1 = username.value
+        var xhr1 = new XMLHttpRequest();
+
+          var uname = username.value;
+          console.log("User is: "+uname);
+          var data = {'username':uname1, 'old_password':oldP, 'new_password':newP};
+          data = JSON.stringify(data);
+          xhr1.open(
+          'POST',
+          'http://stark.cse.buffalo.edu:3000/changepassword',true);
+            // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
+            xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+
+            xhr1.send(data);
+            xhr1.onreadystatechange = function() {
+              console.log("Save status: "+ xhr1.responseText);
+              
+            }
+      }
+   
+
+
       function stopRecord() {
         /*recording popup*/
         var x = document.getElementById('PopUpRecordingE');
@@ -398,6 +429,7 @@
       }
       function closeL() {
         document.getElementById('FlexSgreen').style.visibility = 'hidden';
+        
       }
 
       /* Domain functions */
@@ -425,6 +457,7 @@
       }
       function CloseDform() {
         document.getElementById('DomainForm').style.visibility = 'hidden';
+        document.getElementById('changePassForm').style.visibility='hidden';
       }
 
       /* History functions */

@@ -114,10 +114,11 @@
           <br />
           <p>
             <span id="category"
-              >Password<i
+              >Password<a
                 style="color:rgb(130, 151, 151); margin-left:10px;"
                 class="fas fa-pencil-alt"
-              ></i></span
+                onClick="changePass()"
+              ></a></span
             ><span id="data">*********&nbsp;&nbsp;</span>
           </p>
         </div>
@@ -258,6 +259,44 @@
         </div>
       </div>
     </div>
+
+
+<!--hidden form for change passowrd-->
+
+<div id="changePassForm">
+  <p id="PasswordError">Password do not match!</p>
+  <div class="Cross">
+    <i
+      id="closeFbutton"
+      class="fas fa-window-close fa-2x"
+      style="background-color:transparent;"
+      onclick="CloseDform();"
+    ></i>
+  </div>
+  <div class="twouf">
+    <div class="TitleCross">
+      <div class="DomainTitle">
+        <input id="oldPass" type="password" placeholder="Enter current passowrd" />
+      </div>
+    </div>
+    <div class="abcd">
+      <div class="TitleCross">
+        <div class="DomainTitle">
+          <input id="newPass" type="password" placeholder="Enter new passowrd" />
+        </div>
+      </div>
+    </div>
+    <div class="SaveSection">
+      <button class="SaveButtonSection" (click)="CPass()">
+        Change Password
+      </button>
+    </div>
+  </div>
+</div>
+
+
+
+
   </body>
 
   <!--scripts-->
