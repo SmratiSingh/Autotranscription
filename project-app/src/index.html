@@ -51,6 +51,9 @@
       crossorigin="anonymous"
     ></script>
     <script>
+      
+
+
       window.SpeechRecognition =
         window.webkitSpeechRecognition || window.SpeechRecognition;
       let finalTranscript = '';
@@ -139,9 +142,11 @@
       }
       //DB call for old and new pass
       function CPass(){
-        var oldP = document.getElementById('oldPass').innerHTML;
-        var newP = document.getElementById('newPass').innerHTML;
+        //var sha256 = require('js-sha256').sha256;
+        var oldP = document.getElementById('oldPass').value;
+        var newP = document.getElementById('newPass').value;
         var uname1 = username.value
+        console.log("check pass"+newP))
         var xhr1 = new XMLHttpRequest();
 
           var uname = username.value;
@@ -180,7 +185,7 @@
 
 
 
-      
+
       function getKeywords() {
         newGrid.innerHTML = '';
         var xmlhttp = new XMLHttpRequest();
