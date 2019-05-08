@@ -168,6 +168,11 @@
               
             }
       }
+      // add id of the pop up form
+
+      function pushHistory(){
+        document.getElementById('displayForm').style.visibility = 'visibile';
+      }
    
 
 
@@ -365,7 +370,7 @@
                       style="color:rgb(130, 151, 151); margin-left:5px;"
                       class="fas fa-file fa"
                     ></i>
-                    <a id="Flink" style="color:#6e8181;">View</a>
+                    <a id="Flink" style="color:#6e8181;" onclick="pushHistory();">View</a>
                   </span>
                 </div>
                 <div class="sentiment">
