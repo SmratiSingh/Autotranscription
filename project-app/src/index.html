@@ -67,6 +67,7 @@
       var keywordMap = {};
 
       function transcribeSpeech() {
+        ClosePopform();
         
         if(document.getElementById('domainOut').innerHTML=="") {
           console.log('please select domain');
@@ -146,7 +147,7 @@
         var oldP = document.getElementById('oldPass').value;
         var newP = document.getElementById('newPass').value;
         var uname1 = username.value
-        console.log("check pass"+newP)
+        console.log("check pass "+newP)
         var xhr1 = new XMLHttpRequest();
 
           var uname = username.value;
@@ -418,7 +419,23 @@
         }
       }
 
-    
+      /*save pop up thing*/
+      //conditions for checking the blank field is written does not work though
+      
+      
+      function savePopup(){  
+        if(document.getElementById("trans").innerHTML==""){
+          //document.getElementById('saveForm').style.visibility='hidden';
+          transcribeSpeech();
+        }
+        else{
+          document.getElementById('saveForm').style.visibility='visible'; 
+        }
+      }
+
+      function ClosePopform(){
+        document.getElementById('saveForm').style.visibility='hidden';
+      }
       
     </script>
     <script>

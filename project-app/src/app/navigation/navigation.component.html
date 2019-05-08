@@ -306,16 +306,56 @@
     <!--hidden transcript display form-->
 
     <div id="displayForm">
-      <div class="editTitleDiv"></div>
+      <div class="editTitleDiv">
+        
+      </div>
       <div class="transcriptDisplayDiv"></div>
       <div class="thirdcontainerdiv">
         <div class="keywordsDisplayDiv"></div>
         <div class="sentimentAndButtonsDiv">
-          <div class="sentimentanddomnain"></div>
-          <div class="bothButtons"></div>
+          <div class="sentimentanddomnain">
+             <!--code -->
+          </div>
+          <div class="bothButtons">
+
+          </div>
         </div>
       </div>
     </div>
+
+    <!--hidden form saveTranscript Popup-->
+
+    <div id="saveForm">
+        <div >
+          Your session has been secured! Want to save?
+        </div>
+
+        <div class="Cross">
+            <button class="SaveButtonSection" onclick="ClosePopform();">
+              Close
+            </button>
+          </div>
+
+        <div class="SaveSection">
+            <button class="SaveButtonSection" onclick="transcribeSpeech('_');">
+              Save
+            </button>
+          </div>
+
+
+      
+      </div>
+  
+
+
+
+
+
+
+
+
+
+
   </body>
 
   <!--scripts-->
