@@ -227,7 +227,7 @@ app.post('/removekey', function(req, res) {
         mongo.updateSession(id, results, function(output){
             console.log("UPDATION RESULT");
             console.log(output);
-            if (output.nModified > 0) {
+            if (output.result.nModified > 0) {
                 return res.status(200).json({
                     status: 'SUCCESS',
                     message: 'DATA_MODIFIED'
