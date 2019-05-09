@@ -68,6 +68,7 @@
 
       function transcribeSpeech() {
         ClosePopform();
+        document.getElementById('titleBar').value="";
         
         if(document.getElementById('domainOut').innerHTML=="") {
           console.log('please select domain');
@@ -77,7 +78,7 @@
           // setTimeout(function() {
           // y.className = y.className.replace('show', '');
           //   }, 3000);
-          var x = document.getElementById('PopUpRecording');
+          var x = document.getElementById('Pop Recording');
           x.innerHTML = 'Please select domain first...'
         x.className = 'show';
         setTimeout(function() {
@@ -139,10 +140,13 @@
 
          //navbar pass change
         function changePass(){
-          document.getElementById('oldPass').innerHTML="";
-          document.getElementById('newPass').innerHTML="";
+          document.getElementById('oldPass').value="";
+          document.getElementById('newPass').value="";
         document.getElementById('changePassForm').style.visibility = 'visible'; //change ID to changePassForm
       }
+
+      
+
       //DB call for old and new pass
       function CPass(){
         //var sha256 = require('js-sha256').sha256;
@@ -174,11 +178,12 @@
         document.getElementById('displayForm1').style.visibility = 'visibile';
       }
    
-
+    
 
       function stopRecord() {
         /*recording popup*/
         askForTitle();
+        document.getElementById('tempTitle').value=""
         var x = document.getElementById('PopUpRecordingE');
         x.className = 'show';
         setTimeout(function() {
@@ -231,6 +236,9 @@
             console.log('Prop stirng is: '+ propString);
             document.getElementById('newGrid').style.gridTemplateRows = propString;
             for (var i = 0; i < keys.length; i++) {
+              if(keys[i]==""){
+                continue;
+              }
               keywordMap['key'+i.toString()] = keys[i];
               var wrap = document.createElement('div');
               wrap.id = 'key'+i.toString();
@@ -432,6 +440,9 @@
         document.getElementById("askTitleForm").style.visibility='visible';
       }
 
+      /*clear text*/
+      
+
 
 
 
@@ -491,7 +502,7 @@
       }
       function displayForm() {
         //first clears the form on click create new form
-        
+        document.getElementById('newKeys').value="";
         document.getElementById('DomainForm').style.visibility = 'visible';
         document.getElementById('newDName').value='';
         document.getElementById('exampleFormControlTextarea1').value='';
