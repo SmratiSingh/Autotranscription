@@ -64,7 +64,7 @@
       var keywordMap = {};
 
       function transcribeSpeech() {
-        document.getElementById('titleBar').value="";
+        document.getElementById('titleBar').value = '';
 
         ClosePopform();
 
@@ -136,11 +136,8 @@
 
       //navbar pass change
       function changePass() {
-<<<<<<< HEAD
-=======
         closeNav();
         closeSmallNav();
->>>>>>> 558312cb1693e44b1bb7f1fec404e74da6175057
         document.getElementById('oldPass').innerHTML = '';
         document.getElementById('newPass').innerHTML = '';
         document.getElementById('changePassForm').style.visibility = 'visible'; //change ID to changePassForm
@@ -148,7 +145,7 @@
       //DB call for old and new pass
       function CPass() {
         //var sha256 = require('js-sha256').sha256;
-        document.getElementById('changePassForm').style.visibility='hidden'
+        document.getElementById('changePassForm').style.visibility = 'hidden';
         var oldP = document.getElementById('oldPass').value;
         var newP = document.getElementById('newPass').value;
         var uname1 = username.value;
@@ -183,11 +180,10 @@
 
       function stopRecord() {
         /*recording popup*/
-        if(document.getElementById('final').innerHTML !=""){
+        if (document.getElementById('final').innerHTML != '') {
           askForTitle();
-
         }
-        if(final.innerHTML==""){
+        if (final.innerHTML == '') {
           return 0;
         }
         var x = document.getElementById('PopUpRecordingE');
@@ -241,11 +237,10 @@
               'newGrid'
             ).style.gridTemplateRows = propString;
             for (var i = 0; i < keys.length; i++) {
-<<<<<<< HEAD
-=======
-              if(keys[i]==""){return 0;}
-              
->>>>>>> 558312cb1693e44b1bb7f1fec404e74da6175057
+              if (keys[i] == '') {
+                return 0;
+              }
+
               keywordMap['key' + i.toString()] = keys[i];
               var wrap = document.createElement('div');
               wrap.id = 'key' + i.toString();
@@ -368,19 +363,12 @@
               `</a>`;
           }
         };
-<<<<<<< HEAD
       }
-
-=======
+      function saveTitleTemp() {
+        document.getElementById('askTitleForm').style.visibility = 'hidden';
+        document.getElementById('titleBar').value = tempTitle.value;
+        document.getElementById('tempTitle').value = '';
       }
-      function saveTitleTemp(){
-        
-        document.getElementById('askTitleForm').style.visibility='hidden';
-        document.getElementById('titleBar').value=tempTitle.value;
-        document.getElementById('tempTitle').value="";
-
-      }
->>>>>>> 558312cb1693e44b1bb7f1fec404e74da6175057
       function printDomain(domainToPrint) {
         console.log(domainToPrint);
         domainOut.innerHTML = domainToPrint;
@@ -441,10 +429,7 @@
       }
 
       function saveDomain() {
-<<<<<<< HEAD
-=======
         document.getElementById('DomainForm').style.visibility = 'hidden';
->>>>>>> 558312cb1693e44b1bb7f1fec404e74da6175057
         var dname = document.getElementById('newDName');
         var newKey = document.getElementById('newKeys');
         var xhr = new XMLHttpRequest();
@@ -484,30 +469,25 @@
         }
       }
 
-<<<<<<< HEAD
-      /*ask for title */
-      function askForTitle() {
-        document.getElementById('askTitleForm').style.visibility = 'visible';
-      }
-
-=======
       /* close nav bar*/
-      function closeNav(){
+      function closeNav() {
         document.getElementById('navigation').style.width = '85px';
-          state = 'closed';
-          var a = document.getElementsByClassName('navItems');
-          var i;
-          for (i = 0; i < a.length; i++) {
-            a[i].style.display = 'none';
-          }
+        state = 'closed';
+        var a = document.getElementsByClassName('navItems');
+        var i;
+        for (i = 0; i < a.length; i++) {
+          a[i].style.display = 'none';
+        }
       }
 
-      function closeSmallNav(){
+      function closeSmallNav() {
         //document.getElementById('flexSgreen').style.visibility='hidden';
-        if(document.getElementById('changePassForm').style.visibility =='visible'){
+        if (
+          document.getElementById('changePassForm').style.visibility ==
+          'visible'
+        ) {
           closeNav();
         }
-
       }
 
       /*ask for title */
@@ -515,13 +495,12 @@
         document.getElementById('askTitleForm').style.visibility = 'visible';
       }
 
->>>>>>> 558312cb1693e44b1bb7f1fec404e74da6175057
       /*save pop up thing*/
 
       function savePopup() {
         if (document.getElementById('final').innerHTML == '') {
           //document.getElementById('saveForm').style.visibility='hidden';
-          document.getElementById('titleBar').value="";
+          document.getElementById('titleBar').value = '';
 
           transcribeSpeech();
         } else {
