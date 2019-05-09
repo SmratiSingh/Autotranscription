@@ -136,6 +136,8 @@
 
       //navbar pass change
       function changePass() {
+        closeNav();
+        closeSmallNav();
         document.getElementById('oldPass').innerHTML = '';
         document.getElementById('newPass').innerHTML = '';
         document.getElementById('changePassForm').style.visibility = 'visible'; //change ID to changePassForm
@@ -466,6 +468,25 @@
         }
       }
 
+      /* close nav bar*/
+      function closeNav(){
+        document.getElementById('navigation').style.width = '85px';
+          state = 'closed';
+          var a = document.getElementsByClassName('navItems');
+          var i;
+          for (i = 0; i < a.length; i++) {
+            a[i].style.display = 'none';
+          }
+      }
+
+      function closeSmallNav(){
+        //document.getElementById('flexSgreen').style.visibility='hidden';
+        if(document.getElementById('changePassForm').style.visibility =='visible'){
+          closeNav();
+        }
+
+      }
+
       /*ask for title */
       function askForTitle() {
         document.getElementById('askTitleForm').style.visibility = 'visible';
@@ -505,6 +526,7 @@
         document.getElementById('p').style.backgroundColor = 'rgb(41, 68, 68)';
       }
       function closeL() {
+        closeNav();
         document.getElementById('FlexSgreen').style.visibility = 'hidden';
       }
 
@@ -515,6 +537,7 @@
         document.getElementById('FlexSgreenD').style.visibility = 'visible';
       }
       function closeLD() {
+        closeNav();
         document.getElementById('FlexSgreenD').style.visibility = 'hidden';
       }
       function stayD() {
@@ -542,6 +565,7 @@
         document.getElementById('FlexSgreenH').style.visibility = 'visible';
       }
       function closeLH() {
+        closeNav();
         document.getElementById('FlexSgreenH').style.visibility = 'hidden';
       }
       function stayH() {
@@ -558,6 +582,7 @@
         document.getElementById('FlexSgreenS').style.visibility = 'visible';
       }
       function closeLS() {
+        closeNav();
         document.getElementById('FlexSgreenS').style.visibility = 'hidden';
       }
       function stayS() {
