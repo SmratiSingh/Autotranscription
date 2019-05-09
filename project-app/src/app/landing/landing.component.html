@@ -70,6 +70,7 @@
             placeholder="Enter Title here"
             id = "titleBar"
             style="background-color:transparent; padding:4%; border: none; border-radius:5%; font-size:23px; width:100%; overflow-y:hidden"
+            oninput="autoSave();"
           ></textarea>
         </div>
         <div
@@ -128,8 +129,8 @@
     
     <input type="file" accept="audio/*" id="uploadTemp"  style=" height:10%; background-color:darkslategrey; border-radius:50%; margin-left:15%;position:relative"
     class="form-control btn btn-dark item-h1 p-4 d-flex">
-      <div style="position: relative; margin-left:202px; color: darkgreen"> Sentiment: <p id="sentiment"> </p></div>
-      <div style="position: relative; margin-left:150px; color: darkgreen"> Domain: <p id="domainOut"></p></div>
+      <div style="position: relative; margin-left:213px; color: darkgreen; font-size: large"> Sentiment: <p id="sentiment"> </p></div>
+      <div style="position: relative; margin-left:150px; color: darkgreen; font-size: large"> Domain: <p id="domainOut"></p></div>
       
       
     </div>
