@@ -171,7 +171,7 @@
       // add id of the pop up form
 
       function pushHistory(){
-        document.getElementById('displayForm').style.visibility = 'visibile';
+        document.getElementById('displayForm1').style.visibility = 'visibile';
       }
    
 
@@ -431,8 +431,9 @@
       
       
       function savePopup(){  
-        if(document.getElementById("trans").innerHTML==""){
+        if(document.getElementById("final").innerHTML==""){
           //document.getElementById('saveForm').style.visibility='hidden';
+
           transcribeSpeech();
         }
         else{
