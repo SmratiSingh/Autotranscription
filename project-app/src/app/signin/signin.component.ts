@@ -26,9 +26,14 @@ export class SigninComponent implements OnInit {
   
   authUser(){
 
+    if(this.email==""||this.password==""){
+        return 0;
+    }
+
     var usr = new User();
 
     usr.username = this.email;
+    
     usr.password = sha256(this.password);
     console.log(usr);
     this.auth.verifyUser(usr).subscribe(data => {

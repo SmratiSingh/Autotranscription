@@ -16,7 +16,7 @@ export class AuthService {
   constructor(private http: Http) { }
 
   verifyUser(user){
-    
+      console.log('auth user is: '+ user);
     this.username = user.username;
     sessionStorage.setItem('isLoggedIn','true');
     sessionStorage.setItem('username',user.username);
