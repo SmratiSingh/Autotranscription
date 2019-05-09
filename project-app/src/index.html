@@ -198,8 +198,10 @@
       // add id of the pop up form
 
       function pushHistory() {
+        closeNav();
         
         document.getElementById('displayForm1').style.visibility = 'visible';
+        document.getElementById('FlexSgreenH').style.visibility = 'hidden';
       }
 
       function stopRecord() {
@@ -419,21 +421,21 @@
 
             hList.innerHTML +=
               `
-               <div class="item">
-              <div class="right">
-                <div class="filename">
+               <div class="item" style="display:flex; flex-direction:row; justify-content:space-around;">
+              <div class="right"  style="display:flex; flex-direction:column;width:50%;">
+                <div class="filename" style="display:flex;">
                   <span id="data" style="color: rgb(156, 184, 184);">` +
               entry['title'] +
               `</span>
                 </div>
-                <div class="keywords">
+                <div class="keywords" style="display:flex; justify-content:space-around;">
                   <span id="words" style="color: rgb(156, 184, 184);">` +
               entry['keywords'] +
               `</span>
                 </div>
               </div>
-              <div class="left">
-                <div class="fileLink">
+              <div class="left" style="display:flex; flex-direction:column;width:50%;">
+                <div class="fileLink" style="display:flex;>
                   <span id="category">
                     <i
                       style="color: rgb(156, 184, 184); margin-left:5px;"
@@ -442,7 +444,7 @@
                     <a id="Flink" style="color: rgb(156, 184, 184);" onclick="pushHistory();">View</a>
                   </span>
                 </div>
-                <div class="sentiment">
+                <div class="sentiment" style="display:flex;>
                   <span id="words" style="color: rgb(156, 184, 184);">Positive</span>
                 </div>
               </div>
@@ -522,6 +524,10 @@
         document.getElementById('askTitleForm').style.visibility = 'visible';
       }
 
+      function closeFlexD(){
+        closeNav();
+        document.getElementById('FlexSgreenD').style.visibility="hidden"; 
+      }
       /*save pop up thing*/
 
       function savePopup() {
