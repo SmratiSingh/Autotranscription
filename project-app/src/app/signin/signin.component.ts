@@ -18,6 +18,7 @@ import { AuthService } from '../auth.service';
 export class SigninComponent implements OnInit {
   public email: string = "";
   public password: string = "";
+  public errorMsg: string = "";
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
@@ -27,6 +28,7 @@ export class SigninComponent implements OnInit {
   authUser(){
 
     if(this.email==""||this.password==""){
+      this.errorMsg = "Plese enter all fields."
         return 0;
     }
 
@@ -47,6 +49,7 @@ export class SigninComponent implements OnInit {
         }
         else if(data['status'] == 'FAIL'){
           alert(data.toString());
+
         }
       })
     // if(this.password=='timepass'){
