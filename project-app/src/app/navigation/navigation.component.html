@@ -321,73 +321,81 @@
         style="padding:1%; width:100%; height:35%; margin-top:1%; margin-bottom:1%; display:inline-block; position: relative; background-color: #dcdfe5;text-align: left; overflow-y:auto; border-radius:3%;"
       ></div>
       <div class="thirdcontainerdiv d-flex">
-    <div id="displayForm">
-      <div class="editTitleDiv">
-        
-      </div>
-      <div class="transcriptDisplayDiv"></div>
-      <div class="thirdcontainerdiv">
-        <div class="keywordsDisplayDiv"></div>
-        <div class="sentimentAndButtonsDiv">
-          <div class="sentimentanddomnain">
-             <!--code -->
-             </div>
-          </div>
-          <div class="bothButtons">
-
+        <div id="displayForm">
+          <div class="editTitleDiv"></div>
+          <div class="transcriptDisplayDiv"></div>
+          <div class="thirdcontainerdiv">
+            <div class="keywordsDisplayDiv"></div>
+            <div class="sentimentAndButtonsDiv">
+              <div class="sentimentanddomnain">
+                <!--code -->
+              </div>
+            </div>
+            <div class="bothButtons"></div>
           </div>
         </div>
       </div>
-    </div>
 
-    <!--hidden form saveTranscript Popup-->
+      <!--hidden form saveTranscript Popup-->
 
-    <div id="saveForm">
-        <div >
+      <div id="saveForm">
+        <div>
           Your session has been secured! Want to save?
         </div>
 
         <div class="Cross">
-            <button class="SaveButtonSection" onclick="ClosePopform();">
-              Close
-            </button>
-          </div>
+          <button class="SaveButtonSection" onclick="ClosePopform();">
+            Close
+          </button>
+        </div>
 
         <div class="SaveSection">
-            <button class="SaveButtonSection" onclick="transcribeSpeech('_');">
+          <button class="SaveButtonSection" onclick="transcribeSpeech('_');">
+            Save
+          </button>
+        </div>
+      </div>
+
+      <!--hidden form for ask for save-->
+      <div id="askTitleForm">
+        <div>
+          <p
+            style="margin-top:15px; text-align:center;  font-size:20px;
+          font-style: bold; color: rgb(204, 226, 221);"
+          >
+            Do you want to edit the title Before Saving?
+          </p>
+        </div>
+        <input
+          type="text"
+          style="margin-top:25px; margin-right:10px; margin-left:10px;"
+        />
+        <div
+          class="wraperdiv"
+          style="padding:8%;display: flex; flex-direction: row; justify-content: space-around;"
+        >
+          <div class="Save" style="width:35%;">
+            <button
+              class="SaveButtonSection"
+              style="width: 100%;"
+              onclick="callDb('_');"
+            >
               Save
             </button>
           </div>
 
-
-      
+          <div class="Cross" style="width:35%;">
+            <button
+              class="SaveButtonSection"
+              style="width: 100%;"
+              onclick="ClosePopform();"
+            >
+              Close
+            </button>
+          </div>
+        </div>
       </div>
-
-<!--hidden form for ask for save-->
-<div id="askTitleForm">
-  <div >
-    Want to edit the title?
-  </div>
-
-  <div class="Cross">
-      <button class="SaveButtonSection" onclick="ClosePopform();">
-        Close
-      </button>
     </div>
-
-  <div class="SaveSection">
-    <input type="text">
-      <button class="SaveButtonSection" onclick="callDb('_');">
-        Save
-      </button>
-    </div>
-
-
-
-</div>
-
-
-      </div>
   </body>
 
   <!--scripts-->
