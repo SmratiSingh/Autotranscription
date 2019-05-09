@@ -396,6 +396,11 @@
         document.getElementById('tmpTitle').value = '';
         getKeywords();
       }
+
+      /*closing upload and then play form*/
+      function closeplay(){
+        document.getElementById('playForm').style.visibility='hidden';
+      }
       function printDomain(domainToPrint) {
         console.log(domainToPrint);
         domainOut.innerHTML = domainToPrint;
