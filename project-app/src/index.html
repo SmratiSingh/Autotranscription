@@ -180,17 +180,16 @@
         xhr1.send(data);
         xhr1.onreadystatechange = function() {
           // console.log('Save status: ' + xhr1.responseText);
-          var responseText = JSON.parse(xhr1.responseText)
-          if(responseText.status == 'SUCCESS'){
+          var responseText = JSON.parse(xhr1.responseText);
+          if (responseText.status == 'SUCCESS') {
             console.log('success');
             var x = document.getElementById('PopUpRecording');
-          x.innerHTML = 'Password changed...';
-          x.className = 'show';
-          setTimeout(function() {
-            x.className = x.className.replace('show', '');
-          }, 3000);
-          } 
-          else{
+            x.innerHTML = 'Password changed...';
+            x.className = 'show';
+            setTimeout(function() {
+              x.className = x.className.replace('show', '');
+            }, 3000);
+          } else {
             console.log('fail');
           }
         };
@@ -633,11 +632,14 @@
           console.log(titleBar.value);
           var xhr = new XMLHttpRequest();
           var data = {
-            title: titleBar.value,
+            title: titleBar.value.toString(),
             id: transactionID.value,
             keywords: ''
           };
+          console.log('before jeson' + data);
+
           data = JSON.stringify(data);
+          console.log('after json' + data);
           xhr.open(
             'POST',
             'https://webdev.cse.buffalo.edu:3000/removekey',
