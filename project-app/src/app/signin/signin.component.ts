@@ -48,7 +48,7 @@ export class SigninComponent implements OnInit {
           this.router.navigate(['/landing']);
         }
         else if(data['status'] == 'FAIL'){
-          alert(data.toString());
+          console.log(data['status']);
 
         }
       })

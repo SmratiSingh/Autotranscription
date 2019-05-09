@@ -330,7 +330,7 @@
         ></textarea>
       </div>
       <div
-        class="transcriptDisplayDiv d-flex scrollable"
+        class="transcriptDisplayDiv d-flex scrollable" id = "editTrans"
         style="padding:1%; width:96%; height:35%; margin-top:2%; margin-bottom:1%; display:inline-block; position: relative; background-color:white;text-align: left; overflow-y:auto; margin-right:20px; margin-left:20px;"
       ></div>
       <div
@@ -338,8 +338,9 @@
         style="display:flex; width:100%; height:47%; justify-content: space-around;"
       >
         <div
-          class="keywordsDisplayDiv scrollable"
-          style="display:flex; margin-top:1%; width:47%;background-color: white; height: 95%;overflow-y:auto;"
+          class="keywordsDisplayDiv gridContainer scrollable" id = "editKey"
+          style="display:flex; margin-top:1%; width:47%;background-color: white; height: 95%;overflow-y:auto; 
+          display:grid; grid-template-columns: auto auto auto"
         ></div>
         <div
           class="sentimentAndButtonsDiv"
@@ -352,13 +353,13 @@
             <div class="Sdisplay" style="display:flex; margin-left:40px;">
               <p class="Flood">Sentiment:</p>
               <p class="Flood" id="FetchedSentiment" style="margin-left:20px;">
-                kjhgfhjgf
+                
               </p>
             </div>
             <div class="Ddisplay" style="display:flex;  margin-left:30px;">
-              <p class="Flood">Domain:</p>
-              <p class="Flood" id="FetchedDomian" style="margin-left:20px;">
-                kkhjgfd
+              <p class="Flood">Date:</p>
+              <p class="Flood" id="FetchedDate" style="margin-left:20px;">
+                
               </p>
             </div>
           </div>
