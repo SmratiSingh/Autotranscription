@@ -13,12 +13,14 @@ app.use(bodyParser.json());
 app.use(express.static(__dirname))
 app.use(bodyParser.urlencoded({ extended: true })); 
 console.log(__dirname)
-// var key = fs.readFileSync(path.resolve('/etc/pki/tls/private/webdev.key'));
-// var cert = fs.readFileSync(path.resolve(' /etc/pki/tls/certs/webdev_cse_buffalo_edu_cert.cer'));
-// var options = {
-//     key: key,
-//     cert: cert
-//   };
+// var key = fs.readFileSync(path.resolve('./src/app/landing/server.key'));
+// var cert = fs.readFileSync(path.resolve('./src/app/landing/server.crt'));
+var key = fs.readFileSync(path.resolve('/etc/pki/tls/private/webdev.key'));
+var cert = fs.readFileSync(path.resolve('/etc/pki/tls/certs/webdev_cse_buffalo_edu_cert.cer'));
+var options = {
+    key: key,
+    cert: cert
+  };
 
 app.use(function (req, res, next) {        
     res.setHeader('Access-Control-Allow-Origin', '*');    
@@ -316,6 +318,6 @@ app.post('/changepassword', function(req, res){
 
 });
 
-app.listen(3000)
-// var httpsServer = https.createServer(options, app);
-// httpsServer.listen(3000);
+// app.listen(3000)
+var httpsServer = https.createServer(options, app);
+httpsServer.listen(3000);
