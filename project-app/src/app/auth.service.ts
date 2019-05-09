@@ -30,8 +30,8 @@ export class AuthService {
     this.username = user.username;
     sessionStorage.setItem('isLoggedIn','true');
     sessionStorage.setItem('username',user.username);
-    sessionStorage.setItem('firstName',user.firstName);
-          sessionStorage.setItem('lastName',user.lastName);
+    sessionStorage.setItem('firstName',user.first_name);
+    sessionStorage.setItem('lastName',user.last_name);
     // return this.http.post('https://localhost:3000/signup', user).map((response: Response) =>response.json())    
     return this.http.post('https://webdev.cse.buffalo.edu:3000/signup', user).map((response: Response) =>response.json());            
     // return this.http.post('http://stark.cse.buffalo.edu:3000/signup', user).map((response: Response) =>response.json());              
