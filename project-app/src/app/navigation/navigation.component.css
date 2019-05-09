@@ -97,6 +97,8 @@ flexRed img{
     background-color:rgb(41, 68, 68);
     visibility: hidden;
     z-index: 1;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
   } 
   .ProfileFlex{
     display:flex;
@@ -121,7 +123,7 @@ p span{
 }
 #data{
     color:rgb(156, 184, 184);
-    font-size:20px;
+    font-size:18px;
     font-style: bold;
     
 }
@@ -141,13 +143,15 @@ p span{
     z-index: 1;
     display: flex;
     flex-direction: column;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 
 }
 .domainName{
     background-color:rgb(24, 43, 43);
     color: white;
     font-size: 23px;
-    color: #6e8181;
+    color:rgb(156, 184, 184);
     font-style: italic;
     margin-bottom: 5px;
     margin-right: 20px;
@@ -185,6 +189,8 @@ p span{
     background-color:rgb(41, 68, 68);
     visibility: hidden;
     z-index: 1;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 
 }
 .Dbody{
@@ -245,6 +251,8 @@ p span{
     background-color:rgb(41, 68, 68);
     visibility: hidden;
     z-index: 1;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 
 }
    .autos{
@@ -433,7 +441,7 @@ p span{
     margin: 225px 300px 300px 550px;
     padding :5px;
     width: 300px;
-    height: 340px;
+    height: 240px;
     background-color:rgb(63, 94, 94);
     visibility: hidden;
     z-index: 1;
@@ -516,7 +524,7 @@ p span{
     right: 0;
     bottom: 0;
     left: 0;
-    margin: 100px 100px 100px 200px;
+    margin: 100px 100px 100px 300px;
     padding :5px;
     width: 940px;
     height: 640px;
@@ -564,6 +572,10 @@ a.aa:hover{
 
 a:link {
     text-decoration: none;
+  }
+
+  .lightColor{
+    background-color:rgb(41, 68, 68);
   }
 
 

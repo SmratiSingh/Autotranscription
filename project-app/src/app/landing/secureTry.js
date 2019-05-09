@@ -266,7 +266,7 @@ app.post('/history', function(req, res){
         console.log("Array length:");
         console.log(result_list.length);
         for (var i = 0; i < result_list.length; i++){
-            result_list[i].keywords = result_list[i].keywords.split(",").slice(0, 3).join(",");
+            result_list[i].keywords = result_list[i].keywords.split(",").slice(0, 2).join(",");
             // result_list[i]["keywords"] = result_list[i]["keywords"].split(",").slice(0, 3).join(",");
         }
         return res.status(200).json({

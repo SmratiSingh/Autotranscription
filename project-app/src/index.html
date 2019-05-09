@@ -138,7 +138,7 @@
 
       //uploadshow
 
-      function uploadshow() {
+      function uploadShow() {
         document.getElementById('playForm').style.visibility = 'visible';
       }
 
@@ -149,6 +149,7 @@
         document.getElementById('oldPass').innerHTML = '';
         document.getElementById('newPass').innerHTML = '';
         document.getElementById('changePassForm').style.visibility = 'visible'; //change ID to changePassForm
+        document.getElementById('FlexSgreen').style.visibility = 'hidden';
       }
       //DB call for old and new pass
       function CPass() {
@@ -196,6 +197,7 @@
       }
       // add id of the pop up form
 
+<<<<<<< HEAD
       function pushHistory(transID) {
         console.log('tarnsid '+ transID);
         var viewForm = document.getElementById('displayForm1');
@@ -283,6 +285,13 @@
         xhr.onreadystatechange = function() {
           console.log('Save status: ' + xhr.responseText);
         };
+=======
+      function pushHistory() {
+        closeNav();
+        
+        document.getElementById('displayForm1').style.visibility = 'visible';
+        document.getElementById('FlexSgreenH').style.visibility = 'hidden';
+>>>>>>> 127ebb06085bccfa2c90e571e1b064dd11a88a22
       }
 
       function stopRecord() {
@@ -502,21 +511,21 @@
             // console.log(entry['_id']);
             hList.innerHTML +=
               `
-               <div class="item">
-              <div class="right">
-                <div class="filename">
-                  <span id="data" style="color: rgb(156, 184, 184);">` +
+               <div class="item" style="display:flex; flex-direction:row; justify-content:space-around;">
+              <div class="right"  style="display:flex; flex-direction:column;width:50%;">
+                <div class="filename" style="display:flex; width:50%;">
+                  <span id="data" style="color: rgb(156, 184, 184); font-size:16px;">` +
               entry['title'] +
               `</span>
                 </div>
-                <div class="keywords">
-                  <span id="words" style="color: rgb(156, 184, 184);">` +
+                <div class="keywords" style="display:flex; width:50%;  margin-left:5px; text-align:center;">
+                  <span id="words" style="color: rgb(156, 184, 184);   text-align: center;">` +
               entry['keywords'] +
               `</span>
                 </div>
               </div>
-              <div class="left">
-                <div class="fileLink">
+              <div class="left" style="display:flex; flex-direction:column;width:50%;">
+                <div class="fileLink" style="display:flex;>
                   <span id="category">
                     <i
                       style="color: rgb(156, 184, 184); margin-left:5px;"
@@ -525,8 +534,15 @@
                     <a id="Flink" style="color: rgb(156, 184, 184);" onclick="pushHistory('`+ entry['_id']+`');">View</a>
                   </span>
                 </div>
+<<<<<<< HEAD
                 <div class="sentiment">
                   <span id="words" style="color: rgb(156, 184, 184);">`+ entry['sentiment']+`</span>
+=======
+                <div class="sentiment" style="display:flex;>
+                  <span id="words" style="color: rgb(156, 184, 184); font-size: 12px;
+    font-style: italic;
+    text-align: left;">Positive</span>
+>>>>>>> 127ebb06085bccfa2c90e571e1b064dd11a88a22
                 </div>
               </div>
             </div>
@@ -605,6 +621,10 @@
         document.getElementById('askTitleForm').style.visibility = 'visible';
       }
 
+      function closeFlexD(){
+        closeNav();
+        document.getElementById('FlexSgreenD').style.visibility="hidden"; 
+      }
       /*save pop up thing*/
 
       function savePopup() {
@@ -621,8 +641,56 @@
       function ClosePopform() {
         document.getElementById('saveForm').style.visibility = 'hidden';
         document.getElementById('askTitleForm').style.visibility = 'hidden';
+        document.getElementById('playForm').style.visibility = 'hidden';
         getKeywords();
       }
+
+      /*for uploading audio*/
+  
+	function start(){
+    const recognition = new webkitSpeechRecognition();
+    console.log('started');
+    console.log('test' + upload.files[0]);
+		var path = upload.files[0].name;
+		console.log(path);
+		
+		
+		
+
+		const audio = new Audio();
+
+		recognition.continuous = true;
+		recognition.interimResults = true;
+		recognition.onresult = function(event) {
+		  if (event.results[0].isFinal) {
+			// do stuff with `event.results[0][0].transcript`
+			console.log(event.results[0][0].transcript);
+			recognition.stop();
+		  }
+		}
+
+		recognition.onaudiostart = e => {
+		  console.log("audio capture started");
+		}
+
+		recognition.onaudioend = e => {
+		  console.log("audio capture ended");
+		}
+
+		audio.oncanplay = () => {
+		  recognition.start();
+		  audio.play();
+		}
+
+		audio.src = path;
+	}
+
+
+
+
+
+
+
     </script>
 
     <script>
@@ -638,14 +706,17 @@
         state = 'closed';
         Ptoggle();
         document.getElementById('FlexSgreen').style.visibility = 'visible';
-        document.getElementById('p').style.backgroundColor = 'rgb(41, 68, 68)';
+        var ele = document.getElementById('p');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
       }
       function closeL() {
         //closeNav();
         document.getElementById('FlexSgreen').style.visibility = 'hidden';
-        if (document.getElementById('p').onmouseout) {
-          document.getElementById('p').style.backgroundColor = 'rgb(47,79,79)';
-        }
+        var ele = document.getElementById('p');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
+        //document.getElementById('p').style.backgroundColor = 'rgb(47,79,79)';
       }
 
       /* Domain functions */
@@ -657,22 +728,29 @@
       function closeLD() {
         //closeNav();
         document.getElementById('FlexSgreenD').style.visibility = 'hidden';
-        if (document.getElementById('d').onmouseout) {
-          document.getElementById('d').style.backgroundColor = 'rgb(47,79,79)';
-        }
+        var ele = document.getElementById('d');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
+
+        //document.getElementById('d').style.backgroundColor = 'rgb(47,79,79)';
       }
       function stayD() {
         state = 'closed';
         Dtoggle();
         document.getElementById('FlexSgreenD').style.visibility = 'visible';
-        document.getElementById('d').style.backgroundColor = 'rgb(41, 68, 68)';
+        var ele = document.getElementById('d');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
       }
       function displayForm() {
         //first clears the form on click create new form
+        closeNav();
+        document.getElementById('FlexSgreenD').style.visibility='hidden';
 
         document.getElementById('DomainForm').style.visibility = 'visible';
         document.getElementById('newDName').value = '';
         document.getElementById('exampleFormControlTextarea1').value = '';
+        document.getElementById('FlexSgreenD').style.visibility='hidden';
       }
       function CloseDform() {
         document.getElementById('DomainForm').style.visibility = 'hidden';
@@ -691,15 +769,18 @@
       function closeLH() {
         //closeNav();
         document.getElementById('FlexSgreenH').style.visibility = 'hidden';
-        if (document.getElementById('h').onmouseout) {
-          document.getElementById('h').style.backgroundColor = 'rgb(47,79,79)';
-        }
+        var ele = document.getElementById('h');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
+        //document.getElementById('h').style.backgroundColor = 'rgb(47,79,79)';
       }
       function stayH() {
         state = 'closed';
         Htoggle();
         document.getElementById('FlexSgreenH').style.visibility = 'visible';
-        document.getElementById('h').style.backgroundColor = 'rgb(41, 68, 68)';
+        var ele = document.getElementById('h');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
       }
 
       /* Settings functions */
@@ -711,15 +792,19 @@
       function closeLS() {
         //closeNav();
         document.getElementById('FlexSgreenS').style.visibility = 'hidden';
-        if (document.getElementById('s').onmouseout) {
-          document.getElementById('s').style.backgroundColor = 'rgb(47,79,79)';
-        }
+        var ele = document.getElementById('s');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
+
+        // document.getElementById('s').style.backgroundColor = 'rgb(47,79,79)';
       }
       function stayS() {
         state = 'closed';
         Stoggle();
         document.getElementById('FlexSgreenS').style.visibility = 'visible';
-        document.getElementById('s').style.backgroundColor = 'rgb(41, 68, 68)';
+        var ele = document.getElementById('s');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
       }
       var timeoutId2;
       function autoSave() {
