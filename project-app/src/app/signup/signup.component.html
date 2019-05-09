@@ -26,7 +26,8 @@
                 [(ngModel)]="name"
               />
               <label for="materialRegisterFormEmail" style="color: teal;"
-                >&nbsp;&nbsp;&nbsp;&nbsp;First Name</label
+                >&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color:red;">*</strong
+                >First Name</label
               >
             </div>
             <!--Last name -->
@@ -40,7 +41,8 @@
                 [(ngModel)]="Lname"
               />
               <label for="materialRegisterFormLEmail" style="color: teal;"
-                >&nbsp;&nbsp;&nbsp;&nbsp;Last Name</label
+                >&nbsp;&nbsp;&nbsp;&nbsp;<strong style="color:red;">*</strong
+                >Last Name</label
               >
             </div>
           </div>
@@ -55,7 +57,7 @@
               [(ngModel)]="username"
             />
             <label for="materialRegisterFormFirstName" style="color: teal;"
-              >User name</label
+              ><strong style="color:red;">*</strong>User name</label
             >
           </div>
         </div>
@@ -73,7 +75,7 @@
           [(ngModel)]="new_password"
         />
         <label for="materialRegisterFormPassword" style="color: teal;"
-          >Password</label
+          ><strong style="color:red;">*</strong>Password</label
         >
       </div>
       <div class="md-form mt-0">
@@ -87,7 +89,7 @@
           [(ngModel)]="re_password"
         />
         <label for="materialRegisterFormCPassword" style="color: teal;"
-          >Confirm Password</label
+          ><strong style="color:red;">*</strong>Confirm Password</label
         >
       </div>
 
