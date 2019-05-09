@@ -129,7 +129,7 @@
           stopBtn.style.backgroundColor = '#dcdfe5';
           if (!keyGenFlag) {
             keyGenFlag = true;
-            getKeywords();
+            // getKeywords();
           }
         };
       }
@@ -185,9 +185,15 @@ document.getElementById('playForm').style.visibility='visible';
         xhr1.send(data);
         xhr1.onreadystatechange = function() {
           // console.log('Save status: ' + xhr1.responseText);
-          var responseText = JSON.parse(xhr.responseText)
+          var responseText = JSON.parse(xhr1.responseText)
           if(responseText.status == 'SUCCESS'){
             console.log('success');
+            var x = document.getElementById('PopUpRecording');
+          x.innerHTML = 'Password changed...';
+          x.className = 'show';
+          setTimeout(function() {
+            x.className = x.className.replace('show', '');
+          }, 3000);
           } 
           else{
             console.log('fail');
@@ -215,10 +221,10 @@ document.getElementById('playForm').style.visibility='visible';
         }, 3000);
         /*popup ends*/
         recognition.stop();
-        if (!keyGenFlag) {
-          keyGenFlag = true;
-          getKeywords();
-        }
+        // if (!keyGenFlag) {
+        //   keyGenFlag = true;
+        //   getKeywords();
+        // }
       }
 
       function getKeywords() {
@@ -390,6 +396,7 @@ document.getElementById('playForm').style.visibility='visible';
         document.getElementById('askTitleForm').style.visibility = 'hidden';
         document.getElementById('titleBar').value = tmpTitle.value;
         document.getElementById('tmpTitle').value = '';
+        getKeywords();
       }
       function printDomain(domainToPrint) {
         console.log(domainToPrint);
@@ -535,6 +542,7 @@ document.getElementById('playForm').style.visibility='visible';
       function ClosePopform() {
         document.getElementById('saveForm').style.visibility = 'hidden';
         document.getElementById('askTitleForm').style.visibility = 'hidden';
+        getKeywords();
       }
     </script>
     
