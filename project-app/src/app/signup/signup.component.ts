@@ -20,6 +20,8 @@ export class SignupComponent implements OnInit {
   }
 
   addUser(){
+    if(this.username==""||this.new_password==""||this.re_password==""||this.Lname==""||this.name==""){
+      return 0;}
 
     var usr = new NewUser();
 
@@ -28,7 +30,7 @@ export class SignupComponent implements OnInit {
     usr.re_password = sha256(this.re_password);
     usr.first_name = this.name;
     usr.last_name = this.Lname;
-
+    console.log(usr);
     this.auth.addUser(usr).subscribe(data => {
         if(data['status'] == 'SUCCESS'){
           // this.ngOnInit();
