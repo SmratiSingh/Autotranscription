@@ -106,7 +106,7 @@ module.exports.addDomain = function(rows, callback) {
 module.exports.checkDomain = function(domain, callback) {
     MongoClient.connect(mongo_url, function(err, db) {
         var dbo = db.db(db_name);
-        dbo.collection(keywords_table).find({"Domain":domain}, function(err, result) {
+        dbo.collection(keywords_table).findOne({"Domain":domain}, function(err, result) {
             if (err) {
                 // res.sendStatus(500);
                 console.log(err);
