@@ -14,6 +14,7 @@ export class SignupComponent implements OnInit {
   public Lname: string = "";
   public new_password: string = "";
   public re_password: string = "";
+  public errorMsg: string = "";
   constructor(private router: Router, private auth: AuthService) { }
 
   ngOnInit() {
@@ -21,6 +22,7 @@ export class SignupComponent implements OnInit {
 
   addUser(){
     if(this.username==""||this.new_password==""||this.re_password==""||this.Lname==""||this.name==""){
+      this.errorMsg = "Plese enter all fields.";
       return 0;}
 
     var usr = new NewUser();
