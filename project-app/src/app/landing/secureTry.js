@@ -217,10 +217,10 @@ app.post('/removekey', function(req, res) {
     mongo.getSession(id, function(results) {
         
         
-        if(keyword == null || keyword == "") {
+        if(keyword != null && keyword != "") {
             results["keywords"] = results["keywords"].replace(keyword, "").replace(",,", ",");
         }
-        if(title == null || title == "") {
+        if(title != null && title != "") {
             results["title"] = title;
         }
 
