@@ -62,7 +62,7 @@
       recognition.lang = 'en-US';
       var statusResp = '';
       var keywordMap = {};
-
+      var tid;
       function transcribeSpeech() {
         document.getElementById('titleBar').value = '';
 
@@ -196,8 +196,93 @@
       }
       // add id of the pop up form
 
-      function pushHistory() {
-        document.getElementById('displayForm1').style.visibility = 'visible';
+      function pushHistory(transID) {
+        console.log('tarnsid '+ transID);
+        var viewForm = document.getElementById('displayForm1');
+        data = {id : transID};
+        data = JSON.stringify(data);
+        var xhr1 = new XMLHttpRequest();
+        xhr1.open(
+          'POST',
+          'https://webdev.cse.buffalo.edu:3000/getitem',
+          true
+        );
+        // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
+        xhr1.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+
+        xhr1.send(data);
+        xhr1.onreadystatechange = function() {
+            var reply = JSON.parse(xhr1.responseText);
+            console.log(reply);
+            var rtitle = reply.results.title;
+            var rtext = reply.results.transcript;
+            var rsentiment = reply.results.sentiment;
+            var rkeywords = reply.results.keywords;
+            var newKeys = rkeywords.split(',');
+            var timestamp = new Date(reply.results.timestamp);
+            titleEditable.innerHTML = rtitle;
+            editTrans.innerHTML = rtext;
+            FetchedSentiment.innerHTML = rsentiment;
+            viewForm.style.visibility = 'visible';
+            FetchedDate.innerHTML = timestamp;
+            
+            statusResp = transID.toString();
+            for(var k =0;k <newKeys.length ; k++){
+              var wrap = document.createElement('div');
+              wrap.id = 'key' + k.toString();
+              document.getElementById('editKey').appendChild(wrap);
+
+                wrap.innerHTML += 
+                `<div
+        class="bubble scrollable-content",
+        
+        style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); height: fit-content; background:darkslategray;
+        position: 'relative'; margin-left: 5%; margin-top: 5%; width: fit-content;"
+      >
+        <p
+          style="font-style:medium; color:white; margin-right:10px; padding-top:7px;padding-left:5px; padding-bottom: 1px;"
+        >
+          ` +
+                newKeys[k] +
+                `
+        </p>
+        <i 
+          onclick="popBubble2('key` +
+                k.toString() +
+                `','`+ transID+`');",
+          class="fas fa-window-close fa-2x",
+          style="padding-top:5px; color:white; background:darkslategray;margin-right:10px;"
+          
+        ></i>
+      </div>
+               `;
+            }
+             
+        }
+      }
+      function popBubble2(keyID,tid) { 
+        console.log('key to pop is: ' + keyID.toString());
+        keyValue = keywordMap[keyID];
+        console.log('keyvalue is: ' + keyValue);
+        var titleValue = document.getElementById('titleBar').value;
+        console.log('title is: ' + titleValue);
+        var toRemove = document.getElementById(keyID);
+        toRemove.parentNode.removeChild(toRemove);
+        var xhr = new XMLHttpRequest();
+        var data = { keyword: keyValue, title: titleValue, id:  tid};
+        data = JSON.stringify(data);
+        xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/removekey', true);
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+        xhr.send(data);
+        xhr.onreadystatechange = function() {
+          console.log('Save status: ' + xhr.responseText);
+        };
       }
 
       function stopRecord() {
@@ -344,7 +429,7 @@
         var toRemove = document.getElementById(keyID);
         toRemove.parentNode.removeChild(toRemove);
         var xhr = new XMLHttpRequest();
-        var data = { keyword: keyValue, title: titleValue, id: statusResp };
+        var data = { keyword: keyValue, title: titleValue, id:  statusResp};
         data = JSON.stringify(data);
         xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/removekey', true);
         xhr.setRequestHeader(
@@ -397,7 +482,7 @@
         domainOut.innerHTML = domainToPrint;
         Togglslidemenu();
       }
-
+      
       function loadHistory() {
         var xhr = new XMLHttpRequest();
         var data = { username: document.getElementById('username').value };
@@ -414,7 +499,7 @@
           hList.innerHTML = '';
           for (var i = 0; i < resList.length; i++) {
             var entry = resList[i];
-
+            // console.log(entry['_id']);
             hList.innerHTML +=
               `
                <div class="item">
@@ -437,11 +522,11 @@
                       style="color: rgb(156, 184, 184); margin-left:5px;"
                       class="fas fa-file fa"
                     ></i>
-                    <a id="Flink" style="color: rgb(156, 184, 184);" onclick="pushHistory();">View</a>
+                    <a id="Flink" style="color: rgb(156, 184, 184);" onclick="pushHistory('`+ entry['_id']+`');">View</a>
                   </span>
                 </div>
                 <div class="sentiment">
-                  <span id="words" style="color: rgb(156, 184, 184);">Positive</span>
+                  <span id="words" style="color: rgb(156, 184, 184);">`+ entry['sentiment']+`</span>
                 </div>
               </div>
             </div>
