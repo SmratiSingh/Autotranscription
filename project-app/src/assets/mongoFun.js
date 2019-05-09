@@ -106,7 +106,7 @@ module.exports.addDomain = function(rows, callback) {
 module.exports.checkDomain = function(domain, callback) {
     MongoClient.connect(mongo_url, function(err, db) {
         var dbo = db.db(db_name);
-        dbo.collection(keywords_table).find({"Domain":domain}, function(err, result) {
+        dbo.collection(keywords_table).findOne({"Domain":domain}, function(err, result) {
             if (err) {
                 // res.sendStatus(500);
                 console.log(err);
@@ -213,7 +213,7 @@ module.exports.updatePassword = function(username, old_password, new_password, c
 
     MongoClient.connect(mongo_url, function(err, db) {
         var dbo = db.db(db_name);
-        dbo.collection(transcripts_table).updateOne({"username":username, "password":old_password}, {$set:{"password":new_password}}, function(err, result){
+        dbo.collection(user_table).updateOne({"username":username, "password":old_password}, {$set:{"password":new_password}}, function(err, result){
             if (err) {
                 console.log(err);
             }

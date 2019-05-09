@@ -148,6 +148,8 @@
         document.getElementById('changePassForm').style.visibility = 'hidden';
         var oldP = document.getElementById('oldPass').value;
         var newP = document.getElementById('newPass').value;
+        document.getElementById('oldPass').value='';
+        document.getElementById('newPass').value='';
         var uname1 = username.value;
         console.log('check pass ' + newP);
         var xhr1 = new XMLHttpRequest();
@@ -432,6 +434,7 @@
         document.getElementById('DomainForm').style.visibility = 'hidden';
         var dname = document.getElementById('newDName');
         var newKey = document.getElementById('newKeys');
+        document.getElementById('newKeys').value='';
         var xhr = new XMLHttpRequest();
         var data = { domain: dname.value, keywords: newKey.value };
         data = JSON.stringify(data);
@@ -561,6 +564,7 @@
       function CloseDform() {
         document.getElementById('DomainForm').style.visibility = 'hidden';
         document.getElementById('changePassForm').style.visibility = 'hidden';
+        document.getElementById('newKeys').value='';
       }
 
       /* History functions */
