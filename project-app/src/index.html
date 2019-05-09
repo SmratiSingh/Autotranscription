@@ -145,6 +145,7 @@
       //DB call for old and new pass
       function CPass() {
         //var sha256 = require('js-sha256').sha256;
+        document.getElementById('changePassForm').style.visibility='hidden'
         var oldP = document.getElementById('oldPass').value;
         var newP = document.getElementById('newPass').value;
         var uname1 = username.value;
@@ -429,6 +430,7 @@
       }
 
       function saveDomain() {
+        document.getElementById('DomainForm').style.visibility = 'hidden';
         var dname = document.getElementById('newDName');
         var newKey = document.getElementById('newKeys');
         var xhr = new XMLHttpRequest();
