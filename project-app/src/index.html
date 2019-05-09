@@ -138,7 +138,7 @@
 
       //uploadshow
 
-      function uploadshow() {
+      function uploadShow() {
         document.getElementById('playForm').style.visibility = 'visible';
       }
 
@@ -149,6 +149,7 @@
         document.getElementById('oldPass').innerHTML = '';
         document.getElementById('newPass').innerHTML = '';
         document.getElementById('changePassForm').style.visibility = 'visible'; //change ID to changePassForm
+        document.getElementById('FlexSgreen').style.visibility = 'hidden';
       }
       //DB call for old and new pass
       function CPass() {
@@ -197,6 +198,7 @@
       // add id of the pop up form
 
       function pushHistory() {
+        
         document.getElementById('displayForm1').style.visibility = 'visible';
       }
 
@@ -536,8 +538,56 @@
       function ClosePopform() {
         document.getElementById('saveForm').style.visibility = 'hidden';
         document.getElementById('askTitleForm').style.visibility = 'hidden';
+        document.getElementById('playForm').style.visibility = 'hidden';
         getKeywords();
       }
+
+      /*for uploading audio*/
+  
+	function start(){
+    const recognition = new webkitSpeechRecognition();
+    console.log('started');
+    console.log('test' + upload.files[0]);
+		var path = upload.files[0].name;
+		console.log(path);
+		
+		
+		
+
+		const audio = new Audio();
+
+		recognition.continuous = true;
+		recognition.interimResults = true;
+		recognition.onresult = function(event) {
+		  if (event.results[0].isFinal) {
+			// do stuff with `event.results[0][0].transcript`
+			console.log(event.results[0][0].transcript);
+			recognition.stop();
+		  }
+		}
+
+		recognition.onaudiostart = e => {
+		  console.log("audio capture started");
+		}
+
+		recognition.onaudioend = e => {
+		  console.log("audio capture ended");
+		}
+
+		audio.oncanplay = () => {
+		  recognition.start();
+		  audio.play();
+		}
+
+		audio.src = path;
+	}
+
+
+
+
+
+
+
     </script>
 
     <script>
@@ -591,10 +641,13 @@
       }
       function displayForm() {
         //first clears the form on click create new form
+        closeNav();
+        document.getElementById('FlexSgreenD').style.visibility='hidden';
 
         document.getElementById('DomainForm').style.visibility = 'visible';
         document.getElementById('newDName').value = '';
         document.getElementById('exampleFormControlTextarea1').value = '';
+        document.getElementById('FlexSgreenD').style.visibility='hidden';
       }
       function CloseDform() {
         document.getElementById('DomainForm').style.visibility = 'hidden';
