@@ -18,22 +18,25 @@
           type="email"
           id="materialLoginFormEmail"
           class="form-control"
-          name = "emailField"
-          mdbInput ng-model="email" [(ngModel)] = 'email'
-          
+          name="emailField"
+          mdbInput
+          ng-model="email"
+          [(ngModel)]="email"
         />
-        <label for="materialLoginFormEmail" style="color: teal;">Username</label>
+        <label for="materialLoginFormEmail" style="color: teal;"
+          >Username</label
+        >
       </div>
-        
+
       <!-- Password -->
       <div class="md-form">
         <input
           type="password"
           id="materialLoginFormPassword"
           class="form-control"
-          name = "passField"
-          mdbInput [(ngModel)] = 'password'
-          
+          name="passField"
+          mdbInput
+          [(ngModel)]="password"
         />
         <label for="materialLoginFormPassword" style="color: teal;"
           >Password</label
@@ -57,11 +60,14 @@
         class="my-4 waves-effect z-depth-0"
         mdbWavesEffect
         type="submit"
-        (keyup.enter) = "authUser()"
-        (click) = "authUser()"
+        (keyup.enter)="authUser()"
+        (click)="authUser()"
       >
         Sign in
       </button>
+      <div>
+        <p style="color: red; visibility: hidden;">Sign In Failed!</p>
+      </div>
     </form>
     <!-- Form -->
   </mdb-card-body>

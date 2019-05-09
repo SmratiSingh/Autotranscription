@@ -58,7 +58,6 @@
               </a>
             </div>
 
-
             <!--menu item History-->
             <div class="flexGreen">
               <a
@@ -235,6 +234,7 @@
           id="closeFbutton"
           class="fas fa-window-close fa-2x"
           style="background-color:transparent;"
+          upload
           onclick="CloseDform();"
         ></i>
       </div>
@@ -430,26 +430,23 @@
       </div>
     </div>
 
-
-
     <!--hidden form to upload and play-->
     <div id="playForm">
       <div>
-          <input type="file" id='upload' onclick="start();"/>
+        <input type="file" id="upload" onclick="start();" />
       </div>
-        <div class="Cross">
-          <button class="SaveButtonSection" onclick="ClosePopform();">
-            Close
-          </button>
-        </div>
-  
-        <div class="SaveSection">
-          <button class="SaveButtonSection" onclick="start();">
-            play
-          </button>
-        
+      <div class="Cross">
+        <button class="SaveButtonSection" onclick="ClosePopform();">
+          Close
+        </button>
       </div>
-</div>
+
+      <div class="SaveSection">
+        <button class="SaveButtonSection" onclick="start();">
+          play
+        </button>
+      </div>
+    </div>
     <!--hidden form for ask for save-->
     <div id="askTitleForm">
       <div>
