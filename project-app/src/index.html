@@ -423,13 +423,13 @@
               `
                <div class="item" style="display:flex; flex-direction:row; justify-content:space-around;">
               <div class="right"  style="display:flex; flex-direction:column;width:50%;">
-                <div class="filename" style="display:flex;">
-                  <span id="data" style="color: rgb(156, 184, 184);">` +
+                <div class="filename" style="display:flex; width:50%;">
+                  <span id="data" style="color: rgb(156, 184, 184); font-size:16px;">` +
               entry['title'] +
               `</span>
                 </div>
-                <div class="keywords" style="display:flex; justify-content:space-around;">
-                  <span id="words" style="color: rgb(156, 184, 184);">` +
+                <div class="keywords" style="display:flex; width:50%;  margin-left:5px; text-align:center;">
+                  <span id="words" style="color: rgb(156, 184, 184);   text-align: center;">` +
               entry['keywords'] +
               `</span>
                 </div>
@@ -445,7 +445,9 @@
                   </span>
                 </div>
                 <div class="sentiment" style="display:flex;>
-                  <span id="words" style="color: rgb(156, 184, 184);">Positive</span>
+                  <span id="words" style="color: rgb(156, 184, 184); font-size: 12px;
+    font-style: italic;
+    text-align: left;">Positive</span>
                 </div>
               </div>
             </div>
