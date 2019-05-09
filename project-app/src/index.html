@@ -134,6 +134,42 @@
         };
       }
 
+
+/*upload file and transcribe*/
+const recognition = new webkitSpeechRecognition();
+    function uploadTrans(){         
+		console.log('started');
+		var path = uploadTemp.files[0].name;
+		console.log(path);
+
+		const audio = new Audio();
+
+		recognition.continuous = true;
+		recognition.interimResults = true;
+		recognition.onresult = function(event) {
+		  if (event.results[0].isFinal) {
+			// do stuff with `event.results[0][0].transcript`
+			console.log(event.results[0][0].transcript);
+			recognition.stop();
+		  }
+		}
+
+		recognition.onaudiostart = e => {
+		  console.log("audio capture started");
+		}
+
+		recognition.onaudioend = e => {
+		  console.log("audio capture ended");
+		}
+
+		audio.oncanplay = () => {
+		  recognition.start();
+		  audio.play();
+		}
+
+		audio.src = path;
+	}
+        
       //navbar pass change
       function changePass() {
         closeNav();
@@ -368,8 +404,8 @@
       }
       function saveTitleTemp() {
         document.getElementById('askTitleForm').style.visibility = 'hidden';
-        document.getElementById('titleBar').value = tempTitle.value;
-        document.getElementById('tempTitle').value = '';
+        document.getElementById('titleBar').value = tmpTitle.value;
+        document.getElementById('tmpTitle').value = '';
       }
       function printDomain(domainToPrint) {
         console.log(domainToPrint);
@@ -393,7 +429,7 @@
           hList.innerHTML = '';
           for (var i = 0; i < resList.length; i++) {
             var entry = resList[i];
-            var hTitle = entry['title'];
+            
 
             hList.innerHTML +=
               `
@@ -401,7 +437,7 @@
               <div class="right">
                 <div class="filename">
                   <span id="data" style="color:#6e8181;">` +
-              hTitle +
+                      entry['title'] +
               `</span>
                 </div>
                 <div class="keywords">
@@ -421,7 +457,7 @@
                   </span>
                 </div>
                 <div class="sentiment">
-                  <span id="words" style="color: #6e8181">Positive</span>
+                  <span id="words" style="color: #6e8181">`+entry['sentiment']+`</span>
                 </div>
               </div>
             </div>
@@ -565,6 +601,8 @@
         document.getElementById('DomainForm').style.visibility = 'hidden';
         document.getElementById('changePassForm').style.visibility = 'hidden';
         document.getElementById('newKeys').value='';
+        document.getElementById('oldPass').value='';
+        document.getElementById('newPass').value='';
       }
 
       /* History functions */
