@@ -553,12 +553,16 @@
         state = 'closed';
         Ptoggle();
         document.getElementById('FlexSgreen').style.visibility = 'visible';
-        document.getElementById('p').style.backgroundColor = 'rgb(41, 68, 68)';
+        var ele = document.getElementById('p');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
       }
       function closeL() {
         //closeNav();
         document.getElementById('FlexSgreen').style.visibility = 'hidden';
-        document.getElementsByTagName(a);
+        var ele = document.getElementById('p');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
         //document.getElementById('p').style.backgroundColor = 'rgb(47,79,79)';
       }
 
@@ -571,6 +575,9 @@
       function closeLD() {
         //closeNav();
         document.getElementById('FlexSgreenD').style.visibility = 'hidden';
+        var ele = document.getElementById('d');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
 
         //document.getElementById('d').style.backgroundColor = 'rgb(47,79,79)';
       }
@@ -578,7 +585,9 @@
         state = 'closed';
         Dtoggle();
         document.getElementById('FlexSgreenD').style.visibility = 'visible';
-        document.getElementById('d').style.backgroundColor = 'rgb(41, 68, 68)';
+        var ele = document.getElementById('d');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
       }
       function displayForm() {
         //first clears the form on click create new form
@@ -604,14 +613,18 @@
       function closeLH() {
         //closeNav();
         document.getElementById('FlexSgreenH').style.visibility = 'hidden';
-
+        var ele = document.getElementById('h');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
         //document.getElementById('h').style.backgroundColor = 'rgb(47,79,79)';
       }
       function stayH() {
         state = 'closed';
         Htoggle();
         document.getElementById('FlexSgreenH').style.visibility = 'visible';
-        document.getElementById('h').style.backgroundColor = 'rgb(41, 68, 68)';
+        var ele = document.getElementById('h');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
       }
 
       /* Settings functions */
@@ -623,6 +636,9 @@
       function closeLS() {
         //closeNav();
         document.getElementById('FlexSgreenS').style.visibility = 'hidden';
+        var ele = document.getElementById('s');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
 
         // document.getElementById('s').style.backgroundColor = 'rgb(47,79,79)';
       }
@@ -630,7 +646,9 @@
         state = 'closed';
         Stoggle();
         document.getElementById('FlexSgreenS').style.visibility = 'visible';
-        document.getElementById('s').style.backgroundColor = 'rgb(41, 68, 68)';
+        var ele = document.getElementById('s');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
       }
       var timeoutId2;
       function autoSave() {

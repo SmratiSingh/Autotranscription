@@ -97,6 +97,8 @@ flexRed img{
     background-color:rgb(41, 68, 68);
     visibility: hidden;
     z-index: 1;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
   } 
   .ProfileFlex{
     display:flex;
@@ -141,6 +143,8 @@ p span{
     z-index: 1;
     display: flex;
     flex-direction: column;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 
 }
 .domainName{
@@ -185,6 +189,8 @@ p span{
     background-color:rgb(41, 68, 68);
     visibility: hidden;
     z-index: 1;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 
 }
 .Dbody{
@@ -245,6 +251,8 @@ p span{
     background-color:rgb(41, 68, 68);
     visibility: hidden;
     z-index: 1;
+    border-top-right-radius: 15px;
+    border-bottom-right-radius: 15px;
 
 }
    .autos{
@@ -564,6 +572,10 @@ a.aa:hover{
 
 a:link {
     text-decoration: none;
+  }
+
+  .lightColor{
+    background-color:rgb(41, 68, 68);
   }
 
 
