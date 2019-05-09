@@ -197,7 +197,6 @@
       }
       // add id of the pop up form
 
-<<<<<<< HEAD
       function pushHistory(transID) {
         console.log('tarnsid '+ transID);
         var viewForm = document.getElementById('displayForm1');
@@ -264,6 +263,10 @@
             }
              
         }
+        closeNav();
+        
+        document.getElementById('displayForm1').style.visibility = 'visible';
+        document.getElementById('FlexSgreenH').style.visibility = 'hidden';
       }
       function popBubble2(keyID,tid) { 
         console.log('key to pop is: ' + keyID.toString());
@@ -285,13 +288,6 @@
         xhr.onreadystatechange = function() {
           console.log('Save status: ' + xhr.responseText);
         };
-=======
-      function pushHistory() {
-        closeNav();
-        
-        document.getElementById('displayForm1').style.visibility = 'visible';
-        document.getElementById('FlexSgreenH').style.visibility = 'hidden';
->>>>>>> 127ebb06085bccfa2c90e571e1b064dd11a88a22
       }
 
       function stopRecord() {
@@ -539,15 +535,8 @@
                     <a id="Flink" style="color: rgb(156, 184, 184);" onclick="pushHistory('`+ entry['_id']+`');">View</a>
                   </span>
                 </div>
-<<<<<<< HEAD
                 <div class="sentiment">
                   <span id="words" style="color: rgb(156, 184, 184);">`+ entry['sentiment']+`</span>
-=======
-                <div class="sentiment" style="display:flex;>
-                  <span id="words" style="color: rgb(156, 184, 184); font-size: 12px;
-    font-style: italic;
-    text-align: left;">Positive</span>
->>>>>>> 127ebb06085bccfa2c90e571e1b064dd11a88a22
                 </div>
               </div>
             </div>
