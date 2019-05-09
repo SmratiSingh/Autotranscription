@@ -136,9 +136,10 @@
 
 
 /*upload file and transcribe*/
-const recognition = new webkitSpeechRecognition();
+
     function uploadTrans(){         
-		console.log('started');
+      const recognition = new webkitSpeechRecognition();
+      console.log('started');
 		var path = uploadTemp.files[0].name;
 		console.log(path);
 
@@ -207,7 +208,14 @@ const recognition = new webkitSpeechRecognition();
 
         xhr1.send(data);
         xhr1.onreadystatechange = function() {
-          console.log('Save status: ' + xhr1.responseText);
+          // console.log('Save status: ' + xhr1.responseText);
+          var responseText = JSON.parse(xhr.responseText)
+          if(responseText.status == 'SUCCESS'){
+            console.log('success');
+          } 
+          else{
+            console.log('fail');
+          }
         };
       }
       // add id of the pop up form
@@ -429,7 +437,6 @@ const recognition = new webkitSpeechRecognition();
           hList.innerHTML = '';
           for (var i = 0; i < resList.length; i++) {
             var entry = resList[i];
-            
 
             hList.innerHTML +=
               `
@@ -554,6 +561,7 @@ const recognition = new webkitSpeechRecognition();
         document.getElementById('askTitleForm').style.visibility = 'hidden';
       }
     </script>
+    
     <script>
       /* Profile functions */
       function Ptoggle() {
@@ -637,6 +645,28 @@ const recognition = new webkitSpeechRecognition();
         Stoggle();
         document.getElementById('FlexSgreenS').style.visibility = 'visible';
         document.getElementById('s').style.backgroundColor = 'rgb(41, 68, 68)';
+      }
+      var timeoutId2;
+      function autoSave(){
+        // console.log(titleBar.value);
+        clearTimeout(timeoutId2);
+        timeoutId2 = setTimeout(
+          function(){
+            console.log(titleBar.value);
+            var xhr = new XMLHttpRequest();
+            var data = { title: titleBar.innerHTML, id: transactionID.value, keywords:'' };
+            data = JSON.stringify(data);
+            xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/removekey', true);
+            xhr.setRequestHeader(
+              'Content-Type',
+              'application/x-www-form-urlencoded; charset=UTF-8'
+            );
+            xhr.send(data);
+            xhr.onreadystatechange = function() {
+              console.log('Save status: ' + xhr.responseText);
+            };
+
+        }, 750);
       }
       /* dummy function */
       function dummy() {}
