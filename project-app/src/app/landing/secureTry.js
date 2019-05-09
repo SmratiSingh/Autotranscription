@@ -301,7 +301,6 @@ app.post('/changepassword', function(req, res){
     // re_password = data.re_password;
 
     mongo.updatePassword(username, old_password, new_password, function(pass_result){
-        console.log(pass_result);
         if(pass_result["modifiedCount"] == 0) {
             return res.status(200).json({
                 status: 'FAIL',
