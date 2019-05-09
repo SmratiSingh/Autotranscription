@@ -360,6 +360,7 @@
             </button>
             <button
               id="ButtonS"
+              onclick="closeView();"
               style="margin-top:20px;margin-bottom: 20px; width:30%; border: thin; border-radius: 6%; color:white;background-color:rgba(47, 79, 79, 0.952);"
             >
               Close
@@ -407,29 +408,24 @@
         class="wraperdiv"
         style="padding:8%;display: flex; flex-direction: row; justify-content: space-around;"
       >
-        <div
-          class="wraperdiv"
-          style="padding:8%;display: flex; flex-direction: row; justify-content: space-around;"
-        >
-          <div class="Save" style="width:35%;">
-            <button
-              class="SaveButtonSection"
-              style="width: 100%;"
-              onclick="saveTitleTemp();"
-            >
-              Save
-            </button>
-          </div>
+        <div class="Save" style="width:35%;">
+          <button
+            class="SaveButtonSection"
+            style="width: 100%;"
+            onclick="saveTitleTemp();"
+          >
+            Save
+          </button>
+        </div>
 
-          <div class="Cross" style="width:35%;">
-            <button
-              class="SaveButtonSection"
-              style="width: 100%;"
-              onclick="ClosePopform();"
-            >
-              Close
-            </button>
-          </div>
+        <div class="Cross" style="width:35%;">
+          <button
+            class="SaveButtonSection"
+            style="width: 100%;"
+            onclick="ClosePopform();"
+          >
+            Close
+          </button>
         </div>
       </div>
     </div>
