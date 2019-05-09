@@ -178,6 +178,7 @@
 
       function stopRecord() {
         /*recording popup*/
+        askForTitle();
         var x = document.getElementById('PopUpRecordingE');
         x.className = 'show';
         setTimeout(function() {
@@ -426,11 +427,17 @@
         }
       }
 
+      /*ask for title */
+      function askForTitle(){
+        document.getElementById("askTitleForm").style.visibility='visible';
+      }
+
+
+
+
       /*save pop up thing*/
-      //conditions for checking the blank field is written does not work though
-      
-      
-      function savePopup(){  
+    
+        function savePopup(){  
         if(document.getElementById("final").innerHTML==""){
           //document.getElementById('saveForm').style.visibility='hidden';
 
@@ -443,6 +450,7 @@
 
       function ClosePopform(){
         document.getElementById('saveForm').style.visibility='hidden';
+        document.getElementById('askTitleForm').style.visibility='hidden';
       }
       
     </script>
