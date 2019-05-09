@@ -136,8 +136,9 @@
 
 
 /*upload file and transcribe*/
-const recognition = new webkitSpeechRecognition();
-    function uploadTrans(){         
+
+    function start(){     
+      const recognition = new webkitSpeechRecognition();    
 		console.log('started');
 		var path = uploadTemp.files[0].name;
 		console.log(path);
@@ -169,7 +170,15 @@ const recognition = new webkitSpeechRecognition();
 
 		audio.src = path;
 	}
-        
+      
+  //uploadshow
+
+  function uploadshow(){
+document.getElementById('playForm').style.visibility='visible';
+
+  }
+
+
       //navbar pass change
       function changePass() {
         closeNav();
@@ -570,7 +579,7 @@ const recognition = new webkitSpeechRecognition();
         document.getElementById('p').style.backgroundColor = 'rgb(41, 68, 68)';
       }
       function closeL() {
-        closeNav();
+        //closeNav();
         document.getElementById('FlexSgreen').style.visibility = 'hidden';
       }
 
@@ -581,7 +590,7 @@ const recognition = new webkitSpeechRecognition();
         document.getElementById('FlexSgreenD').style.visibility = 'visible';
       }
       function closeLD() {
-        closeNav();
+        //closeNav();
         document.getElementById('FlexSgreenD').style.visibility = 'hidden';
       }
       function stayD() {
@@ -612,7 +621,7 @@ const recognition = new webkitSpeechRecognition();
         document.getElementById('FlexSgreenH').style.visibility = 'visible';
       }
       function closeLH() {
-        closeNav();
+        //closeNav();
         document.getElementById('FlexSgreenH').style.visibility = 'hidden';
       }
       function stayH() {
@@ -629,7 +638,7 @@ const recognition = new webkitSpeechRecognition();
         document.getElementById('FlexSgreenS').style.visibility = 'visible';
       }
       function closeLS() {
-        closeNav();
+        //closeNav();
         document.getElementById('FlexSgreenS').style.visibility = 'hidden';
       }
       function stayS() {
