@@ -19,10 +19,10 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <!-- <link
+    <link
       rel="stylesheet"
-      href="file://src/app/navigation/navigation.component.css"
-    /> -->
+      href="https://webdev.cse.buffalo.edu/transcribe/Autotranscription/project-app/src/app/navigation/navigation.component.css"
+    />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -134,6 +134,14 @@
         };
       }
 
+      /*upload file and transcribe*/
+
+      //uploadshow
+
+      function uploadshow() {
+        document.getElementById('playForm').style.visibility = 'visible';
+      }
+
       //navbar pass change
       function changePass() {
         closeNav();
@@ -171,7 +179,13 @@
 
         xhr1.send(data);
         xhr1.onreadystatechange = function() {
-          console.log('Save status: ' + xhr1.responseText);
+          // console.log('Save status: ' + xhr1.responseText);
+          var responseText = JSON.parse(xhr.responseText);
+          if (responseText.status == 'SUCCESS') {
+            console.log('success');
+          } else {
+            console.log('fail');
+          }
         };
       }
       // add id of the pop up form
@@ -286,7 +300,7 @@
               username: uname,
               text: final.innerHTML,
               keywords: elems[0],
-              title: 'defaultTitle',
+              title: titleBar.value,
               sentiment: elems[1].trim()
             };
             data = JSON.stringify(data);
@@ -393,7 +407,6 @@
           hList.innerHTML = '';
           for (var i = 0; i < resList.length; i++) {
             var entry = resList[i];
-            var hTitle = entry['title'];
 
             hList.innerHTML +=
               `
@@ -518,6 +531,7 @@
         document.getElementById('askTitleForm').style.visibility = 'hidden';
       }
     </script>
+
     <script>
       /* Profile functions */
       function Ptoggle() {
@@ -534,7 +548,7 @@
         document.getElementById('p').style.backgroundColor = 'rgb(41, 68, 68)';
       }
       function closeL() {
-        closeNav();
+        //closeNav();
         document.getElementById('FlexSgreen').style.visibility = 'hidden';
       }
 
@@ -545,7 +559,7 @@
         document.getElementById('FlexSgreenD').style.visibility = 'visible';
       }
       function closeLD() {
-        closeNav();
+        //closeNav();
         document.getElementById('FlexSgreenD').style.visibility = 'hidden';
       }
       function stayD() {
@@ -576,7 +590,7 @@
         document.getElementById('FlexSgreenH').style.visibility = 'visible';
       }
       function closeLH() {
-        closeNav();
+        //closeNav();
         document.getElementById('FlexSgreenH').style.visibility = 'hidden';
       }
       function stayH() {
@@ -593,7 +607,7 @@
         document.getElementById('FlexSgreenS').style.visibility = 'visible';
       }
       function closeLS() {
-        closeNav();
+        //closeNav();
         document.getElementById('FlexSgreenS').style.visibility = 'hidden';
       }
       function stayS() {
@@ -601,6 +615,34 @@
         Stoggle();
         document.getElementById('FlexSgreenS').style.visibility = 'visible';
         document.getElementById('s').style.backgroundColor = 'rgb(41, 68, 68)';
+      }
+      var timeoutId2;
+      function autoSave() {
+        // console.log(titleBar.value);
+        clearTimeout(timeoutId2);
+        timeoutId2 = setTimeout(function() {
+          console.log(titleBar.value);
+          var xhr = new XMLHttpRequest();
+          var data = {
+            title: titleBar.innerHTML,
+            id: transactionID.value,
+            keywords: ''
+          };
+          data = JSON.stringify(data);
+          xhr.open(
+            'POST',
+            'https://webdev.cse.buffalo.edu:3000/removekey',
+            true
+          );
+          xhr.setRequestHeader(
+            'Content-Type',
+            'application/x-www-form-urlencoded; charset=UTF-8'
+          );
+          xhr.send(data);
+          xhr.onreadystatechange = function() {
+            console.log('Save status: ' + xhr.responseText);
+          };
+        }, 750);
       }
       /* dummy function */
       function dummy() {}
