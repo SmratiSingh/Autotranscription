@@ -103,11 +103,11 @@ def getSentiments(text):
 
   if sentiment_score / total_lines >= SENTIMENT_THRESH:
     if pos_count > neg_count:
-      return "positive"
+      return "Positive"
     else:
-      return "negative"
+      return "Negative"
   else:
-    return "neutral"
+    return "Neutral"
 
 
 def writeData(text, sentiment):

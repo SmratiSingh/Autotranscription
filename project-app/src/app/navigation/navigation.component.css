@@ -16,7 +16,7 @@
 .flexRedF{
     display: flex;
     flex-direction: column;
-    background-color:darkslategray; 
+    background-color:#2f4f4f; 
     width:85px; 
     height:100%;
     border-top-right-radius: 5px; 
@@ -498,7 +498,7 @@ p span{
     width: 300px;
     height: 340px;
     background-color:rgba(63, 94, 94, 0.918);
-    visibility: visible;
+    visibility: hidden;
     z-index: 1;
     display:flex;
     flex-direction: column;

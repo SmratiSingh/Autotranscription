@@ -214,19 +214,21 @@ app.post('/removekey', function(req, res) {
     title = data.title;
     id = data.id;
 
+    // console.log("title:"+title);
+
     mongo.getSession(id, function(results) {
         
         
-        if(keyword == null || keyword == "") {
+        if(keyword != null && keyword != "") {
             results["keywords"] = results["keywords"].replace(keyword, "").replace(",,", ",");
         }
-        if(title == null || title == "") {
+        if(title != null && title != "") {
             results["title"] = title;
         }
 
         mongo.updateSession(id, results, function(output){
-            console.log("UPDATION RESULT");
-            console.log(output);
+            // console.log("UPDATION RESULT");
+            // console.log(output);
             if (output.result.nModified > 0) {
                 return res.status(200).json({
                     status: 'SUCCESS',

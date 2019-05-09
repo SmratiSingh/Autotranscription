@@ -173,7 +173,7 @@ module.exports.updateSession = function(id, data, callback) {
         console.log("UPDATING:");
         console.log({title:data.title, keywords:data.keywords});
         // dbo.collection(transcripts_table).update({"_id":ObjectID(id)}, {'username':username, 'title':title, 'sentiment':sentiment, 'transcript':text, 'keywords':keywords, 'timestamp':timestamp, function(err, result) {
-        dbo.collection(transcripts_table).updateOne({"_id":ObjectID(id)}, {$set:{title:data.title, keywords:data.keywords}}, function(err, result) {
+        dbo.collection(transcripts_table).updateOne({"_id":ObjectID(id)}, {$set:{title:data["title"], keywords:data["keywords"]}}, function(err, result) {
             if (err) {
                 console.log(err);
                 throw err;
