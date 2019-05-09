@@ -558,6 +558,7 @@
       function closeL() {
         //closeNav();
         document.getElementById('FlexSgreen').style.visibility = 'hidden';
+        document.getElementById('p').style.backgroundColor = 'rgb(47,79,79)';
       }
 
       /* Domain functions */
@@ -569,6 +570,7 @@
       function closeLD() {
         //closeNav();
         document.getElementById('FlexSgreenD').style.visibility = 'hidden';
+        document.getElementById('d').style.backgroundColor = 'rgb(47,79,79)';
       }
       function stayD() {
         state = 'closed';
@@ -600,6 +602,7 @@
       function closeLH() {
         //closeNav();
         document.getElementById('FlexSgreenH').style.visibility = 'hidden';
+        document.getElementById('h').style.backgroundColor = 'rgb(47,79,79)';
       }
       function stayH() {
         state = 'closed';
@@ -617,6 +620,7 @@
       function closeLS() {
         //closeNav();
         document.getElementById('FlexSgreenS').style.visibility = 'hidden';
+        document.getElementById('s').style.backgroundColor = 'rgb(47,79,79)';
       }
       function stayS() {
         state = 'closed';
@@ -633,7 +637,7 @@
           var xhr = new XMLHttpRequest();
           var data = {
             title: titleBar.value.toString(),
-            id: transactionID.value,
+            id: transactionID.value.toString(),
             keywords: ''
           };
           console.log('before jeson' + data);
