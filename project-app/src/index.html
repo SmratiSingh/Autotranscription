@@ -148,8 +148,8 @@
         document.getElementById('changePassForm').style.visibility = 'hidden';
         var oldP = document.getElementById('oldPass').value;
         var newP = document.getElementById('newPass').value;
-        document.getElementById('oldPass').value='';
-        document.getElementById('newPass').value='';
+        document.getElementById('oldPass').value = '';
+        document.getElementById('newPass').value = '';
         var uname1 = username.value;
         console.log('check pass ' + newP);
         var xhr1 = new XMLHttpRequest();
@@ -400,12 +400,12 @@
                <div class="item">
               <div class="right">
                 <div class="filename">
-                  <span id="data" style="color:#6e8181;">` +
+                  <span id="data" style="color: rgb(156, 184, 184);">` +
               hTitle +
               `</span>
                 </div>
                 <div class="keywords">
-                  <span id="words" style="color:#6e8181;">` +
+                  <span id="words" style="color: rgb(156, 184, 184);">` +
               entry['keywords'] +
               `</span>
                 </div>
@@ -414,14 +414,14 @@
                 <div class="fileLink">
                   <span id="category">
                     <i
-                      style="color:rgb(130, 151, 151); margin-left:5px;"
+                      style="color: rgb(156, 184, 184); margin-left:5px;"
                       class="fas fa-file fa"
                     ></i>
-                    <a id="Flink" style="color:#6e8181;" onclick="pushHistory();">View</a>
+                    <a id="Flink" style="color: rgb(156, 184, 184);" onclick="pushHistory();">View</a>
                   </span>
                 </div>
                 <div class="sentiment">
-                  <span id="words" style="color: #6e8181">Positive</span>
+                  <span id="words" style="color: rgb(156, 184, 184);">Positive</span>
                 </div>
               </div>
             </div>
@@ -434,7 +434,7 @@
         document.getElementById('DomainForm').style.visibility = 'hidden';
         var dname = document.getElementById('newDName');
         var newKey = document.getElementById('newKeys');
-        document.getElementById('newKeys').value='';
+        document.getElementById('newKeys').value = '';
         var xhr = new XMLHttpRequest();
         var data = { domain: dname.value, keywords: newKey.value };
         data = JSON.stringify(data);
@@ -482,8 +482,8 @@
           a[i].style.display = 'none';
         }
       }
-      function closeView(){
-        document.getElementById('displayForm1').style.visibility='hidden';
+      function closeView() {
+        document.getElementById('displayForm1').style.visibility = 'hidden';
       }
       function closeSmallNav() {
         //document.getElementById('flexSgreen').style.visibility='hidden';
@@ -564,9 +564,9 @@
       function CloseDform() {
         document.getElementById('DomainForm').style.visibility = 'hidden';
         document.getElementById('changePassForm').style.visibility = 'hidden';
-        document.getElementById('newKeys').value='';
-        document.getElementById('oldPass').value='';
-        document.getElementById('newPass').value='';
+        document.getElementById('newKeys').value = '';
+        document.getElementById('oldPass').value = '';
+        document.getElementById('newPass').value = '';
       }
 
       /* History functions */
