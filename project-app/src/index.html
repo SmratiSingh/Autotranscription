@@ -51,9 +51,6 @@
       crossorigin="anonymous"
     ></script>
     <script>
-      
-
-
       window.SpeechRecognition =
         window.webkitSpeechRecognition || window.SpeechRecognition;
       let finalTranscript = '';
@@ -68,8 +65,8 @@
 
       function transcribeSpeech() {
         ClosePopform();
-        
-        if(document.getElementById('domainOut').innerHTML=="") {
+
+        if (document.getElementById('domainOut').innerHTML == '') {
           console.log('please select domain');
           // var y = document.getElementById('domainSelect');
           // y.className = 'show';
@@ -78,17 +75,16 @@
           // y.className = y.className.replace('show', '');
           //   }, 3000);
           var x = document.getElementById('PopUpRecording');
-          x.innerHTML = 'Please select domain first...'
-        x.className = 'show';
-        setTimeout(function() {
-          x.className = x.className.replace('show', '');
-        }, 3000);
+          x.innerHTML = 'Please select domain first...';
+          x.className = 'show';
+          setTimeout(function() {
+            x.className = x.className.replace('show', '');
+          }, 3000);
           return 0;
         }
-        
-        
-        document.getElementById('final').innerHTML=''; //clears everything
-      
+
+        document.getElementById('final').innerHTML = ''; //clears everything
+
         /*recording popup*/
         // document.getElementById('trans').value='';
         var x = document.getElementById('PopUpRecording');
@@ -105,7 +101,7 @@
         let finalTranscript = '';
         recognition.onresult = event => {
           let interimTranscript = '';
-          
+
           //const speechToText = event.results[0][0].transcript;
           for (
             let i = event.resultIndex, len = event.results.length;
@@ -136,45 +132,46 @@
         };
       }
 
-
-         //navbar pass change
-        function changePass(){
-          document.getElementById('oldPass').innerHTML="";
-          document.getElementById('newPass').innerHTML="";
+      //navbar pass change
+      function changePass() {
+        document.getElementById('oldPass').innerHTML = '';
+        document.getElementById('newPass').innerHTML = '';
         document.getElementById('changePassForm').style.visibility = 'visible'; //change ID to changePassForm
       }
       //DB call for old and new pass
-      function CPass(){
+      function CPass() {
         //var sha256 = require('js-sha256').sha256;
         var oldP = document.getElementById('oldPass').value;
         var newP = document.getElementById('newPass').value;
-        var uname1 = username.value
-        console.log("check pass "+newP)
+        var uname1 = username.value;
+        console.log('check pass ' + newP);
         var xhr1 = new XMLHttpRequest();
 
-          var uname = username.value;
-          console.log("User is: "+uname);
-          var data = {'username':uname1, 'old_password':oldP, 'new_password':newP};
-          data = JSON.stringify(data);
-          xhr1.open(
+        var uname = username.value;
+        console.log('User is: ' + uname);
+        var data = { username: uname1, old_password: oldP, new_password: newP };
+        data = JSON.stringify(data);
+        xhr1.open(
           'POST',
-          'https://webdev.cse.buffalo.edu:3000/changepassword',true);
-            // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
-            xhr1.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+          'https://webdev.cse.buffalo.edu:3000/changepassword',
+          true
+        );
+        // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
+        xhr1.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
 
-            xhr1.send(data);
-            xhr1.onreadystatechange = function() {
-              console.log("Save status: "+ xhr1.responseText);
-              
-            }
+        xhr1.send(data);
+        xhr1.onreadystatechange = function() {
+          console.log('Save status: ' + xhr1.responseText);
+        };
       }
       // add id of the pop up form
 
-      function pushHistory(){
-        document.getElementById('displayForm1').style.visibility = 'visibile';
+      function pushHistory() {
+        document.getElementById('displayForm1').style.visibility = 'visible';
       }
-   
-
 
       function stopRecord() {
         /*recording popup*/
@@ -191,9 +188,6 @@
           getKeywords();
         }
       }
-
-
-
 
       function getKeywords() {
         newGrid.innerHTML = '';
@@ -214,7 +208,7 @@
             var elems = resp.split(':');
             var keys = elems[0].split(',');
             var sentiment = elems[1];
-            console.log('sentiment is: '+ sentiment);
+            console.log('sentiment is: ' + sentiment);
             document.getElementById('sentiment').innerHTML = sentiment;
             console.log('keys length is ' + keys.length);
             var count = 0;
@@ -223,24 +217,30 @@
             var leftMar = 5;
             var posType = 'static';
             var floatType = 'none';
-            var maxRows = Math.ceil(keys.length/3);
-            var propString = "60px";
-            for(var k=0; k<maxRows-1; k++){
-                propString += " 60px";
+            var maxRows = Math.ceil(keys.length / 3);
+            var propString = '60px';
+            for (var k = 0; k < maxRows - 1; k++) {
+              propString += ' 60px';
             }
-            console.log('Prop stirng is: '+ propString);
-            document.getElementById('newGrid').style.gridTemplateRows = propString;
+            console.log('Prop stirng is: ' + propString);
+            document.getElementById(
+              'newGrid'
+            ).style.gridTemplateRows = propString;
             for (var i = 0; i < keys.length; i++) {
-              keywordMap['key'+i.toString()] = keys[i];
+              keywordMap['key' + i.toString()] = keys[i];
               var wrap = document.createElement('div');
-              wrap.id = 'key'+i.toString();
+              wrap.id = 'key' + i.toString();
               document.getElementById('newGrid').appendChild(wrap);
               wrap.innerHTML +=
                 `<div
         class="bubble scrollable-content",
         
         style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); height: fit-content; background:darkslategray;
-        position: 'relative'; margin-left: `+leftMar+`%; margin-top: `+topMar+`%; width: fit-content;"
+        position: 'relative'; margin-left: ` +
+                leftMar +
+                `%; margin-top: ` +
+                topMar +
+                `%; width: fit-content;"
       >
         <p
           style="font-style:medium; color:white; margin-right:10px; padding-top:7px;padding-left:5px; padding-bottom: 1px;"
@@ -250,7 +250,9 @@
                 `
         </p>
         <i 
-          onclick="popBubble('key`+i.toString()+`');",
+          onclick="popBubble('key` +
+                i.toString() +
+                `');",
           class="fas fa-window-close fa-2x",
           style="padding-top:5px; color:white; background:darkslategray;margin-right:10px;"
           
@@ -258,110 +260,134 @@
       </div>
                `;
               count = count + 1;
-              }
-             
-              
-            
-          var xhr = new XMLHttpRequest();
+            }
 
-          var uname = username.value;
-          console.log("User is: "+uname);
-          var data = {'username':uname, 'text':final.innerHTML, 'keywords':elems[0], 'title': 'defaultTitle', 'sentiment':elems[1].trim()};
-          data = JSON.stringify(data);
-          xhr.open(
-          'POST',
-          'https://webdev.cse.buffalo.edu:3000/transcript',true);
+            var xhr = new XMLHttpRequest();
+
+            var uname = username.value;
+            console.log('User is: ' + uname);
+            var data = {
+              username: uname,
+              text: final.innerHTML,
+              keywords: elems[0],
+              title: 'defaultTitle',
+              sentiment: elems[1].trim()
+            };
+            data = JSON.stringify(data);
+            xhr.open(
+              'POST',
+              'https://webdev.cse.buffalo.edu:3000/transcript',
+              true
+            );
             // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-            
-            console.log('data is: '+data);
+            xhr.setRequestHeader(
+              'Content-Type',
+              'application/x-www-form-urlencoded; charset=UTF-8'
+            );
+
+            console.log('data is: ' + data);
             xhr.send(data);
             xhr.onreadystatechange = function() {
-              console.log("Save status: "+ xhr.responseText);
+              console.log('Save status: ' + xhr.responseText);
               statusResp = JSON.parse(xhr.responseText).id;
-              console.log('Status resp is: '+ statusResp);
+              console.log('Status resp is: ' + statusResp);
               document.getElementById('transactionID').value = statusResp;
-              sessionStorage.setItem('transactionID',statusResp);
-            }
+              sessionStorage.setItem('transactionID', statusResp);
+            };
           }
         };
         xmlhttp.send(null);
       }
 
-      function popBubble(keyID){
-        console.log('key to pop is: '+ keyID.toString());
+      function popBubble(keyID) {
+        console.log('key to pop is: ' + keyID.toString());
         keyValue = keywordMap[keyID];
-        console.log('keyvalue is: '+ keyValue);
+        console.log('keyvalue is: ' + keyValue);
         var titleValue = document.getElementById('titleBar').value;
-        console.log('title is: '+titleValue);
+        console.log('title is: ' + titleValue);
         var toRemove = document.getElementById(keyID);
         toRemove.parentNode.removeChild(toRemove);
         var xhr = new XMLHttpRequest();
-        var data = {'keyword':keyValue, 'title':titleValue, 'id':statusResp };
+        var data = { keyword: keyValue, title: titleValue, id: statusResp };
         data = JSON.stringify(data);
-        xhr.open(
-          'POST',
-          'https://webdev.cse.buffalo.edu:3000/removekey',true);
-          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/removekey', true);
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
         xhr.send(data);
-          xhr.onreadystatechange = function() {
-            console.log("Save status: "+ xhr.responseText);
-          }
+        xhr.onreadystatechange = function() {
+          console.log('Save status: ' + xhr.responseText);
+        };
       }
 
-      function loadDomains(){
+      function loadDomains() {
         var xhr = new XMLHttpRequest();
-        var data = {'rtype':'loadDomains'};
+        var data = { rtype: 'loadDomains' };
         data = JSON.stringify(data);
-        
+
         xhr.open(
           'POST',
-          'https://webdev.cse.buffalo.edu:3000/alldomains',true);
-          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+          'https://webdev.cse.buffalo.edu:3000/alldomains',
+          true
+        );
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
         xhr.send(data);
-          xhr.onreadystatechange = function() {
-            var allDomains = JSON.parse(xhr.responseText).domains
-            var dList = document.getElementById('domainList')
-            dList.innerHTML = "";
-            for(var k=0;k<allDomains.length;k++){
-              dList.innerHTML += `<a class="domainName" onclick="printDomain('`+allDomains[k]+`');">`+ allDomains[k] +`</a>`;
-            }
-            
+        xhr.onreadystatechange = function() {
+          var allDomains = JSON.parse(xhr.responseText).domains;
+          var dList = document.getElementById('domainList');
+          dList.innerHTML = '';
+          for (var k = 0; k < allDomains.length; k++) {
+            dList.innerHTML +=
+              `<a class="domainName" onclick="printDomain('` +
+              allDomains[k] +
+              `');">` +
+              allDomains[k] +
+              `</a>`;
           }
-
-      }
-      
-      function printDomain(domainToPrint){
-          console.log(domainToPrint);
-          domainOut.innerHTML = domainToPrint;
-          Togglslidemenu();
+        };
       }
 
-      function loadHistory(){
+      function printDomain(domainToPrint) {
+        console.log(domainToPrint);
+        domainOut.innerHTML = domainToPrint;
+        Togglslidemenu();
+      }
+
+      function loadHistory() {
         var xhr = new XMLHttpRequest();
-        var data = {'username':document.getElementById('username').value};
+        var data = { username: document.getElementById('username').value };
         data = JSON.stringify(data);
-        xhr.open(
-          'POST',
-          'https://webdev.cse.buffalo.edu:3000/history',true);
-          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+        xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/history', true);
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
         xhr.send(data);
-          xhr.onreadystatechange = function() {
-            var hList = document.getElementById('historyList');
-            var resList = JSON.parse(xhr.responseText).resultList;
-            hList.innerHTML = "";
-            for(var i=0;i<resList.length;i++){
-              var entry = resList[i];
-               var hTitle = entry['title'];
-               
-               hList.innerHTML += `
+        xhr.onreadystatechange = function() {
+          var hList = document.getElementById('historyList');
+          var resList = JSON.parse(xhr.responseText).resultList;
+          hList.innerHTML = '';
+          for (var i = 0; i < resList.length; i++) {
+            var entry = resList[i];
+            var hTitle = entry['title'];
+
+            hList.innerHTML +=
+              `
                <div class="item">
               <div class="right">
                 <div class="filename">
-                  <span id="data" style="color:#6e8181;">`+hTitle+`</span>
+                  <span id="data" style="color:#6e8181;">` +
+              hTitle +
+              `</span>
                 </div>
                 <div class="keywords">
-                  <span id="words" style="color:#6e8181;">`+ entry['keywords']+`</span>
+                  <span id="words" style="color:#6e8181;">` +
+              entry['keywords'] +
+              `</span>
                 </div>
               </div>
               <div class="left">
@@ -379,30 +405,27 @@
                 </div>
               </div>
             </div>
-               `
-            }
-            
+               `;
           }
+        };
       }
 
-      function saveDomain(){
-          var dname = document.getElementById('newDName');
-          var newKey = document.getElementById('newKeys');
-          var xhr = new XMLHttpRequest();
-          var data = {'domain':dname.value, 'keywords': newKey.value};
-          data = JSON.stringify(data);
-          console.log('new data is '+ data);
-          xhr.open(
-            'POST',
-            'https://webdev.cse.buffalo.edu:3000/adddomain',true);
-            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-          xhr.send(data);
-            xhr.onreadystatechange = function() {
-              console.log(xhr.responseText);
-              
-              
-            }
-
+      function saveDomain() {
+        var dname = document.getElementById('newDName');
+        var newKey = document.getElementById('newKeys');
+        var xhr = new XMLHttpRequest();
+        var data = { domain: dname.value, keywords: newKey.value };
+        data = JSON.stringify(data);
+        console.log('new data is ' + data);
+        xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/adddomain', true);
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+        xhr.send(data);
+        xhr.onreadystatechange = function() {
+          console.log(xhr.responseText);
+        };
       }
     </script>
     <script>
@@ -428,31 +451,26 @@
       }
 
       /*ask for title */
-      function askForTitle(){
-        document.getElementById("askTitleForm").style.visibility='visible';
+      function askForTitle() {
+        document.getElementById('askTitleForm').style.visibility = 'visible';
       }
 
-
-
-
       /*save pop up thing*/
-    
-        function savePopup(){  
-        if(document.getElementById("final").innerHTML==""){
+
+      function savePopup() {
+        if (document.getElementById('final').innerHTML == '') {
           //document.getElementById('saveForm').style.visibility='hidden';
 
           transcribeSpeech();
-        }
-        else{
-          document.getElementById('saveForm').style.visibility='visible'; 
+        } else {
+          document.getElementById('saveForm').style.visibility = 'visible';
         }
       }
 
-      function ClosePopform(){
-        document.getElementById('saveForm').style.visibility='hidden';
-        document.getElementById('askTitleForm').style.visibility='hidden';
+      function ClosePopform() {
+        document.getElementById('saveForm').style.visibility = 'hidden';
+        document.getElementById('askTitleForm').style.visibility = 'hidden';
       }
-      
     </script>
     <script>
       /* Profile functions */
@@ -471,7 +489,6 @@
       }
       function closeL() {
         document.getElementById('FlexSgreen').style.visibility = 'hidden';
-        
       }
 
       /* Domain functions */
@@ -491,15 +508,14 @@
       }
       function displayForm() {
         //first clears the form on click create new form
-        
-        document.getElementById('DomainForm').style.visibility = 'visible';
-        document.getElementById('newDName').value='';
-        document.getElementById('exampleFormControlTextarea1').value='';
 
+        document.getElementById('DomainForm').style.visibility = 'visible';
+        document.getElementById('newDName').value = '';
+        document.getElementById('exampleFormControlTextarea1').value = '';
       }
       function CloseDform() {
         document.getElementById('DomainForm').style.visibility = 'hidden';
-        document.getElementById('changePassForm').style.visibility='hidden';
+        document.getElementById('changePassForm').style.visibility = 'hidden';
       }
 
       /* History functions */

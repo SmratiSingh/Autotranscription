@@ -433,13 +433,13 @@ p span{
     margin: 225px 300px 300px 550px;
     padding :5px;
     width: 300px;
-    height: 340px;
+    height: 240px;
     background-color:rgb(63, 94, 94);
     visibility: hidden;
     z-index: 1;
     display:flex;
     flex-direction: column;
-    border-radius: 6%;
+    border-radius: 4%;
 
 }
 
@@ -499,12 +499,12 @@ p span{
     padding :5px;
     width: 940px;
     height: 640px;
-    background-color:rgb(63, 94, 94);
+    background-color:rgba(63, 94, 94, 0.918);
     visibility: hidden;
     z-index: 1;
     display:flex;
     flex-direction: column;
-    border-radius: 6%;
+    border-radius: 3%;
 
 }
 
