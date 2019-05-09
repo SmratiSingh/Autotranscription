@@ -64,6 +64,8 @@
       var keywordMap = {};
 
       function transcribeSpeech() {
+        document.getElementById('titleBar').value="";
+
         ClosePopform();
 
         if (document.getElementById('domainOut').innerHTML == '') {
@@ -175,7 +177,13 @@
 
       function stopRecord() {
         /*recording popup*/
-        askForTitle();
+        if(document.getElementById('final').innerHTML !=""){
+          askForTitle();
+
+        }
+        if(final.innerHTML==""){
+          return 0;
+        }
         var x = document.getElementById('PopUpRecordingE');
         x.className = 'show';
         setTimeout(function() {
@@ -352,7 +360,13 @@
           }
         };
       }
+      function saveTitleTemp(){
+        
+        document.getElementById('askTitleForm').style.visibility='hidden';
+        document.getElementById('titleBar').value=tempTitle.value;
+        document.getElementById('tempTitle').value="";
 
+      }
       function printDomain(domainToPrint) {
         console.log(domainToPrint);
         domainOut.innerHTML = domainToPrint;
@@ -462,6 +476,7 @@
       function savePopup() {
         if (document.getElementById('final').innerHTML == '') {
           //document.getElementById('saveForm').style.visibility='hidden';
+          document.getElementById('titleBar').value="";
 
           transcribeSpeech();
         } else {
