@@ -19,10 +19,10 @@
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
       crossorigin="anonymous"
     />
-    <!-- <link
+    <link
       rel="stylesheet"
-      href="file://src/app/navigation/navigation.component.css"
-    /> -->
+      href="https://webdev.cse.buffalo.edu/transcribe/Autotranscription/project-app/src/app/navigation/navigation.component.css"
+    />
     <link
       rel="stylesheet"
       href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
@@ -137,9 +137,15 @@
 
 /*upload file and transcribe*/
 
+<<<<<<< HEAD
     function start(){     
       const recognition = new webkitSpeechRecognition();    
 		console.log('started');
+=======
+    function uploadTrans(){         
+      const recognition = new webkitSpeechRecognition();
+      console.log('started');
+>>>>>>> c5ea75830e9cedc24bc313a34c6659cd704a3540
 		var path = uploadTemp.files[0].name;
 		console.log(path);
 
@@ -216,7 +222,14 @@ document.getElementById('playForm').style.visibility='visible';
 
         xhr1.send(data);
         xhr1.onreadystatechange = function() {
-          console.log('Save status: ' + xhr1.responseText);
+          // console.log('Save status: ' + xhr1.responseText);
+          var responseText = JSON.parse(xhr.responseText)
+          if(responseText.status == 'SUCCESS'){
+            console.log('success');
+          } 
+          else{
+            console.log('fail');
+          }
         };
       }
       // add id of the pop up form
@@ -438,7 +451,6 @@ document.getElementById('playForm').style.visibility='visible';
           hList.innerHTML = '';
           for (var i = 0; i < resList.length; i++) {
             var entry = resList[i];
-            
 
             hList.innerHTML +=
               `
@@ -563,6 +575,7 @@ document.getElementById('playForm').style.visibility='visible';
         document.getElementById('askTitleForm').style.visibility = 'hidden';
       }
     </script>
+    
     <script>
       /* Profile functions */
       function Ptoggle() {
@@ -646,6 +659,28 @@ document.getElementById('playForm').style.visibility='visible';
         Stoggle();
         document.getElementById('FlexSgreenS').style.visibility = 'visible';
         document.getElementById('s').style.backgroundColor = 'rgb(41, 68, 68)';
+      }
+      var timeoutId2;
+      function autoSave(){
+        // console.log(titleBar.value);
+        clearTimeout(timeoutId2);
+        timeoutId2 = setTimeout(
+          function(){
+            console.log(titleBar.value);
+            var xhr = new XMLHttpRequest();
+            var data = { title: titleBar.innerHTML, id: transactionID.value, keywords:'' };
+            data = JSON.stringify(data);
+            xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/removekey', true);
+            xhr.setRequestHeader(
+              'Content-Type',
+              'application/x-www-form-urlencoded; charset=UTF-8'
+            );
+            xhr.send(data);
+            xhr.onreadystatechange = function() {
+              console.log('Save status: ' + xhr.responseText);
+            };
+
+        }, 750);
       }
       /* dummy function */
       function dummy() {}
