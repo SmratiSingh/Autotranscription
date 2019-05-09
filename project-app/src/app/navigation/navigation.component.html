@@ -431,21 +431,26 @@
     </div>
 
     <!--hidden form to upload and play-->
-    <div id="playForm">
-      <div>
-        <input type="file" id="upload" onclick="start();" />
-      </div>
-      <div class="Cross">
-        <button class="SaveButtonSection" onclick="ClosePopform();">
-          Close
-        </button>
-      </div>
+    <div id="playForm" style="display: flex;">
+        <i
+        class="fas fa-window-close fa-2x"
+        style="background-color:transparent; align-self: flex-end;"
+        onclick=""
+      ></i>
+    
+  
+      <div class="SaveSection" style="display: flex;  flex-direction: row;">
+        <i class="fas fa-play-circle fa-4x"
+        style="background-color:transparent; color:white; margin-left:40%;"
+        onclick="">
 
-      <div class="SaveSection">
-        <button class="SaveButtonSection" onclick="start();">
-          play
-        </button>
+        </i>
       </div>
+      <div style="display: flex; flex-direction: row; margin-top: 60px;">
+      
+          <input style="display: flex; width:50%; color:white;
+          border-radius: 6%; background-color:darkslategray; margin-left:60px;" 
+          type="file" text="Select File" id="upload" onclick="start();" /></div>
     </div>
     <!--hidden form for ask for save-->
     <div id="askTitleForm">
