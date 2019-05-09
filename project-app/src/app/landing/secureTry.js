@@ -214,6 +214,8 @@ app.post('/removekey', function(req, res) {
     title = data.title;
     id = data.id;
 
+    // console.log("title:"+title);
+
     mongo.getSession(id, function(results) {
         
         
@@ -225,8 +227,8 @@ app.post('/removekey', function(req, res) {
         }
 
         mongo.updateSession(id, results, function(output){
-            console.log("UPDATION RESULT");
-            console.log(output);
+            // console.log("UPDATION RESULT");
+            // console.log(output);
             if (output.result.nModified > 0) {
                 return res.status(200).json({
                     status: 'SUCCESS',
