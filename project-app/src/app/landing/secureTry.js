@@ -6,6 +6,7 @@ var cors = require('cors');
 var path = require('path');
 var mongo = require('../../assets/mongoFun')
 const https = require('https');
+var sha256 = require('js-sha256').sha256;
 const fs = require('fs');
 var app = express();
 const bodyParser = require('body-parser');
@@ -300,16 +301,20 @@ app.post('/changepassword', function(req, res){
     new_password = data.new_password;
     // re_password = data.re_password;
 
-    mongo.updatePassword(username, old_password, new_password, function(pass_result){
-        if(pass_result["modifiedCount"] == 0) {
+    console.log("Testing sha256. data.old_password:");
+    console.log(sha256(data.old_password));
+    console.log(data.old_password);
+
+    mongo.updatePassword(username, sha256(old_password), sha256(new_password), function(pass_result){
+        if(pass_result.result.nModified == 1 || pass_result.result.nModified == "1") {
             return res.status(200).json({
-                status: 'FAIL',
+                status: 'SUCCESS',
                 message: 'PWD_UPDATE'
-            });
+            }); 
         }
         else {
             return res.status(200).json({
-                status: 'SUCCESS',
+                status: 'FAIL',
                 message: 'PWD_UPDATE'
             });
         }
