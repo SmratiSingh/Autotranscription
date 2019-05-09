@@ -108,7 +108,7 @@
           <p>
             <span id="category"
               >User Name<i
-                style="color:rgb(130, 151, 151); margin-left:10px;"
+                style="color: rgb(156, 184, 184); margin-left:10px;"
               ></i></span
             ><span id="data"
               >{{ this.navFirstName }} {{ this.navLastName }}&nbsp;&nbsp;</span
@@ -118,7 +118,7 @@
           <p>
             <span id="category"
               >Password<a
-                style="color:rgb(130, 151, 151); margin-left:10px;"
+                style="color: rgb(156, 184, 184); margin-left:10px;"
                 class="fas fa-pencil-alt"
                 onClick="changePass()"
               ></a></span
@@ -198,15 +198,16 @@
         class="Sbody"
         style="margin-top:1px; text-align:center;  font-size: 17px;
       font-family:Candara;
-      color: rgb(81, 100, 100);"
+      color: rgb(156, 184, 184);"
       >
         <span><strong>summarization tool for your meetings.</strong> </span>
 
         <p>version: 1.0</p>
         <p>
-          <strong>The team:</strong><br />
-          Alan Hunt (advisor) Harshal Jagtap, Rajat Thosar, Shubhra Deshpande,
-          Smrati Kushwah & Ved Valsangkar.
+          <strong>Advisor:</strong>
+          Alan Hunt &nbsp;&nbsp;&nbsp;<br />
+          <strong>Sponser:</strong>
+          Andrew Olewnik
         </p>
         <p style="font-style:italic; font-size: smaller;">
           This application is developed for the course of CSE611: MS Project
@@ -238,13 +239,18 @@
         ></i>
       </div>
       <div class="twouf">
-        <div class="TitleCross">
-          <div class="DomainTitle">
-            <input id="newDName" type="text" placeholder="Enter Domain Name" />
+        <div class="TitleCross" style="justify-content: space-around;">
+          <div class="DomainTitle" style="width:89%;">
+            <input
+              id="newDName"
+              type="text"
+              placeholder="Enter Domain Name"
+              style="padding: 2px;"
+            />
           </div>
         </div>
-        <div class="KeywordsSection">
-          <div class="editBoxKeyword">
+        <div class="KeywordsSection" style="justify-content: space-around;">
+          <div class="editBoxKeyword" style="width:89%;">
             <textarea
               class="form-control rounded-1"
               id="newKeys"
@@ -255,8 +261,12 @@
             <p id="keywordEmpty">Keywords cannot be empty</p>
           </div>
         </div>
-        <div class="SaveSection">
-          <button class="SaveButtonSection" onclick="saveDomain();">
+        <div class="SaveSection" style="justify-content: space-around;">
+          <button
+            class="SaveButtonSection"
+            style="width:35%;"
+            onclick="saveDomain();"
+          >
             Save
           </button>
         </div>
@@ -275,13 +285,14 @@
           onclick="CloseDform();"
         ></i>
       </div>
-      <div class="twouf">
+      <div class="twouf" style="margin-top:8%; margin-bottom:10%;">
         <div class="TitleCross">
           <div class="DomainTitle">
             <input
               id="oldPass"
               type="password"
               placeholder="Enter current passowrd"
+              style="margin-left:5%; margin-right:5%;"
             />
           </div>
         </div>
@@ -292,11 +303,12 @@
                 id="newPass"
                 type="password"
                 placeholder="Enter new passowrd"
+                style="margin-left:5%; margin-right:5%;"
               />
             </div>
           </div>
         </div>
-        <div class="SaveSection">
+        <div class="SaveSection" style="margin-left:25%;">
           <button class="SaveButtonSection" onclick="CPass();">
             Change Password
           </button>
@@ -376,19 +388,45 @@
 
     <div id="saveForm">
       <div>
-        Your session has been secured! Want to save?
+        <p
+          style="margin-top:15px; text-align:center;  font-size:20px;
+        font-style: bold; color: rgb(204, 226, 221);"
+        >
+          Your session has been saved!
+        </p>
       </div>
-
-      <div class="Cross">
-        <button class="SaveButtonSection" onclick="ClosePopform();">
-          Close
-        </button>
+      <div>
+        <i class="fas fa-check-circle fa-4x" style="margin-left:40%;"></i>
       </div>
+      <div style="margin-top:40px;">
+        <p
+          style="margin-top:15px; text-align:center;  font-size:20px;
+          font-style: bold; color: rgb(204, 226, 221);"
+        >
+          You want to exit this session?
+        </p>
+      </div>
+      <div
+        class="twoCdiv"
+        style="display:flex; flex-direction:row; justify-content: space-around;"
+      >
+        <div
+          class="Cross"
+          style="display:flex;   flex-direction:column; width:45%;"
+        >
+          <button class="SaveButtonSection" onclick="ClosePopform();">
+            Close
+          </button>
+        </div>
 
-      <div class="SaveSection">
-        <button class="SaveButtonSection" onclick="transcribeSpeech('_');">
-          Save
-        </button>
+        <div
+          class="SaveSection"
+          style="display:flex; flex-direction:column; width:45%;"
+        >
+          <button class="SaveButtonSection" onclick="transcribeSpeech('_');">
+            Save
+          </button>
+        </div>
       </div>
     </div>
 
@@ -424,35 +462,34 @@
       </div>
       <input
         type="text"
-        id = "tmpTitle"
+        id="tmpTitle"
         style="margin-top:25px; margin-right:10px; margin-left:10px;"
       />
-        <div
-          class="wraperdiv"
-          style="padding:8%;display: flex; flex-direction: row; justify-content: space-around;"
-        >
-          <div class="Save" style="width:35%;">
-            <button
-              class="SaveButtonSection"
-              style="width: 100%;"
-              onclick="saveTitleTemp();"
-            >
-              Save
-            </button>
-          </div>
+      <div
+        class="wraperdiv"
+        style="padding:8%;display: flex; flex-direction: row; justify-content: space-around;"
+      >
+        <div class="Save" style="width:35%;">
+          <button
+            class="SaveButtonSection"
+            style="width: 100%;"
+            onclick="saveTitleTemp();"
+          >
+            Save
+          </button>
+        </div>
 
-          <div class="Cross" style="width:35%;">
-            <button
-              class="SaveButtonSection"
-              style="width: 100%;"
-              onclick="ClosePopform();"
-            >
-              Close
-            </button>
-          </div>
+        <div class="Cross" style="width:35%;">
+          <button
+            class="SaveButtonSection"
+            style="width: 100%;"
+            onclick="ClosePopform();"
+          >
+            Close
+          </button>
         </div>
       </div>
-    
+    </div>
   </body>
 
   <!--scripts-->

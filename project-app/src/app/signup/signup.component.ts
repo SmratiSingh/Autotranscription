@@ -36,6 +36,8 @@ export class SignupComponent implements OnInit {
           // this.ngOnInit();
           console.log('SUCCESS!!!!');
           // console.log(data);
+          sessionStorage.setItem('firstName',data['data']['firstName']);
+          sessionStorage.setItem('lastName',data['data']['lastName']);
           this.router.navigate(['/landing']);
         }
         else if(data['status'] == 'FAIL'){
