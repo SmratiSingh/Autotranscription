@@ -572,6 +572,13 @@
         xhr.send(data);
         xhr.onreadystatechange = function() {
           console.log(xhr.responseText);
+          var x = document.getElementById('PopUpRecording');
+          x.innerHTML = 'Domain added....';
+          x.className = 'show';
+          setTimeout(function() {
+            x.className = x.className.replace('show', '');
+          }, 3000);
+
         };
       }
     </script>
