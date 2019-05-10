@@ -1,0 +1,75 @@
+<mdb-card>
+  <mdb-card-header
+    class="white-text text-center py-4"
+    style="background-color: #7b9492;"
+  >
+    <h5>
+      <strong>Sign in</strong>
+    </h5>
+  </mdb-card-header>
+
+  <!--Card content-->
+  <mdb-card-body class="px-lg-5 pt-0">
+    <!-- Form -->
+    <form class="text-center" style="color: #757575;">
+      <!-- Email -->
+      <div class="md-form">
+        <input
+          type="email"
+          id="materialLoginFormEmail"
+          class="form-control"
+          name="emailField"
+          mdbInput
+          ng-model="email"
+          [(ngModel)]="email"
+        />
+        <label for="materialLoginFormEmail" style="color: teal;"
+          >Username</label
+        >
+      </div>
+
+      <!-- Password -->
+      <div class="md-form">
+        <input
+          type="password"
+          id="materialLoginFormPassword"
+          class="form-control"
+          name="passField"
+          mdbInput
+          [(ngModel)]="password"
+        />
+        <label for="materialLoginFormPassword" style="color: teal;"
+          >Password</label
+        >
+      </div>
+
+      <div class="d-flex justify-content-around">
+        <!-- <div>
+           Forgot password 
+          <a style="color:darkslategray;" href="">Forgot password?</a>
+        </div> -->
+      </div>
+
+      <!-- Sign in button -->
+      <button
+        mdbBtn
+        color="default"
+        outline="true"
+        rounded="true"
+        block="true"
+        class="my-4 waves-effect z-depth-0"
+        mdbWavesEffect
+        type="submit"
+        (keyup.enter)="authUser()"
+        (click)="authUser()"
+      >
+        Sign in
+      </button>
+      <div>
+        <p style="color: red; visibility: visible;" id="msg">{{this.errorMsg}}</p>
+      </div>
+    </form>
+    <!-- Form -->
+  </mdb-card-body>
+</mdb-card>
+<!-- <router-outlet></router-outlet> -->

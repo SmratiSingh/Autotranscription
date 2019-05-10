@@ -1,0 +1,13 @@
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten] MongoDB starting : pid=24849 port=27017 dbpath=/data/db 64-bit host=ved-G5
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten] db version v4.0.3
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten] git version: 7ea530946fa7880364d88c8d8b6026bbc9ffa48c
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten] OpenSSL version: OpenSSL 1.1.1b  26 Feb 2019
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten] allocator: tcmalloc
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten] modules: none
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten] build environment:
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten]     distarch: x86_64
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten]     target_arch: x86_64
+2019-03-31T22:48:24.996-0400 I CONTROL  [initandlisten] options: { processManagement: { fork: true }, systemLog: { destination: "file", path: "log.txt" } }
+2019-03-31T22:48:25.006-0400 E STORAGE  [initandlisten] Failed to set up listener: SocketException: Address already in use
+2019-03-31T22:48:25.006-0400 I CONTROL  [initandlisten] now exiting
+2019-03-31T22:48:25.006-0400 I CONTROL  [initandlisten] shutting down with code:48

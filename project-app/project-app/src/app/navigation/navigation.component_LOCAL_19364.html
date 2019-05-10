@@ -1,0 +1,433 @@
+<html>
+  <head>
+    <!-- <link rel="stylesheet" href="file://./navigation.component.css" /> -->
+    <!-- <link rel="stylesheet" href="file://./navigation.component.styl" /> -->
+    <!-- <link
+      rel="stylesheet"
+      href="file://src/app/navigation/navigation.component.css"
+    /> -->
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"
+    />
+  </head>
+  <body style="width:10%">
+    <!--full screen div-->
+    <div class="FlexBlack">
+      <!--holds nav bar div-->
+      <div class="flexLblue LblueOne">
+        <!--nav bar div-->
+        <div class="flexRedF" id="navigation">
+          <!--holds bar icon-->
+          <div class="BarDiv">
+            <a onclick="Togglslidemenu()">
+              <i class="fas fa-bars fa-3x"> </i>
+            </a>
+          </div>
+          <!--end bar icon-->
+          <!--holds all four menu items-->
+          <div class="flexgroup" style="position:absolute">
+            <!--menu item Profile-->
+            <div class="flexGreen" style="position:relative">
+              <a
+                class="aa"
+                id="p"
+                onmouseover="Ptoggle()"
+                onmouseout="closeL()"
+              >
+                <i class="fas fa-user-alt fa-3x"> </i
+                ><span class="navItems" style="padding-right:32px;"
+                  >Profile</span
+                >
+              </a>
+            </div>
+            <!--menu item Domain-->
+            <div class="flexGreen">
+              <a
+                class="aa"
+                id="d"
+                onmouseover="Dtoggle(); loadDomains();"
+                onmouseout="closeLD()"
+              >
+                <i class="fas fa-th-large fa-3x"> </i
+                ><span class="navItems" style="padding-right:17px;"
+                  >Domain</span
+                >
+              </a>
+            </div>
+            <!--menu item History-->
+            <div class="flexGreen">
+              <a
+                class="aa"
+                id="h"
+                onmouseover="Htoggle(); loadHistory();"
+                onmouseout="closeLH()"
+              >
+                <i class="fas fa-clock fa-3x"> </i
+                ><span class="navItems" style="padding-right:23px;"
+                  >History</span
+                >
+              </a>
+            </div>
+            <!--menu item Settings-->
+            <div class="flexGreen">
+              <a
+                class="aa"
+                id="s"
+                onmouseover="Stoggle()"
+                onmouseout="closeLS()"
+              >
+                <i class="fas fa-font fa-3x"></i
+                ><span class="navItems" style="padding-right:65px;">bout</span>
+              </a>
+            </div>
+          </div>
+          <!---end of div holding four menu items-->
+        </div>
+        <!--end of nav bar div-->
+      </div>
+
+      <div class="flexLblue Lbluethree" style="padding:10px; margin:5px;"></div>
+    </div>
+    <!--end of full screen div-->
+
+    <!--hidden div here Profile-->
+    <div id="FlexSgreen" onmouseover="stay()" onmouseout="closeL()">
+      <div class="ProfileFlex">
+        <div class="imageFlex">
+          <i
+            class="fas fa-user-alt fa-5x"
+            style="color:white; margin-left:100px; padding-right:12px;"
+          ></i>
+        </div>
+        <div class="formFlex">
+          <p>
+            <span id="category"
+              >User Name<i
+                style="color:rgb(130, 151, 151); margin-left:10px;"
+                class="fas fa-pencil-alt"
+              ></i></span
+            ><span id="data"
+              >{{ this.navFirstName }} {{ this.navLastName }}&nbsp;&nbsp;</span
+            >
+          </p>
+          <br />
+          <p>
+            <span id="category"
+              >Password<a
+                style="color:rgb(130, 151, 151); margin-left:10px;"
+                class="fas fa-pencil-alt"
+                onClick="changePass()"
+              ></a></span
+            ><span id="data">*********&nbsp;&nbsp;</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <!--hidden div here Domain-->
+    <div id="FlexSgreenD" onmouseover="stayD()" onmouseout="closeLD()">
+      <div class="heading">
+        <p id="data" style="margin-top:1px; text-align:center;">
+          Select a Domain
+        </p>
+      </div>
+      <div class="scrollable" style="overflow-y: scroll;" id="domainList"></div>
+      <div class="addDomain">
+        <p id="Udomain">
+          Got a New Domain?<button
+            style="background: transparent; border: transparent;"
+          >
+            <i
+              id="uploadButtonIcon"
+              class="fas fa-upload fa-x"
+              onclick="displayForm();"
+              >Create</i
+            >
+          </button>
+        </p>
+      </div>
+    </div>
+
+    <!--hidden div here History-->
+    <div id="FlexSgreenH" onmouseover="stayH();" onmouseout="closeLH()">
+      <div class="heading">
+        <p id="data" style="margin-top:1px; text-align:center;">
+          Your Transcripts
+        </p>
+      </div>
+      <div class="Dbody" style="overflow-y: scroll;" id="historyList">
+        ;
+
+        <!-- <div class="item">
+          <div class="right">
+            <div class="filename">
+              <span id="data">Meeting One</span>
+            </div>
+            <div class="keywords">
+              <span id="words">word1, word2, word3</span>
+            </div>
+          </div>
+          <div class="left">
+            <div class="fileLink">
+              <span id="category">
+                <i
+                  style="color:rgb(130, 151, 151); margin-left:5px;"
+                  class="fas fa-file fa"
+                ></i>
+                <a id="Flink" onclick="pushHistory();">View</a>
+              </span>
+            </div>
+            <div class="sentiment">
+              <span id="words">Positive</span>
+            </div>
+          </div>
+        </div>-->
+      </div>
+    </div>
+
+    <!--hidden div here Settings-->
+    <div id="FlexSgreenS" onmouseover="stayS()" onmouseout="closeLS()">
+      <div class="heading">
+        <p id="data" style="margin-top:1px; text-align:center;">About</p>
+      </div>
+      <div
+        class="Sbody"
+        style="margin-top:1px; text-align:center;  font-size: 17px;
+      font-family:Candara;
+      color: rgb(81, 100, 100);"
+      >
+        <span><strong>summarization tool for your meetings.</strong> </span>
+
+        <p>version: 1.0</p>
+        <p>
+          <strong>The team:</strong><br />
+          Alan Hunt (advisor) Harshal Jagtap, Rajat Thosar, Shubhra Deshpande,
+          Smrati Kushwah & Ved Valsangkar.
+        </p>
+        <p style="font-style:italic; font-size: smaller;">
+          This application is developed for the course of CSE611: MS Project
+          Development
+        </p>
+      </div>
+    </div>
+
+    <!--Hidden pop-ups-->
+
+    <!--hidden toast-->
+    <!--saved on cross bubble-->
+    <div id="snackbar">Saved ..</div>
+    <!--recording started-->
+    <div id="domainSelect">Please select a domain first...</div>
+    <div id="PopUpRecording">Recording Started..</div>
+    <!--recording ended-->
+    <div id="PopUpRecordingE">Recording Ended..</div>
+
+    <!--hidden form Domain-->
+    <div id="DomainForm">
+      <p id="titleError">Title already exists!</p>
+      <div class="Cross">
+        <i
+          id="closeFbutton"
+          class="fas fa-window-close fa-2x"
+          style="background-color:transparent;"
+          onclick="CloseDform();"
+        ></i>
+      </div>
+      <div class="twouf">
+        <div class="TitleCross">
+          <div class="DomainTitle">
+            <input id="newDName" type="text" placeholder="Enter Domain Name" />
+          </div>
+        </div>
+        <div class="KeywordsSection">
+          <div class="editBoxKeyword">
+            <textarea
+              class="form-control rounded-1"
+              id="newKeys"
+              rows="7"
+              placeholder="Provide Keywords Here :           Seperated By Commas"
+              style="background-color:#dcdfe5;"
+            ></textarea>
+            <p id="keywordEmpty">Keywords cannot be empty</p>
+          </div>
+        </div>
+        <div class="SaveSection">
+          <button class="SaveButtonSection" onclick="saveDomain();">
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--hidden form change passowrd-->
+
+    <div id="changePassForm">
+      <p id="PasswordError">Password do not match!</p>
+      <div class="Cross">
+        <i
+          id="closeFbutton"
+          class="fas fa-window-close fa-2x"
+          style="background-color:transparent;"
+          onclick="CloseDform();"
+        ></i>
+      </div>
+      <div class="twouf">
+        <div class="TitleCross">
+          <div class="DomainTitle">
+            <input
+              id="oldPass"
+              type="password"
+              placeholder="Enter current passowrd"
+            />
+          </div>
+        </div>
+        <div class="abcd">
+          <div class="TitleCross">
+            <div class="DomainTitle">
+              <input
+                id="newPass"
+                type="password"
+                placeholder="Enter new passowrd"
+              />
+            </div>
+          </div>
+        </div>
+        <div class="SaveSection">
+          <button class="SaveButtonSection" (click)="CPass()">
+            Change Password
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!--hidden transcript display form-->
+
+    <div id="displayForm" class="d-flex">
+      <div
+        class="editTitleDiv d-flex"
+        style="display:inline-block; position: relative; background-color:#dcdfe5;  border-radius:3%; height: 9%;"
+      >
+        <textarea
+          placeholder="Enter Title here"
+          id="titleEditable"
+          style="background-color:transparent; padding:2%; border: none; border-radius:5%;overflow-y: hidden ; font-size:23px; width:100%;"
+        ></textarea>
+      </div>
+      <div
+        class="transcriptDisplayDiv d-flex scrollable"
+        style="padding:1%; width:100%; height:35%; margin-top:1%; margin-bottom:1%; display:inline-block; position: relative; background-color: #dcdfe5;text-align: left; overflow-y:auto; border-radius:3%;"
+      ></div>
+      <div class="thirdcontainerdiv d-flex">
+        <div class="keywordsDisplayDiv"></div>
+        <div class="sentimentAndButtonsDiv">
+          <div class="sentimentanddomnain"></div>
+          <div class="bothButtons"></div>
+        </div>
+      </div>
+    </div>
+  </body>
+
+  <!--scripts-->
+  <!-- <script>
+    var state = 'closed';
+    function Togglslidemenu() {
+      if (state == 'closed') {
+        document.getElementById('navigation').style.width = '200px';
+        state = 'open';
+        var a = document.getElementsByClassName('navItems');
+        var i;
+        for (i = 0; i < a.length; i++) {
+          a[i].style.display = 'inline';
+        }
+      } else {
+        document.getElementById('navigation').style.width = '85px';
+        state = 'closed';
+        var a = document.getElementsByClassName('navItems');
+        var i;
+        for (i = 0; i < a.length; i++) {
+          a[i].style.display = 'none';
+        }
+      }
+    }
+    /* Profile functions */
+   function Ptoggle() {
+      state = 'closed';
+      console.log('Hovering over PROFILE');
+      Togglslidemenu();
+      document.getElementById('FlexSgreen').style.visibility = 'visible';
+   }
+
+   function stay(){
+    state = 'closed';
+      Ptoggle();
+      document.getElementById('FlexSgreen').style.visibility = 'visible';
+      document.getElementById('p').style.backgroundColor="rgb(41, 68, 68)";
+          
+   }
+    function closeL() {
+      document.getElementById('FlexSgreen').style.visibility = 'hidden';
+    }
+
+    /* Domain functions */
+    function Dtoggle() {
+      state = 'closed';
+      Togglslidemenu();
+      document.getElementById('FlexSgreenD').style.visibility = 'visible';
+    }
+    function closeLD() {
+      document.getElementById('FlexSgreenD').style.visibility = 'hidden';
+    }
+    function stayD(){
+    state = 'closed';
+      Dtoggle();
+      document.getElementById('FlexSgreenD').style.visibility = 'visible';
+      document.getElementById('d').style.backgroundColor="rgb(41, 68, 68)";
+          
+   }
+   /* History functions */
+   function Htoggle() {
+      state = 'closed';
+      Togglslidemenu();
+      document.getElementById('FlexSgreenH').style.visibility = 'visible';
+    }
+    function closeLH() {
+      document.getElementById('FlexSgreenH').style.visibility = 'hidden';
+    }
+    function stayH(){
+    state = 'closed';
+      Htoggle();
+      document.getElementById('FlexSgreenH').style.visibility = 'visible';
+      document.getElementById('h').style.backgroundColor="rgb(41, 68, 68)";
+          
+   }
+
+    /* Settings functions */
+    function Stoggle() {
+      state = 'closed';
+      Togglslidemenu();
+      document.getElementById('FlexSgreenS').style.visibility = 'visible';
+    }
+    function closeLS() {
+      document.getElementById('FlexSgreenS').style.visibility = 'hidden';
+    }
+    function stayS(){
+    state = 'closed';
+      Stoggle();
+      document.getElementById('FlexSgreenS').style.visibility = 'visible';
+      document.getElementById('s').style.backgroundColor="rgb(41, 68, 68)";
+          
+   }
+
+
+  </script> -->
+</html>
+
+<!--
+  <a routerLink="./first">First page</a>
+  <a routerLink="./second">Second page</a>
+
+    <router-outlet></router-outlet>
+-->

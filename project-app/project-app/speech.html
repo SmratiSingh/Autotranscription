@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Speech Recognition</h1>
+
+<button onclick = "recognize();"> Start</button>
+
+</body>
+<script>
+function recognize(){
+	window.SpeechRecognition = window.webkitSpeechRecognition || window.SpeechRecognition;
+	document.write("Done");
+	if ('SpeechRecognition' in window) {
+	  // speech recognition API supported
+	  document.write("speech recognition is supported");
+	} else {
+	  // speech recognition API not supported
+	  document.write("speech not supported");
+	}
+	let finalTranscript = '';
+	const recognition = new window.SpeechRecognition();
+	recognition.interimResults = true;
+	recognition.continuous = true;
+	recognition.lang = "en-US"
+	
+	recognition.onresult = (event) => {
+	let interimTranscript = '';
+	  const speechToText = event.results[0][0].transcript;
+	  for (let i = event.resultIndex, len = event.results.length; i < len; i++) {
+			let transcript = event.results[i][0].transcript;
+			if (event.results[i].isFinal) {
+			  finalTranscript += transcript;
+			  document.write(transcript)
+			  
+			} else {
+			  interimTranscript += transcript;
+			}
+		  }
+	  //document.write(finalTranscript);
+	  finalTranscript = ""
+	}
+	recognition.start();
+	recognition.onaudioend = function(){
+			document.write("\n Speech ended.")
+		}
+	}
+
+</script>
+</html>
