@@ -541,11 +541,7 @@
                 <div class="sentiment" style="display:flex;>
                   <span id="words" style="color: rgb(156, 184, 184); font-size: 12px;
     font-style: italic;
-<<<<<<< HEAD:src/index.html
-    text-align: left;">Positive</span>
-=======
     text-align: left;">`+ entry['sentiment']+`</span>
->>>>>>> 814675439f443e8182f3ed8b1ef77a5fb54e3c8e:project-app/src/index.html
                 </div>
               </div>
             </div>
