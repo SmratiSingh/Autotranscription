@@ -288,6 +288,12 @@
         xhr.send(data);
         xhr.onreadystatechange = function() {
           console.log('Save status: ' + xhr.responseText);
+          var x = document.getElementById('PopUpRecording');
+          x.innerHTML = 'Feedback updated...';
+          x.className = 'show';
+          setTimeout(function() {
+            x.className = x.className.replace('show', '');
+          }, 3000);
         };
       }
 
@@ -445,6 +451,12 @@
         xhr.send(data);
         xhr.onreadystatechange = function() {
           console.log('Save status: ' + xhr.responseText);
+          var x = document.getElementById('PopUpRecording');
+          x.innerHTML = 'Updated the corpus...';
+          x.className = 'show';
+          setTimeout(function() {
+            x.className = x.className.replace('show', '');
+          }, 3000);
         };
       }
 
