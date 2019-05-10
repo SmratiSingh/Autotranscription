@@ -485,6 +485,12 @@
       }
       function closeUbtn(){
         document.getElementById('displayForm1').style.visibility="hidden";
+        var x = document.getElementById('PopUpRecording');
+          x.innerHTML = 'Updated the corpus...';
+          x.className = 'show';
+          setTimeout(function() {
+            x.className = x.className.replace('show', '');
+          }, 3000);
       }
       /*closing upload and then play form*/
       function closeplay(){
