@@ -1,7 +1,9 @@
-import speech_recognition as sr
+# import speech_recognition as sr
 import os
 from gensim import summarization as summary
 import nltk.tokenize
+nltk.download('punkt',quiet=True)
+# nltk.download('wordnet',quiet = True)
 from nltk.stem.snowball import SnowballStemmer
 import json
 
