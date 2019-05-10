@@ -1,0 +1,874 @@
+<!DOCTYPE html style= "height:100%">
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <title>Auto Notes</title>
+    <base href="/" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" type="image/x-icon" href="favicon.ico" />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+      integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://webdev.cse.buffalo.edu/transcribe/Autotranscription/project-app/src/app/navigation/navigation.component.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous"
+    />
+    <!-- <link rel="stylesheet" href="src/app/navigation/navigation.component.css" /> -->
+  </head>
+  <body>
+    <app-root style="height:100%">Loading...</app-root>
+    <!--scripts-->
+    <script
+      src="http://code.jquery.com/jquery-3.3.1.min.js"
+      integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+      crossorigin="anonymous"
+    ></script>
+
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+      integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+      crossorigin="anonymous"
+    ></script>
+    <script
+      src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+      integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+      crossorigin="anonymous"
+    ></script>
+    <script>
+      window.SpeechRecognition =
+        window.webkitSpeechRecognition || window.SpeechRecognition;
+      let finalTranscript = '';
+      let keyGenFlag = false;
+      const recognition = new window.webkitSpeechRecognition();
+      console.log('recognition created');
+      recognition.interimResults = true;
+      recognition.continuous = true;
+      recognition.lang = 'en-US';
+      var statusResp = '';
+      var keywordMap = {};
+      var tid;
+      function transcribeSpeech() {
+        document.getElementById('titleBar').value = '';
+
+        ClosePopform();
+
+        if (document.getElementById('domainOut').innerHTML == '') {
+          console.log('please select domain');
+          // var y = document.getElementById('domainSelect');
+          // y.className = 'show';
+          // console.log(y);
+          // setTimeout(function() {
+          // y.className = y.className.replace('show', '');
+          //   }, 3000);
+          var x = document.getElementById('PopUpRecording');
+          x.innerHTML = 'Please select domain first...';
+          x.className = 'show';
+          setTimeout(function() {
+            x.className = x.className.replace('show', '');
+          }, 3000);
+          return 0;
+        }
+
+        document.getElementById('final').innerHTML = ''; //clears everything
+
+        /*recording popup*/
+        // document.getElementById('trans').value='';
+        var x = document.getElementById('PopUpRecording');
+        x.innerHTML = 'Recording started...';
+        x.className = 'show';
+        setTimeout(function() {
+          x.className = x.className.replace('show', '');
+        }, 3000);
+        /*popup ends*/
+        //document.getElementById('trans').innerHTML = ""; //clears everything
+        document.getElementById('recordBtn').style.backgroundColor = 'red';
+        stopBtn.style.backgroundColor = '#2f4f4f';
+        keyGenFlag = false;
+        let finalTranscript = '';
+        recognition.onresult = event => {
+          let interimTranscript = '';
+
+          //const speechToText = event.results[0][0].transcript;
+          for (
+            let i = event.resultIndex, len = event.results.length;
+            i < len;
+            i++
+          ) {
+            let transcript = event.results[i][0].transcript;
+            if (event.results[i].isFinal) {
+              finalTranscript += transcript;
+            } else {
+              interimTranscript += transcript;
+            }
+            final.innerHTML = finalTranscript;
+
+            interim.innerHTML = interimTranscript;
+            trans.scrollTop = trans.scrollHeight;
+          }
+        };
+        recognition.start();
+        recognition.onaudioend = function() {
+          console.log('Audio ended');
+          recordBtn.style.backgroundColor = '#2f4f4f';
+          stopBtn.style.backgroundColor = '#dcdfe5';
+          if (!keyGenFlag) {
+            keyGenFlag = true;
+            // getKeywords();
+          }
+        };
+      }
+
+      /*upload file and transcribe*/
+
+      //uploadshow
+
+      function uploadShow() {
+        document.getElementById('playForm').style.visibility = 'visible';
+      }
+
+      //navbar pass change
+      function changePass() {
+        closeNav();
+        closeSmallNav();
+        document.getElementById('oldPass').innerHTML = '';
+        document.getElementById('newPass').innerHTML = '';
+        document.getElementById('changePassForm').style.visibility = 'visible'; //change ID to changePassForm
+        document.getElementById('FlexSgreen').style.visibility = 'hidden';
+      }
+      //DB call for old and new pass
+      function CPass() {
+        //var sha256 = require('js-sha256').sha256;
+        document.getElementById('changePassForm').style.visibility = 'hidden';
+        var oldP = document.getElementById('oldPass').value;
+        var newP = document.getElementById('newPass').value;
+        document.getElementById('oldPass').value = '';
+        document.getElementById('newPass').value = '';
+        var uname1 = username.value;
+        console.log('check pass ' + newP);
+        var xhr1 = new XMLHttpRequest();
+
+        var uname = username.value;
+        console.log('User is: ' + uname);
+        var data = { username: uname1, old_password: oldP, new_password: newP };
+        data = JSON.stringify(data);
+        xhr1.open(
+          'POST',
+          'https://webdev.cse.buffalo.edu:3000/changepassword',
+          true
+        );
+        // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
+        xhr1.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+
+        xhr1.send(data);
+        xhr1.onreadystatechange = function() {
+          // console.log('Save status: ' + xhr1.responseText);
+          var responseText = JSON.parse(xhr1.responseText);
+          if (responseText.status == 'SUCCESS') {
+            console.log('success');
+            var x = document.getElementById('PopUpRecording');
+            x.innerHTML = 'Password changed...';
+            x.className = 'show';
+            setTimeout(function() {
+              x.className = x.className.replace('show', '');
+            }, 3000);
+          } else {
+            console.log('fail');
+          }
+        };
+      }
+      // add id of the pop up form
+
+      function pushHistory(transID) {
+        console.log('tarnsid '+ transID);
+        var viewForm = document.getElementById('displayForm1');
+        data = {id : transID};
+        data = JSON.stringify(data);
+        var xhr1 = new XMLHttpRequest();
+        xhr1.open(
+          'POST',
+          'https://webdev.cse.buffalo.edu:3000/getitem',
+          true
+        );
+        // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
+        xhr1.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+
+        xhr1.send(data);
+        xhr1.onreadystatechange = function() {
+            var reply = JSON.parse(xhr1.responseText);
+            console.log(reply);
+            var rtitle = reply.results.title;
+            var rtext = reply.results.transcript;
+            var rsentiment = reply.results.sentiment;
+            var rkeywords = reply.results.keywords;
+            var newKeys = rkeywords.split(',');
+            var timestamp = new Date(reply.results.timestamp);
+            titleEditable.innerHTML = rtitle;
+            editTrans.innerHTML = rtext;
+            FetchedSentiment.innerHTML = rsentiment;
+            viewForm.style.visibility = 'visible';
+            FetchedDate.innerHTML = timestamp;
+            
+            statusResp = transID.toString();
+            editKey.innerHTML = "";
+            for(var k =0;k <newKeys.length ; k++){
+              var wrap = document.createElement('div');
+              wrap.id = 'key' + k.toString();
+              document.getElementById('editKey').appendChild(wrap);
+
+                wrap.innerHTML += 
+                `<div
+        class="bubble scrollable-content",
+        
+        style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); height: fit-content; background:darkslategray;
+        position: 'relative'; margin-left: 5%; margin-top: 5%; width: fit-content;"
+      >
+        <p
+          style="font-style:medium; color:white; margin-right:10px; padding-top:7px;padding-left:5px; padding-bottom: 1px;"
+        >
+          ` +
+                newKeys[k] +
+                `
+        </p>
+        <i 
+          onclick="popBubble2('key` +
+                k.toString() +
+                `','`+ transID+`');",
+          class="fas fa-window-close fa-2x",
+          style="padding-top:5px; color:white; background:darkslategray;margin-right:10px;"
+          
+        ></i>
+      </div>
+               `;
+            }
+             
+        }
+        closeNav();
+        
+        document.getElementById('displayForm1').style.visibility = 'visible';
+        document.getElementById('FlexSgreenH').style.visibility = 'hidden';
+      }
+      function popBubble2(keyID,tid) { 
+        console.log('key to pop is: ' + keyID.toString());
+        keyValue = keywordMap[keyID];
+        console.log('keyvalue is: ' + keyValue);
+        var titleValue = document.getElementById('titleBar').value;
+        console.log('title is: ' + titleValue);
+        var toRemove = document.getElementById(keyID);
+        toRemove.parentNode.removeChild(toRemove);
+        var xhr = new XMLHttpRequest();
+        var data = { keyword: keyValue, title: titleValue, id:  tid};
+        data = JSON.stringify(data);
+        xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/removekey', true);
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+        xhr.send(data);
+        xhr.onreadystatechange = function() {
+          console.log('Save status: ' + xhr.responseText);
+        };
+      }
+
+      function stopRecord() {
+        /*recording popup*/
+        if (document.getElementById('final').innerHTML != '') {
+          askForTitle();
+        }
+        if (final.innerHTML == '') {
+          return 0;
+        }
+        var x = document.getElementById('PopUpRecordingE');
+        x.className = 'show';
+        setTimeout(function() {
+          x.className = x.className.replace('show', '');
+        }, 3000);
+        /*popup ends*/
+        recognition.stop();
+        // if (!keyGenFlag) {
+        //   keyGenFlag = true;
+        //   getKeywords();
+        // }
+      }
+
+      function getKeywords() {
+        newGrid.innerHTML = '';
+        var xmlhttp = new XMLHttpRequest();
+        console.log('INside keyword extractor');
+        //var contentDiv = document.getElementById("summary");
+        var question = document.getElementById('final').innerHTML;
+        // console.log(question);
+        xmlhttp.open(
+          'GET',
+          'https://webdev.cse.buffalo.edu:3000/keywords?trans=' + question,
+          true
+        );
+        xmlhttp.onreadystatechange = function() {
+          if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+            var resp = xmlhttp.responseText;
+            console.log('resp is' + resp);
+            var elems = resp.split(':');
+            var keys = elems[0].split(',');
+            var sentiment = elems[1];
+            console.log('sentiment is: ' + sentiment);
+            document.getElementById('sentiment').innerHTML = sentiment;
+            console.log('keys length is ' + keys.length);
+            var count = 0;
+            const maxLength = 3;
+            var topMar = 5;
+            var leftMar = 5;
+            var posType = 'static';
+            var floatType = 'none';
+            var maxRows = Math.ceil(keys.length / 3);
+            var propString = '60px';
+            for (var k = 0; k < maxRows - 1; k++) {
+              propString += ' 60px';
+            }
+            console.log('Prop stirng is: ' + propString);
+            document.getElementById(
+              'newGrid'
+            ).style.gridTemplateRows = propString;
+            for (var i = 0; i < keys.length; i++) {
+              if (keys[i] == '') {
+                return 0;
+              }
+
+              keywordMap['key' + i.toString()] = keys[i];
+              var wrap = document.createElement('div');
+              wrap.id = 'key' + i.toString();
+              document.getElementById('newGrid').appendChild(wrap);
+              wrap.innerHTML +=
+                `<div
+        class="bubble scrollable-content",
+        
+        style="display:flex; flex-direction:row; border-radius:6%; border:solid; border-color:rgb(62, 92, 92); height: fit-content; background:darkslategray;
+        position: 'relative'; margin-left: ` +
+                leftMar +
+                `%; margin-top: ` +
+                topMar +
+                `%; width: fit-content;"
+      >
+        <p
+          style="font-style:medium; color:white; margin-right:10px; padding-top:7px;padding-left:5px; padding-bottom: 1px;"
+        >
+          ` +
+                keys[i] +
+                `
+        </p>
+        <i 
+          onclick="popBubble('key` +
+                i.toString() +
+                `');",
+          class="fas fa-window-close fa-2x",
+          style="padding-top:5px; color:white; background:darkslategray;margin-right:10px;"
+          
+        ></i>
+      </div>
+               `;
+              count = count + 1;
+            }
+
+            var xhr = new XMLHttpRequest();
+
+            var uname = username.value;
+            console.log('User is: ' + uname);
+            var data = {
+              username: uname,
+              text: final.innerHTML,
+              keywords: elems[0],
+              title: titleBar.value,
+              sentiment: elems[1].trim()
+            };
+            data = JSON.stringify(data);
+            xhr.open(
+              'POST',
+              'https://webdev.cse.buffalo.edu:3000/transcript',
+              true
+            );
+            // xhr.setRequestHeader('X-Requested-With', 'XMLHttpReq');
+            xhr.setRequestHeader(
+              'Content-Type',
+              'application/x-www-form-urlencoded; charset=UTF-8'
+            );
+
+            console.log('data is: ' + data);
+            xhr.send(data);
+            xhr.onreadystatechange = function() {
+              console.log('Save status: ' + xhr.responseText);
+              statusResp = JSON.parse(xhr.responseText).id;
+              console.log('Status resp is: ' + statusResp);
+              document.getElementById('transactionID').value = statusResp;
+              sessionStorage.setItem('transactionID', statusResp);
+            };
+          }
+        };
+        xmlhttp.send(null);
+      }
+
+      function popBubble(keyID) {
+        console.log('key to pop is: ' + keyID.toString());
+        keyValue = keywordMap[keyID];
+        console.log('keyvalue is: ' + keyValue);
+        var titleValue = document.getElementById('titleBar').value;
+        console.log('title is: ' + titleValue);
+        var toRemove = document.getElementById(keyID);
+        toRemove.parentNode.removeChild(toRemove);
+        var xhr = new XMLHttpRequest();
+        var data = { keyword: keyValue, title: titleValue, id:  statusResp};
+        data = JSON.stringify(data);
+        xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/removekey', true);
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+        xhr.send(data);
+        xhr.onreadystatechange = function() {
+          console.log('Save status: ' + xhr.responseText);
+        };
+      }
+
+      function loadDomains() {
+        var xhr = new XMLHttpRequest();
+        var data = { rtype: 'loadDomains' };
+        data = JSON.stringify(data);
+
+        xhr.open(
+          'POST',
+          'https://webdev.cse.buffalo.edu:3000/alldomains',
+          true
+        );
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+        xhr.send(data);
+        xhr.onreadystatechange = function() {
+          var allDomains = JSON.parse(xhr.responseText).domains;
+          var dList = document.getElementById('domainList');
+          dList.innerHTML = '';
+          for (var k = 0; k < allDomains.length; k++) {
+            dList.innerHTML +=
+              `<a class="domainName" onclick="printDomain('` +
+              allDomains[k] +
+              `');">` +
+              allDomains[k] +
+              `</a>`;
+          }
+        };
+      }
+      function saveTitleTemp() {
+        document.getElementById('askTitleForm').style.visibility = 'hidden';
+        document.getElementById('titleBar').value = tmpTitle.value;
+        document.getElementById('tmpTitle').value = '';
+        getKeywords();
+      }
+      function closeUbtn(){
+        document.getElementById('displayForm1').style.visibility="visible";
+      }
+      /*closing upload and then play form*/
+      function closeplay(){
+        document.getElementById('playForm').style.visibility='hidden';
+      }
+      function printDomain(domainToPrint) {
+        console.log(domainToPrint);
+        domainOut.innerHTML = domainToPrint;
+        Togglslidemenu();
+      }
+      
+      function loadHistory() {
+        var xhr = new XMLHttpRequest();
+        var data = { username: document.getElementById('username').value };
+        data = JSON.stringify(data);
+        xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/history', true);
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+        xhr.send(data);
+        xhr.onreadystatechange = function() {
+          var hList = document.getElementById('historyList');
+          var resList = JSON.parse(xhr.responseText).resultList;
+          hList.innerHTML = '';
+          for (var i = 0; i < resList.length; i++) {
+            var entry = resList[i];
+            // console.log(entry['_id']);
+            hList.innerHTML +=
+              `
+               <div class="item" style="display:flex; flex-direction:row; justify-content:space-around;">
+              <div class="right"  style="display:flex; flex-direction:column;width:50%;">
+                <div class="filename" style="display:flex; width:50%;">
+                  <span id="data" style="color: rgb(156, 184, 184); font-size:16px;">` +
+              entry['title'] +
+              `</span>
+                </div>
+                <div class="keywords" style="display:flex; width:50%;  margin-left:5px; text-align:center;">
+                  <span id="words" style="color: rgb(156, 184, 184);   text-align: center;">` +
+              entry['keywords'] +
+              `</span>
+                </div>
+              </div>
+              <div class="left" style="display:flex; flex-direction:column;width:50%;">
+                <div class="fileLink" style="display:flex;>
+                  <span id="category">
+                    <i
+                      style="color: rgb(156, 184, 184); margin-left:5px;"
+                      class="fas fa-file fa"
+                    ></i>
+                    <a id="Flink" style="color: rgb(156, 184, 184);" onclick="pushHistory('`+ entry['_id']+`');">View</a>
+                  </span>
+                </div>
+                <div class="sentiment" style="display:flex;>
+                  <span id="words" style="color: rgb(156, 184, 184); font-size: 12px;
+    font-style: italic;
+<<<<<<< HEAD:src/index.html
+    text-align: left;">Positive</span>
+=======
+    text-align: left;">`+ entry['sentiment']+`</span>
+>>>>>>> 814675439f443e8182f3ed8b1ef77a5fb54e3c8e:project-app/src/index.html
+                </div>
+              </div>
+            </div>
+               `;
+          }
+        };
+      }
+      function saveDomain() {
+        document.getElementById('DomainForm').style.visibility = 'hidden';
+        var dname = document.getElementById('newDName');
+        var newKey = document.getElementById('newKeys');
+        document.getElementById('newKeys').value = '';
+        var xhr = new XMLHttpRequest();
+        var data = { domain: dname.value, keywords: newKey.value };
+        data = JSON.stringify(data);
+        console.log('new data is ' + data);
+        xhr.open('POST', 'https://webdev.cse.buffalo.edu:3000/adddomain', true);
+        xhr.setRequestHeader(
+          'Content-Type',
+          'application/x-www-form-urlencoded; charset=UTF-8'
+        );
+        xhr.send(data);
+        xhr.onreadystatechange = function() {
+          console.log(xhr.responseText);
+        };
+      }
+    </script>
+    <script>
+      var state = 'closed';
+      function Togglslidemenu() {
+        if (state == 'closed') {
+          document.getElementById('navigation').style.width = '209px';
+          state = 'open';
+          var a = document.getElementsByClassName('navItems');
+          var i;
+          for (i = 0; i < a.length; i++) {
+            a[i].style.display = 'inline';
+          }
+        } else {
+          document.getElementById('navigation').style.width = '85px';
+          state = 'closed';
+          var a = document.getElementsByClassName('navItems');
+          var i;
+          for (i = 0; i < a.length; i++) {
+            a[i].style.display = 'none';
+          }
+        }
+      }
+
+      /* close nav bar*/
+      function closeNav() {
+        document.getElementById('navigation').style.width = '85px';
+        state = 'closed';
+        var a = document.getElementsByClassName('navItems');
+        var i;
+        for (i = 0; i < a.length; i++) {
+          a[i].style.display = 'none';
+        }
+      }
+      function closeView() {
+        document.getElementById('displayForm1').style.visibility = 'hidden';
+      }
+      function closeSmallNav() {
+        //document.getElementById('flexSgreen').style.visibility='hidden';
+        if (
+          document.getElementById('changePassForm').style.visibility ==
+          'visible'
+        ) {
+          closeNav();
+        }
+      }
+
+      /*ask for title */
+      function askForTitle() {
+        document.getElementById('askTitleForm').style.visibility = 'visible';
+      }
+
+      function closeFlexD(){
+        closeNav();
+        document.getElementById('FlexSgreenD').style.visibility="hidden"; 
+      }
+      /*save pop up thing*/
+
+      function savePopup() {
+        if (document.getElementById('final').innerHTML == '') {
+          //document.getElementById('saveForm').style.visibility='hidden';
+          document.getElementById('titleBar').value = '';
+
+          transcribeSpeech();
+        } else {
+          document.getElementById('saveForm').style.visibility = 'visible';
+        }
+      }
+
+      function ClosePopform() {
+        document.getElementById('saveForm').style.visibility = 'hidden';
+        document.getElementById('askTitleForm').style.visibility = 'hidden';
+        document.getElementById('playForm').style.visibility = 'hidden';
+        getKeywords();
+      }
+
+      /*for uploading audio*/
+  
+	function start(){
+    console.log("started asudio");
+    let audio = new Audio();
+    audio.src = "https://webdev.cse.buffalo.edu/transcribe/Autotranscription/project-app/src/Recording.mp3";
+    audio.load();
+    audio.play();
+    transcribeSpeech();
+    
+
+
+
+
+
+
+  //   const recognition = new webkitSpeechRecognition();
+  //   console.log('started');
+  //   console.log('test' + upload.files[0]);
+	// 	var path = upload.files[0].name;
+	// 	console.log(path);
+		
+		
+		
+
+	// 	const audio = new Audio();
+
+	// 	recognition.continuous = true;
+	// 	recognition.interimResults = true;
+	// 	recognition.onresult = function(event) {
+	// 	  if (event.results[0].isFinal) {
+	// 		// do stuff with `event.results[0][0].transcript`
+	// 		console.log(event.results[0][0].transcript);
+	// 		recognition.stop();
+	// 	  }
+	// 	}
+
+	// 	recognition.onaudiostart = e => {
+	// 	  console.log("audio capture started");
+	// 	}
+
+	// 	recognition.onaudioend = e => {
+	// 	  console.log("audio capture ended");
+	// 	}
+
+	// 	audio.oncanplay = () => {
+	// 	  recognition.start();
+	// 	  audio.play();
+	// 	}
+
+	// 	audio.src = path;
+	}
+
+
+
+
+
+
+
+    </script>
+
+    <script>
+      /* Profile functions */
+      function Ptoggle() {
+        state = 'closed';
+        // console.log('Hovering over PROFILE');
+        Togglslidemenu();
+        document.getElementById('FlexSgreen').style.visibility = 'visible';
+      }
+
+      function stay() {
+        state = 'closed';
+        Ptoggle();
+        document.getElementById('FlexSgreen').style.visibility = 'visible';
+        var ele = document.getElementById('p');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
+      }
+      function closeL() {
+        //closeNav();
+        document.getElementById('FlexSgreen').style.visibility = 'hidden';
+        var ele = document.getElementById('p');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
+        //document.getElementById('p').style.backgroundColor = 'rgb(47,79,79)';
+      }
+
+      /* Domain functions */
+      function Dtoggle() {
+        state = 'closed';
+        Togglslidemenu();
+        document.getElementById('FlexSgreenD').style.visibility = 'visible';
+      }
+      function closeLD() {
+        //closeNav();
+        document.getElementById('FlexSgreenD').style.visibility = 'hidden';
+        var ele = document.getElementById('d');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
+
+        //document.getElementById('d').style.backgroundColor = 'rgb(47,79,79)';
+      }
+      function stayD() {
+        state = 'closed';
+        Dtoggle();
+        document.getElementById('FlexSgreenD').style.visibility = 'visible';
+        var ele = document.getElementById('d');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
+      }
+      function displayForm() {
+        //first clears the form on click create new form
+        closeNav();
+        document.getElementById('FlexSgreenD').style.visibility='hidden';
+
+        document.getElementById('DomainForm').style.visibility = 'visible';
+        document.getElementById('newDName').value = '';
+        document.getElementById('exampleFormControlTextarea1').value = '';
+        document.getElementById('FlexSgreenD').style.visibility='hidden';
+      }
+      function CloseDform() {
+        document.getElementById('DomainForm').style.visibility = 'hidden';
+        document.getElementById('changePassForm').style.visibility = 'hidden';
+        document.getElementById('newKeys').value = '';
+        document.getElementById('oldPass').value = '';
+        document.getElementById('newPass').value = '';
+      }
+
+      /* History functions */
+      function Htoggle() {
+        state = 'closed';
+        Togglslidemenu();
+        document.getElementById('FlexSgreenH').style.visibility = 'visible';
+      }
+      function closeLH() {
+        //closeNav();
+        document.getElementById('FlexSgreenH').style.visibility = 'hidden';
+        var ele = document.getElementById('h');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
+        //document.getElementById('h').style.backgroundColor = 'rgb(47,79,79)';
+      }
+      function stayH() {
+        state = 'closed';
+        Htoggle();
+        document.getElementById('FlexSgreenH').style.visibility = 'visible';
+        var ele = document.getElementById('h');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
+      }
+
+      /* Settings functions */
+      function Stoggle() {
+        state = 'closed';
+        Togglslidemenu();
+        document.getElementById('FlexSgreenS').style.visibility = 'visible';
+      }
+      function closeLS() {
+        //closeNav();
+        document.getElementById('FlexSgreenS').style.visibility = 'hidden';
+        var ele = document.getElementById('s');
+        ele.classList.remove('lightColor');
+        ele.classList.add('aa');
+
+        // document.getElementById('s').style.backgroundColor = 'rgb(47,79,79)';
+      }
+      function stayS() {
+        state = 'closed';
+        Stoggle();
+        document.getElementById('FlexSgreenS').style.visibility = 'visible';
+        var ele = document.getElementById('s');
+        ele.classList.remove('aa');
+        ele.classList.add('lightColor');
+      }
+      var timeoutId2;
+      function autoSave() {
+        // console.log(titleBar.value);
+        clearTimeout(timeoutId2);
+        timeoutId2 = setTimeout(function() {
+          console.log(titleBar.value);
+          var xhr = new XMLHttpRequest();
+          var data = {
+            title: titleBar.value.toString(),
+            id: statusResp,
+            keywords: ''
+          };
+          console.log('before jeson' + data);
+
+          data = JSON.stringify(data);
+          console.log('after json' + data);
+          xhr.open(
+            'POST',
+            'https://webdev.cse.buffalo.edu:3000/removekey',
+            true
+          );
+          xhr.setRequestHeader(
+            'Content-Type',
+            'application/x-www-form-urlencoded; charset=UTF-8'
+          );
+          xhr.send(data);
+          xhr.onreadystatechange = function() {
+            console.log('Save status: ' + xhr.responseText);
+          };
+        }, 750);
+      }
+      /* dummy function */
+      function dummy() {}
+
+      /*toast functions*/
+
+      function myFunction() {
+        // Get the snackbar DIV
+        var x = document.getElementById('snackbar');
+
+        // Add the "show" class to DIV
+        x.className = 'show';
+
+        // After 3 seconds, remove the show class from DIV
+        setTimeout(function() {
+          x.className = x.className.replace('show', '');
+        }, 3000);
+      }
+    </script>
+  </body>
+</html>

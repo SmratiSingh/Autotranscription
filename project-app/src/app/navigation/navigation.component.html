@@ -369,6 +369,7 @@
           >
             <button
               id="Ubutton"
+              onclick="closeUbtn();"
               style="margin-top:20px;margin-bottom: 20px; width:30%; border: thin; border-radius: 6%; color:white;background-color:rgba(47, 79, 79, 0.952);"
             >
               Update
@@ -443,15 +444,16 @@
       <div class="SaveSection" style="display: flex;  flex-direction: row;">
         <i class="fas fa-play-circle fa-4x" id="2"
         style="background-color:transparent; color:white; margin-left:40%;"
-        onclick="">
+        onclick="start();">
 
         </i>
       </div>
       <div style="display: flex; flex-direction: row; margin-top: 60px;">
       
-          <input style="display: flex; width:50%; color:white;
+           <input style="display: flex; width:50%; color:white;
           border-radius: 6%; background-color:darkslategray; margin-left:60px;" 
-          type="file" text="Select File" id="upload" onclick="start();" /></div>
+          type="file" text="Select File" id="upload" /></div> 
+          
     </div>
     <!--hidden form for ask for save-->
     <div id="askTitleForm">
