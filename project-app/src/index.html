@@ -264,6 +264,10 @@
             }
              
         }
+        closeNav();
+        
+        document.getElementById('displayForm1').style.visibility = 'visible';
+        document.getElementById('FlexSgreenH').style.visibility = 'hidden';
       }
       function popBubble2(keyID,tid) { 
         console.log('key to pop is: ' + keyID.toString());
@@ -479,6 +483,11 @@
         document.getElementById('tmpTitle').value = '';
         getKeywords();
       }
+
+      /*closing upload and then play form*/
+      function closeplay(){
+        document.getElementById('playForm').style.visibility='hidden';
+      }
       function printDomain(domainToPrint) {
         console.log(domainToPrint);
         domainOut.innerHTML = domainToPrint;
@@ -527,10 +536,15 @@
                     <a id="Flink" style="color: rgb(156, 184, 184);" onclick="pushHistory('`+ entry['_id']+`');">View</a>
                   </span>
                 </div>
+<<<<<<< HEAD
                 <div class="sentiment" style="display:flex;>
                   <span id="words" style="color: rgb(156, 184, 184); font-size: 12px;
     font-style: italic;
     text-align: left;">Positive</span>
+=======
+                <div class="sentiment">
+                  <span id="words" style="color: rgb(156, 184, 184);">`+ entry['sentiment']+`</span>
+>>>>>>> 0776fe1e5f34e4deae9abdd29770eded78fd300a
                 </div>
               </div>
             </div>
