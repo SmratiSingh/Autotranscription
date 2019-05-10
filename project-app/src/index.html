@@ -656,6 +656,7 @@
 
 		recognition.continuous = true;
 		recognition.interimResults = true;
+    var finalTranscript = "";
 		recognition.onresult = event => {
           let interimTranscript = '';
 
@@ -686,13 +687,13 @@
 		recognition.onaudioend = e => {
       console.log("audio capture ended");
       recognition.stop();
-      getKeywords();
+      // getKeywords();
 		}
 
-		audio.oncanplay = () => {
+		
 		  recognition.start();
 		  audio.play();
-		}
+		
 		}
 
 		function stopNew(){
