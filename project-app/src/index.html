@@ -484,7 +484,7 @@
         getKeywords();
       }
       function closeUbtn(){
-        document.getElementById('displayForm1').style.visibility="visible";
+        document.getElementById('displayForm1').style.visibility="hidden";
       }
       /*closing upload and then play form*/
       function closeplay(){
@@ -644,11 +644,13 @@
       }
 
       /*for uploading audio*/
-  
+      let audio = new Audio();
 	function start(){
-    document.getElementById('1').style.visibility="hidden";
+    document.getElementById('final').value="";
+    document.getElementById('trans').value="";
+    document.getElementById('2').disabled="true";
     console.log("started asudio");
-    let audio = new Audio();
+    
     audio.src = "https://webdev.cse.buffalo.edu/transcribe/Autotranscription/project-app/src/Recording.mp3";
     audio.load();
 
@@ -684,6 +686,7 @@
 		recognition.onaudioend = e => {
       console.log("audio capture ended");
       recognition.stop();
+      getKeywords();
 		}
 
 		audio.oncanplay = () => {
@@ -692,7 +695,15 @@
 		}
 		}
 
-		
+		function stopNew(){
+      audio.pause();
+      audio.currentTime = 0;
+      recognition.stop();
+      getKeywords();
+      closeplay();
+      document.getElementById('2').disabled="false";
+      // document.getElementById('3').style.visibility="visible";
+    }
 
 	// 	audio.src = path;
 	
