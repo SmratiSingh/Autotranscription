@@ -65,7 +65,7 @@
       var tid;
       function transcribeSpeech() {
         document.getElementById('titleBar').value = '';
-
+        document.getElementById('keywords').innerHTML = '';
         ClosePopform();
 
         if (document.getElementById('domainOut').innerHTML == '') {
@@ -640,7 +640,7 @@
         document.getElementById('saveForm').style.visibility = 'hidden';
         document.getElementById('askTitleForm').style.visibility = 'hidden';
         document.getElementById('playForm').style.visibility = 'hidden';
-        getKeywords();
+        // getKeywords();
       }
 
       /*for uploading audio*/
