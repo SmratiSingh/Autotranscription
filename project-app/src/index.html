@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <title>ProjectApp</title>
+    <title>Auto Notes</title>
     <base href="/" />
 
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -197,7 +197,6 @@
       }
       // add id of the pop up form
 
-<<<<<<< HEAD
       function pushHistory(transID) {
         console.log('tarnsid '+ transID);
         var viewForm = document.getElementById('displayForm1');
@@ -232,6 +231,7 @@
             FetchedDate.innerHTML = timestamp;
             
             statusResp = transID.toString();
+            editKey.innerHTML = "";
             for(var k =0;k <newKeys.length ; k++){
               var wrap = document.createElement('div');
               wrap.id = 'key' + k.toString();
@@ -285,13 +285,6 @@
         xhr.onreadystatechange = function() {
           console.log('Save status: ' + xhr.responseText);
         };
-=======
-      function pushHistory() {
-        closeNav();
-        
-        document.getElementById('displayForm1').style.visibility = 'visible';
-        document.getElementById('FlexSgreenH').style.visibility = 'hidden';
->>>>>>> 127ebb06085bccfa2c90e571e1b064dd11a88a22
       }
 
       function stopRecord() {
@@ -534,15 +527,10 @@
                     <a id="Flink" style="color: rgb(156, 184, 184);" onclick="pushHistory('`+ entry['_id']+`');">View</a>
                   </span>
                 </div>
-<<<<<<< HEAD
-                <div class="sentiment">
-                  <span id="words" style="color: rgb(156, 184, 184);">`+ entry['sentiment']+`</span>
-=======
                 <div class="sentiment" style="display:flex;>
                   <span id="words" style="color: rgb(156, 184, 184); font-size: 12px;
     font-style: italic;
     text-align: left;">Positive</span>
->>>>>>> 127ebb06085bccfa2c90e571e1b064dd11a88a22
                 </div>
               </div>
             </div>

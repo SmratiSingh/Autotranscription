@@ -19,7 +19,7 @@
             "tsConfig": "src/tsconfig.app.json",
             "assets": [
               {
-                "glob": "favicon.ico",
+                "glob": "logo.ico",
                 "input": "src",
                 "output": "/"
               },
@@ -113,7 +113,7 @@
             "scripts": [],
             "assets": [
               {
-                "glob": "favicon.ico",
+                "glob": "logo.ico",
                 "input": "src/",
                 "output": "/"
               },
@@ -177,7 +177,7 @@
             "polyfills": "projects/mdb-demo/src/polyfills.ts",
             "tsConfig": "projects/mdb-demo/tsconfig.app.json",
             "assets": [
-              "projects/mdb-demo/src/favicon.ico",
+              "projects/mdb-demo/src/logo.ico",
               "projects/mdb-demo/src/assets"
             ],
             "styles": [
@@ -252,7 +252,7 @@
             ],
             "scripts": [],
             "assets": [
-              "projects/mdb-demo/src/favicon.ico",
+              "projects/mdb-demo/src/logo.ico",
               "projects/mdb-demo/src/assets"
             ]
           }
